@@ -25,12 +25,13 @@
                                                                                                                                         
 ## 💻 개발 환경
                                                                                                                                            
-1. Swift 버전 
+1. Xcode 버전
+> + 12.2
                                                                                                                                    
-                                                                                                                                           2. 사용한 라이브러리
-                                                                                                                                            > + JJFloatingActionButton
-                                                                                                                                            > + MaterialComponents
-                                                                                                                                            > + TagListView
+2. 사용한 라이브러리
+> + JJFloatingActionButton 
+> + MaterialComponents
+> + TagListView
                                                                                                                                             
                                                                                                                                             
                                                                                                                                          
