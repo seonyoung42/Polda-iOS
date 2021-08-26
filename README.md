@@ -15,14 +15,33 @@
 <p float="left">
   
 <img src = "https://user-images.githubusercontent.com/77603632/130616134-615501c0-56cb-47a8-a345-f8789a46f59b.png" width="250" height="400">
-<img src = "https://user-images.githubusercontent.com/77603632/130614040-40ba632d-76c8-4255-a438-d17a1a254b50.png" width = "250" height="400">  
-<img src = "https://user-images.githubusercontent.com/77603632/130616413-0093c8b7-99fb-48b6-a0b0-25a5d423328b.png" width = "250" height ="400">
-<img src = "https://user-images.githubusercontent.com/77603632/130613601-a7b2ca05-eede-4d34-8b94-7203888d922a.png" width = "250 height="400">
+<img src = "https://user-images.githubusercontent.com/77603632/130614040-40ba632d-76c8-4255-a438-d17a1a254b50.png" width="250" height="400">  
+<img src = "https://user-images.githubusercontent.com/77603632/130616413-0093c8b7-99fb-48b6-a0b0-25a5d423328b.png" width="250" height ="400">
+<img src = "https://user-images.githubusercontent.com/77603632/130613601-a7b2ca05-eede-4d34-8b94-7203888d922a.png" width="250" height="400">
                                                                                                                                             
 </p>
+                                                                                                                         
                                                                                                                                           
+                                                                                                                                                                                                                                                                 
+                                                                                                                                          
+                                                                                                                                       
                                                                                                                                             
-                                                                                                                                            
+## 주요 기능
+1. Coredata
+> + 다이어리 추가, 삭제
+> + 다이어리 내 폴라로이드 이미지 추가, 삭제
+> + 해시태그 검색
+> + 최신순, 개수순 정렬
+> + 드래그 앤 드랍으로 자유로운 폴라로이드 위치 변경
+2. 폴라로이드 이미지 뷰
+> + 스티커 추가, 삭제
+> + 스티커 확대, 위치 변경
+> + 폴라로이드 테두리 색상 변경
+3. 메모 뷰
+> + 애니메이션 : 편집 시엔 뒤집기, 저장한 후엔 스와이프로 카드플립
+> + 폰트 변경
+4. 갤러리 저장, 공유
+                                                                                                             
                                                                                                                                             
 ## 🔗 앱 배포 (2021.07 ~ )
 [앱스토어 링크](https://apps.apple.com/kr/app/polda/id1577353290)                                                                                          
