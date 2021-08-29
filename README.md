@@ -50,8 +50,11 @@
                                                                                                                                            
 1. Xcode 버전
 > + 12.2
+
+2. Swift 버전
+> + Swift 5
                                                                                                                                    
-2. 사용한 라이브러리
+3. 사용한 라이브러리
 > + JJFloatingActionButton 
 > + MaterialComponents
 > + TagListView
