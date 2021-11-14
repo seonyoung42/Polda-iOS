@@ -1,0 +1,551 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2B06D1682685B15C00884339 /* BinggraeSamanco.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B06D1672685B15C00884339 /* BinggraeSamanco.otf */; };
+		2B06D16B2685B17D00884339 /* 잘풀리는오늘OTF Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B06D16A2685B17D00884339 /* 잘풀리는오늘OTF Medium.otf */; };
+		2B06D16E2685B18A00884339 /* Kyobo Handwriting 2019.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B06D16D2685B18A00884339 /* Kyobo Handwriting 2019.otf */; };
+		2B06D1742685B1AF00884339 /* NanumSquareR.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B06D1732685B1AF00884339 /* NanumSquareR.otf */; };
+		2B06D17A2685B4C500884339 /* SCDream6.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B06D1792685B4C500884339 /* SCDream6.otf */; };
+		2B1D59F6267C677E008DB9D7 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D59F5267C677E008DB9D7 /* DataManager.swift */; };
+		2B47C749264170AA006E17A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47C748264170AA006E17A5 /* AppDelegate.swift */; };
+		2B47C74B264170AA006E17A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47C74A264170AA006E17A5 /* SceneDelegate.swift */; };
+		2B47C74D264170AA006E17A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47C74C264170AA006E17A5 /* ViewController.swift */; };
+		2B47C750264170AA006E17A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B47C74E264170AA006E17A5 /* Main.storyboard */; };
+		2B47C753264170AA006E17A5 /* SyPolaroid.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B47C751264170AA006E17A5 /* SyPolaroid.xcdatamodeld */; };
+		2B47C755264170B0006E17A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B47C754264170B0006E17A5 /* Assets.xcassets */; };
+		2B47C758264170B0006E17A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B47C756264170B0006E17A5 /* LaunchScreen.storyboard */; };
+		2B6F8F40267F8F37002C0265 /* Cover+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F8F3C267F8F37002C0265 /* Cover+CoreDataClass.swift */; };
+		2B6F8F41267F8F37002C0265 /* Cover+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F8F3D267F8F37002C0265 /* Cover+CoreDataProperties.swift */; };
+		2B6F8F42267F8F37002C0265 /* Memo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F8F3E267F8F37002C0265 /* Memo+CoreDataClass.swift */; };
+		2B6F8F43267F8F37002C0265 /* Memo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6F8F3F267F8F37002C0265 /* Memo+CoreDataProperties.swift */; };
+		2B7D4B6E2642CFAA00A4D53E /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D4B6D2642CFAA00A4D53E /* ListViewController.swift */; };
+		2B7D4B752645328A00A4D53E /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D4B742645328A00A4D53E /* EditViewController.swift */; };
+		2B7D4B792646773700A4D53E /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D4B782646773700A4D53E /* MemoViewController.swift */; };
+		2B7D4B80264ABB0200A4D53E /* ShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D4B7F264ABB0200A4D53E /* ShowViewController.swift */; };
+		2B84C7E6265A26E300171C05 /* HashTagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B84C7E5265A26E300171C05 /* HashTagListViewController.swift */; };
+		2BB3188C2655493600893F99 /* PutStickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3188B2655493600893F99 /* PutStickerViewController.swift */; };
+		2BC2B4DF2682E6980058FE6C /* ShowMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2B4DE2682E6980058FE6C /* ShowMemoViewController.swift */; };
+		2BCE29A6268880CF00C765E7 /* SunBatang-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2BCE29A5268880CF00C765E7 /* SunBatang-Light.otf */; };
+		2BCE29A9268880D800C765E7 /* SSShinb7Regular_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2BCE29A8268880D800C765E7 /* SSShinb7Regular_otf.otf */; };
+		2BCE29AD2688813900C765E7 /* MaruBuri-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2BCE29AC2688813900C765E7 /* MaruBuri-Regular.otf */; };
+		FE75E3BB28CB35F488BB8D9E /* Pods_SyPolaroid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B53E9667426A7D9330361F /* Pods_SyPolaroid.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2B06D1672685B15C00884339 /* BinggraeSamanco.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BinggraeSamanco.otf; sourceTree = "<group>"; };
+		2B06D16A2685B17D00884339 /* 잘풀리는오늘OTF Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "잘풀리는오늘OTF Medium.otf"; sourceTree = "<group>"; };
+		2B06D16D2685B18A00884339 /* Kyobo Handwriting 2019.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kyobo Handwriting 2019.otf"; sourceTree = "<group>"; };
+		2B06D1732685B1AF00884339 /* NanumSquareR.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareR.otf; sourceTree = "<group>"; };
+		2B06D1792685B4C500884339 /* SCDream6.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream6.otf; sourceTree = "<group>"; };
+		2B1D59F5267C677E008DB9D7 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		2B47C745264170AA006E17A5 /* SyPolaroid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyPolaroid.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B47C748264170AA006E17A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2B47C74A264170AA006E17A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		2B47C74C264170AA006E17A5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2B47C74F264170AA006E17A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2B47C752264170AA006E17A5 /* SyPolaroid.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SyPolaroid.xcdatamodel; sourceTree = "<group>"; };
+		2B47C754264170B0006E17A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2B47C757264170B0006E17A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2B47C759264170B0006E17A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B6F8F3C267F8F37002C0265 /* Cover+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cover+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		2B6F8F3D267F8F37002C0265 /* Cover+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Cover+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		2B6F8F3E267F8F37002C0265 /* Memo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Memo+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		2B6F8F3F267F8F37002C0265 /* Memo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Memo+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		2B7D4B6D2642CFAA00A4D53E /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		2B7D4B742645328A00A4D53E /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		2B7D4B782646773700A4D53E /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
+		2B7D4B7F264ABB0200A4D53E /* ShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowViewController.swift; sourceTree = "<group>"; };
+		2B84C7E5265A26E300171C05 /* HashTagListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTagListViewController.swift; sourceTree = "<group>"; };
+		2BB3188B2655493600893F99 /* PutStickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutStickerViewController.swift; sourceTree = "<group>"; };
+		2BC2B4DE2682E6980058FE6C /* ShowMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMemoViewController.swift; sourceTree = "<group>"; };
+		2BCE29A5268880CF00C765E7 /* SunBatang-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SunBatang-Light.otf"; sourceTree = "<group>"; };
+		2BCE29A8268880D800C765E7 /* SSShinb7Regular_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SSShinb7Regular_otf.otf; sourceTree = "<group>"; };
+		2BCE29AC2688813900C765E7 /* MaruBuri-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-Regular.otf"; sourceTree = "<group>"; };
+		92ED18BBF49A2D884D30B391 /* Pods-SyPolaroid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SyPolaroid.debug.xcconfig"; path = "Target Support Files/Pods-SyPolaroid/Pods-SyPolaroid.debug.xcconfig"; sourceTree = "<group>"; };
+		93F5C01A2499FA3F61673691 /* Pods-SyPolaroid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SyPolaroid.release.xcconfig"; path = "Target Support Files/Pods-SyPolaroid/Pods-SyPolaroid.release.xcconfig"; sourceTree = "<group>"; };
+		D5B53E9667426A7D9330361F /* Pods_SyPolaroid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SyPolaroid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2B47C742264170AA006E17A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE75E3BB28CB35F488BB8D9E /* Pods_SyPolaroid.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B06D1652685B0BE00884339 /* AddData */ = {
+			isa = PBXGroup;
+			children = (
+				2B47C74C264170AA006E17A5 /* ViewController.swift */,
+				2B7D4B6D2642CFAA00A4D53E /* ListViewController.swift */,
+				2B7D4B742645328A00A4D53E /* EditViewController.swift */,
+				2BB3188B2655493600893F99 /* PutStickerViewController.swift */,
+				2B7D4B782646773700A4D53E /* MemoViewController.swift */,
+			);
+			path = AddData;
+			sourceTree = "<group>";
+		};
+		2B06D1662685B0EC00884339 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				2B06D1672685B15C00884339 /* BinggraeSamanco.otf */,
+				2B06D16D2685B18A00884339 /* Kyobo Handwriting 2019.otf */,
+				2B06D16A2685B17D00884339 /* 잘풀리는오늘OTF Medium.otf */,
+				2BCE29A5268880CF00C765E7 /* SunBatang-Light.otf */,
+				2BCE29A8268880D800C765E7 /* SSShinb7Regular_otf.otf */,
+				2B06D1732685B1AF00884339 /* NanumSquareR.otf */,
+				2BCE29AC2688813900C765E7 /* MaruBuri-Regular.otf */,
+				2B06D1792685B4C500884339 /* SCDream6.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		2B1D59F4267C676B008DB9D7 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				2B6F8F3C267F8F37002C0265 /* Cover+CoreDataClass.swift */,
+				2B6F8F3D267F8F37002C0265 /* Cover+CoreDataProperties.swift */,
+				2B6F8F3E267F8F37002C0265 /* Memo+CoreDataClass.swift */,
+				2B6F8F3F267F8F37002C0265 /* Memo+CoreDataProperties.swift */,
+				2B1D59F5267C677E008DB9D7 /* DataManager.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		2B47C73C264170AA006E17A5 = {
+			isa = PBXGroup;
+			children = (
+				2B47C747264170AA006E17A5 /* SyPolaroid */,
+				2B47C746264170AA006E17A5 /* Products */,
+				8BC3C925DED3721C0FB7BA53 /* Pods */,
+				F458B1DCB392B77D32B4F995 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2B47C746264170AA006E17A5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2B47C745264170AA006E17A5 /* SyPolaroid.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2B47C747264170AA006E17A5 /* SyPolaroid */ = {
+			isa = PBXGroup;
+			children = (
+				2B1D59F4267C676B008DB9D7 /* Data */,
+				2BC2B4E32682F5BA0058FE6C /* PresentData */,
+				2B06D1652685B0BE00884339 /* AddData */,
+				2B06D1662685B0EC00884339 /* Fonts */,
+				2B47C748264170AA006E17A5 /* AppDelegate.swift */,
+				2B47C74A264170AA006E17A5 /* SceneDelegate.swift */,
+				2B47C74E264170AA006E17A5 /* Main.storyboard */,
+				2B47C754264170B0006E17A5 /* Assets.xcassets */,
+				2B47C756264170B0006E17A5 /* LaunchScreen.storyboard */,
+				2B47C759264170B0006E17A5 /* Info.plist */,
+				2B47C751264170AA006E17A5 /* SyPolaroid.xcdatamodeld */,
+			);
+			path = SyPolaroid;
+			sourceTree = "<group>";
+		};
+		2BC2B4E32682F5BA0058FE6C /* PresentData */ = {
+			isa = PBXGroup;
+			children = (
+				2B7D4B7F264ABB0200A4D53E /* ShowViewController.swift */,
+				2BC2B4DE2682E6980058FE6C /* ShowMemoViewController.swift */,
+				2B84C7E5265A26E300171C05 /* HashTagListViewController.swift */,
+			);
+			path = PresentData;
+			sourceTree = "<group>";
+		};
+		8BC3C925DED3721C0FB7BA53 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				92ED18BBF49A2D884D30B391 /* Pods-SyPolaroid.debug.xcconfig */,
+				93F5C01A2499FA3F61673691 /* Pods-SyPolaroid.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F458B1DCB392B77D32B4F995 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D5B53E9667426A7D9330361F /* Pods_SyPolaroid.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2B47C744264170AA006E17A5 /* SyPolaroid */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B47C75C264170B0006E17A5 /* Build configuration list for PBXNativeTarget "SyPolaroid" */;
+			buildPhases = (
+				3032D8C7FF07F6DE9E47347F /* [CP] Check Pods Manifest.lock */,
+				2B47C741264170AA006E17A5 /* Sources */,
+				2B47C742264170AA006E17A5 /* Frameworks */,
+				2B47C743264170AA006E17A5 /* Resources */,
+				85EF32C88A4AE029AEB45711 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SyPolaroid;
+			productName = SyPolaroid;
+			productReference = 2B47C745264170AA006E17A5 /* SyPolaroid.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2B47C73D264170AA006E17A5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1220;
+				LastUpgradeCheck = 1220;
+				TargetAttributes = {
+					2B47C744264170AA006E17A5 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+				};
+			};
+			buildConfigurationList = 2B47C740264170AA006E17A5 /* Build configuration list for PBXProject "SyPolaroid" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2B47C73C264170AA006E17A5;
+			productRefGroup = 2B47C746264170AA006E17A5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2B47C744264170AA006E17A5 /* SyPolaroid */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2B47C743264170AA006E17A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BCE29A6268880CF00C765E7 /* SunBatang-Light.otf in Resources */,
+				2B06D17A2685B4C500884339 /* SCDream6.otf in Resources */,
+				2BCE29AD2688813900C765E7 /* MaruBuri-Regular.otf in Resources */,
+				2B06D16E2685B18A00884339 /* Kyobo Handwriting 2019.otf in Resources */,
+				2B47C758264170B0006E17A5 /* LaunchScreen.storyboard in Resources */,
+				2B06D16B2685B17D00884339 /* 잘풀리는오늘OTF Medium.otf in Resources */,
+				2BCE29A9268880D800C765E7 /* SSShinb7Regular_otf.otf in Resources */,
+				2B47C755264170B0006E17A5 /* Assets.xcassets in Resources */,
+				2B06D1742685B1AF00884339 /* NanumSquareR.otf in Resources */,
+				2B47C750264170AA006E17A5 /* Main.storyboard in Resources */,
+				2B06D1682685B15C00884339 /* BinggraeSamanco.otf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3032D8C7FF07F6DE9E47347F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SyPolaroid-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		85EF32C88A4AE029AEB45711 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SyPolaroid/Pods-SyPolaroid-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SyPolaroid/Pods-SyPolaroid-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SyPolaroid/Pods-SyPolaroid-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2B47C741264170AA006E17A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B7D4B792646773700A4D53E /* MemoViewController.swift in Sources */,
+				2BC2B4DF2682E6980058FE6C /* ShowMemoViewController.swift in Sources */,
+				2B47C74D264170AA006E17A5 /* ViewController.swift in Sources */,
+				2B6F8F41267F8F37002C0265 /* Cover+CoreDataProperties.swift in Sources */,
+				2B1D59F6267C677E008DB9D7 /* DataManager.swift in Sources */,
+				2B7D4B6E2642CFAA00A4D53E /* ListViewController.swift in Sources */,
+				2B47C753264170AA006E17A5 /* SyPolaroid.xcdatamodeld in Sources */,
+				2B6F8F43267F8F37002C0265 /* Memo+CoreDataProperties.swift in Sources */,
+				2B7D4B80264ABB0200A4D53E /* ShowViewController.swift in Sources */,
+				2B47C749264170AA006E17A5 /* AppDelegate.swift in Sources */,
+				2B47C74B264170AA006E17A5 /* SceneDelegate.swift in Sources */,
+				2B84C7E6265A26E300171C05 /* HashTagListViewController.swift in Sources */,
+				2B7D4B752645328A00A4D53E /* EditViewController.swift in Sources */,
+				2BB3188C2655493600893F99 /* PutStickerViewController.swift in Sources */,
+				2B6F8F40267F8F37002C0265 /* Cover+CoreDataClass.swift in Sources */,
+				2B6F8F42267F8F37002C0265 /* Memo+CoreDataClass.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2B47C74E264170AA006E17A5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B47C74F264170AA006E17A5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2B47C756264170B0006E17A5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B47C757264170B0006E17A5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2B47C75A264170B0006E17A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Polda;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2B47C75B264170B0006E17A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = Polda;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2B47C75D264170B0006E17A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92ED18BBF49A2D884D30B391 /* Pods-SyPolaroid.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2Q6MH57SWY;
+				INFOPLIST_FILE = SyPolaroid/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jsy.SyPolaroid;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		2B47C75E264170B0006E17A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93F5C01A2499FA3F61673691 /* Pods-SyPolaroid.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2Q6MH57SWY;
+				INFOPLIST_FILE = SyPolaroid/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jsy.SyPolaroid;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2B47C740264170AA006E17A5 /* Build configuration list for PBXProject "SyPolaroid" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B47C75A264170B0006E17A5 /* Debug */,
+				2B47C75B264170B0006E17A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2B47C75C264170B0006E17A5 /* Build configuration list for PBXNativeTarget "SyPolaroid" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B47C75D264170B0006E17A5 /* Debug */,
+				2B47C75E264170B0006E17A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2B47C751264170AA006E17A5 /* SyPolaroid.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2B47C752264170AA006E17A5 /* SyPolaroid.xcdatamodel */,
+			);
+			currentVersion = 2B47C752264170AA006E17A5 /* SyPolaroid.xcdatamodel */;
+			path = SyPolaroid.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 2B47C73D264170AA006E17A5 /* Project object */;
+}

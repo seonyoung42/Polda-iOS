@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="20D74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Cover" representedClassName="Cover" syncable="YES">
+        <attribute name="createDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="image" attributeType="Binary"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="rawMemos" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Memo" inverseName="cover" inverseEntity="Memo"/>
+    </entity>
+    <entity name="Memo" representedClassName="Memo" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String"/>
+        <attribute name="editedImage" optional="YES" attributeType="Binary"/>
+        <attribute name="fontName" optional="YES" attributeType="String"/>
+        <attribute name="hashTag" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="insertDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="memoImage" optional="YES" attributeType="Binary"/>
+        <attribute name="title" optional="YES" attributeType="String" preserveAfterDeletion="YES"/>
+        <relationship name="cover" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cover" inverseName="rawMemos" inverseEntity="Cover"/>
+    </entity>
+    <elements>
+        <element name="Cover" positionX="152.9484252929688" positionY="-14.7786865234375" width="128" height="89"/>
+        <element name="Memo" positionX="-63" positionY="-18" width="128" height="149"/>
+    </elements>
+</model>

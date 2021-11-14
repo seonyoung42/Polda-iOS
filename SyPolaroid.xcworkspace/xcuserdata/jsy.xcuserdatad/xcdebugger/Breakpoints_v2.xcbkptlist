@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "8CA6AAC4-B090-48F0-A4D3-E8DFF360965F"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "28131C0A-4401-48C5-91FD-0FEA8C2DEE86"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SyPolaroid/MemoViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "saveData(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "29EF75A3-5503-4CF2-B09A-3E48171DB7DC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SyPolaroid/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
+            landmarkName = "DiaryCell"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CD6FE641-A8F9-4B9A-ACC4-831207568E83"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SyPolaroid/AddData/MemoViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "MemoViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "CD6FE641-A8F9-4B9A-ACC4-831207568E83 - 3e47bb6ffd7e6e0f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SyPolaroid.MemoViewController.__deallocating_deinit"
+                  moduleName = "SyPolaroid"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jsy/Desktop/Developments/SyPolaroid/SyPolaroid/AddData/MemoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "CD6FE641-A8F9-4B9A-ACC4-831207568E83 - dbad1d88e7cb87da"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SyPolaroid.MemoViewController.__allocating_init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; SyPolaroid.MemoViewController"
+                  moduleName = "SyPolaroid"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jsy/Desktop/Developments/SyPolaroid/SyPolaroid/AddData/MemoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "CD6FE641-A8F9-4B9A-ACC4-831207568E83 - b853ee8d7ba5edcb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SyPolaroid.MemoViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; SyPolaroid.MemoViewController"
+                  moduleName = "SyPolaroid"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jsy/Desktop/Developments/SyPolaroid/SyPolaroid/AddData/MemoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "650">
+               </Location>
+               <Location
+                  uuid = "CD6FE641-A8F9-4B9A-ACC4-831207568E83 - 43ad72c6676701c2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SyPolaroid.MemoViewController.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;SyPolaroid.MemoViewController&gt;"
+                  moduleName = "SyPolaroid"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jsy/Desktop/Developments/SyPolaroid/SyPolaroid/AddData/MemoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "CD6FE641-A8F9-4B9A-ACC4-831207568E83 - b3013c2959166507"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SyPolaroid.MemoViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;SyPolaroid.MemoViewController&gt;"
+                  moduleName = "SyPolaroid"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jsy/Desktop/Developments/SyPolaroid/SyPolaroid/AddData/MemoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "591">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B2C97A12-D4B6-4815-A396-3D7E1486C3F4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SyPolaroid/AddData/MemoViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "MemoViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "B2C97A12-D4B6-4815-A396-3D7E1486C3F4 - 5dcd336b0b3bf104"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SyPolaroid.MemoViewController.myTagListView.getter : Swift.Optional&lt;TagListView.TagListView&gt;"
+                  moduleName = "SyPolaroid"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jsy/Desktop/Developments/SyPolaroid/SyPolaroid/AddData/MemoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "B2C97A12-D4B6-4815-A396-3D7E1486C3F4 - 7541fa1c00e9cd10"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SyPolaroid.MemoViewController.myTagListView.setter : Swift.Optional&lt;TagListView.TagListView&gt;"
+                  moduleName = "SyPolaroid"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jsy/Desktop/Developments/SyPolaroid/SyPolaroid/AddData/MemoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "155">
+               </Location>
+               <Location
+                  uuid = "B2C97A12-D4B6-4815-A396-3D7E1486C3F4 - d509248e3a4b792f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SyPolaroid.MemoViewController.myTagListView.modify : Swift.Optional&lt;TagListView.TagListView&gt;"
+                  moduleName = "SyPolaroid"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jsy/Desktop/Developments/SyPolaroid/SyPolaroid/AddData/MemoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "59">
+               </Location>
+               <Location
+                  uuid = "B2C97A12-D4B6-4815-A396-3D7E1486C3F4 - 57cd7c39f9d0dc79"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SyPolaroid.MemoViewController.myTagListView.modify : Swift.Optional&lt;TagListView.TagListView&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "SyPolaroid"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jsy/Desktop/Developments/SyPolaroid/SyPolaroid/AddData/MemoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "64">
+               </Location>
+               <Location
+                  uuid = "B2C97A12-D4B6-4815-A396-3D7E1486C3F4 - b853ee8d7ba5ec34"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SyPolaroid.MemoViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; SyPolaroid.MemoViewController"
+                  moduleName = "SyPolaroid"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jsy/Desktop/Developments/SyPolaroid/SyPolaroid/AddData/MemoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "1235">
+               </Location>
+               <Location
+                  uuid = "B2C97A12-D4B6-4815-A396-3D7E1486C3F4 - b3013c29591664f8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SyPolaroid.MemoViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;SyPolaroid.MemoViewController&gt;"
+                  moduleName = "SyPolaroid"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jsy/Desktop/Developments/SyPolaroid/SyPolaroid/AddData/MemoViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "1170">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "0C500009-EF48-4757-8A6E-34D75A6AA1A6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "UIViewAlertForUnsatisfiableConstraints"
+            moduleName = "">
+            <Actions>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
+                  <ActionContent
+                     consoleCommand = "">
+                  </ActionContent>
+               </BreakpointActionProxy>
+            </Actions>
+            <Locations>
+               <Location
+                  uuid = "0C500009-EF48-4757-8A6E-34D75A6AA1A6 - ba3ad5676a792f38"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "UIViewAlertForUnsatisfiableConstraints"
+                  moduleName = "UIKitCore"
+                  usesParentBreakpointCondition = "Yes"
+                  offsetFromSymbolStart = "0">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

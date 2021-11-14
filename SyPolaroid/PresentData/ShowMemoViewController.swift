@@ -1,0 +1,163 @@
+//
+//  ShowMemoViewController.swift
+//  SyPolaroid
+//
+//  Created by 장선영 on 2021/06/23.
+//
+
+import UIKit
+import TagListView
+
+class ShowMemoViewController: UIViewController, UITextFieldDelegate, TagListViewDelegate  {
+    
+    @IBOutlet weak var showBackImage: UIImageView!
+    @IBOutlet weak var memoView: UIView!
+    @IBOutlet weak var titleField: UITextField!
+    @IBOutlet weak var memoText: UITextView!
+    @IBOutlet weak var TagScroll: UIScrollView!
+    @IBOutlet weak var myTagListView: TagListView!
+    var memo : Memo!
+    var cover : Cover!
+    var finalImage = UIImage()
+    var tagArray = [String]()
+    var memoIndex : Int!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.showBackImage.layer.cornerRadius = 40
+        memoText.isUserInteractionEnabled = true
+        titleField.isUserInteractionEnabled = true
+        myTagListView.isUserInteractionEnabled = true
+        
+        
+        self.titleField.delegate = self
+//        self.memoField.delegate = self
+        myTagListView.delegate = self
+        
+        titleField.backgroundColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+        
+        memoText.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        memoText.layer.borderWidth = 1.5
+        memoText.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+
+        myTagListView.marginX = 10
+        myTagListView.enableRemoveButton = true
+        myTagListView.tagBackgroundColor = #colorLiteral(red: 1, green: 0.918815136, blue: 0.9157708287, alpha: 1)
+        myTagListView.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+        myTagListView.accessibilityScroll(.down)
+
+        
+        TagScroll.layer.borderWidth = 1.5
+        TagScroll.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+        
+        myTagListView.tagBackgroundColor = #colorLiteral(red: 1, green: 0.9189032316, blue: 0.9114453793, alpha: 1)
+        myTagListView.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+        myTagListView.borderWidth = 1.5
+        myTagListView.cornerRadius = 12
+        myTagListView.textColor = UIColor.darkGray
+        myTagListView.removeIconLineColor = UIColor.lightGray
+        
+        
+        titleField.text = memo?.title
+        memoText.text = memo?.content
+
+        let defaultSize = UIFont.systemFontSize
+        let defaultFont = UIFont.systemFont(ofSize: defaultSize).familyName
+        let defaultFont2 = UIFont.systemFont(ofSize: defaultSize).fontName
+        
+
+        titleField.font = UIFont.init(descriptor: .init(name: memo.fontName ?? defaultFont, size: defaultSize), size: defaultSize)
+        memoText.font = UIFont.init(descriptor: .init(name: memo.fontName ?? defaultFont, size: defaultSize), size: defaultSize)
+        
+        tagArray = memo?.hashTag ?? []
+        myTagListView.addTags(tagArray)
+        print(defaultFont)
+        print(defaultFont2)
+        print(defaultSize)
+        
+        memoView.layer.shouldRasterize = true
+        memoView.layer.shadowOpacity = 0.2
+        memoView.layer.shadowRadius = 8
+        memoView.layer.shadowOffset = CGSize(width: 10, height: 10)
+        
+    }
+    
+    
+    @IBAction func saveMemo(_ sender: Any) {
+        
+        let renderer = UIGraphicsImageRenderer(size: memoView.bounds.size)
+        let memoImage = renderer.image { ctx in memoView.drawHierarchy(in: memoView.bounds, afterScreenUpdates: true) }
+       
+        if let image = memo.editedImage {
+            finalImage = UIImage(data: image)!
+        }
+       
+        memo.title = titleField.text
+        memo.content = memoText.text
+        memo.hashTag = tagArray
+        memo.memoImage = memoImage.pngData()
+        DataManager.shared.saveContext()
+        
+        guard let navigation = self.presentingViewController as? UINavigationController else {
+            return
+        }
+        self.dismiss(animated: false) {
+            navigation.popViewController(animated: true)
+        }
+    }
+    
+
+    @IBAction func goBack(_ sender: Any) {
+        guard  let pvc = presentingViewController else {
+            return
+        }
+    
+        self.dismiss(animated: true) {
+            pvc.dismiss(animated: true, completion: nil)
+    }
+    }
+    
+    
+    @IBAction func TapTagList(_ sender: Any) {
+        let alert = UIAlertController(title: "태그를 추가하세요", message: "", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
+            let userInput = alert.textFields?[0].text ?? ""
+                if userInput.count >= 1 {
+                    self.myTagListView.addTag(userInput)
+                    self.tagArray.append(userInput)
+                } else {
+                    ok.isEnabled = false
+                }
+        }
+        
+        let cancel = UIAlertAction(title: "cancel", style: .cancel) { (cancel) in }
+
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        alert.addTextField()
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
+    func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
+        sender.removeTagView(tagView)
+
+        for i in 0..<tagArray.count {
+            if tagArray[i] == title {
+                tagArray.remove(at: i)
+                break}}
+        print(tagArray)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        titleField.resignFirstResponder()
+        return true
+    }
+    
+    //터치 시 키보드 내려감
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+}
