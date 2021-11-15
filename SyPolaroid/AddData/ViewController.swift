@@ -85,18 +85,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+        
         self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 0)
         self.collectionView.backgroundColor = .none
         self.searchBar.delegate = self
         searchBar.backgroundImage = UIImage()
         
-        // > 서치바 텍스트필드 설정
-        let textFieldInsideSearchBar = self.searchBar.value(forKey: "searchField") as? UITextField
-        textFieldInsideSearchBar?.backgroundColor = #colorLiteral(red: 1, green: 0.918815136, blue: 0.9157708287, alpha: 1)
-        textFieldInsideSearchBar?.layer.borderWidth = 2
-        textFieldInsideSearchBar?.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
-        textFieldInsideSearchBar?.layer.cornerRadius = 10
-        
+
         // > 셀 크키, 간격 조정
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: width, height: width*1.3)
@@ -104,9 +99,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         flowLayout.minimumLineSpacing = 20
         self.collectionView.collectionViewLayout = flowLayout
         
+
+        setFloatingBtn()
+        setSearchBar()
         
-        // > floating Action button
+    }
+    
+    func setFloatingBtn() {
+        
         actionButton = JJFloatingActionButton()
+        
         actionButton.addItem(title: "", image: UIImage(named: "thrash icon" )) { item in
             self.mMode = self.mMode == .view ? .select : .view
         }
@@ -132,6 +134,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
         
         view.addSubview(actionButton)
+        
         actionButton.translatesAutoresizingMaskIntoConstraints = false
         actionButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
         actionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
@@ -141,6 +144,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         actionButton.configureDefaultItem { item in
             item.buttonColor = .white
         }
+    }
+    
+    // > 서치바 텍스트필드 설정
+    func setSearchBar() {
+        
+        let textFieldInsideSearchBar = self.searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.backgroundColor = #colorLiteral(red: 1, green: 0.918815136, blue: 0.9157708287, alpha: 1)
+        textFieldInsideSearchBar?.layer.borderWidth = 2
+        textFieldInsideSearchBar?.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+        textFieldInsideSearchBar?.layer.cornerRadius = 10
     }
     
 // > 서치바
@@ -164,12 +177,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
-      override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
-        self.navigationController?.toolbar.isHidden = true
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
+    override func viewWillAppear(_ animated: Bool) {
+        setNavigationBar()
         
         if self.buttonStatus {
             DataManager.shared.fetchCoverbyCount()
@@ -179,6 +188,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.collectionView.reloadData()
     }
     
+    func setNavigationBar() {
+        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.toolbar.isHidden = true
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        
+    }
+    
+    
+
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
     }
@@ -194,9 +214,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
         
         let cover = DataManager.shared.coverList[indexPath.row]
+        
         cell.diaryTitle.text = cover.name
         cell.diaryTitle.textAlignment = .center
         cell.diaryTitle.alpha = 0.5
+        
         cell.diaryTitle.backgroundColor = .white
         cell.diaryImage.layer.borderWidth = 5
         cell.diaryImage.layer.borderColor = #colorLiteral(red: 0.984081924, green: 0.5641410947, blue: 0.5658608675, alpha: 1)
@@ -306,57 +328,3 @@ extension ViewController {
         picker.dismiss(animated: true, completion: nil)
     }
 }
-
-
-class DiaryCell : UICollectionViewCell {
-    
-    @IBOutlet weak var shadowView: UIView!
-    @IBOutlet weak var diaryView: UIView!
-    @IBOutlet weak var diaryImage: UIImageView!
-    @IBOutlet weak var diaryTitle: UITextField!
-    @IBOutlet weak var diaryImageButton: UIButton!
-    @IBOutlet weak var highLight: UIView!
-    
-    @IBAction func done(_ sender: UITextField) {
-        sender.resignFirstResponder()
-        guard let name = sender.text else {
-            print("invalid title")
-            return
-        }
-        let cover = DataManager.shared.coverList[getIndexPath()?.row ?? 0]
-        cover.name = name
-        DataManager.shared.saveContext()
-    }
-    
-    func getIndexPath() -> IndexPath? {
-        guard let superView = self.superview as? UICollectionView else {
-            print("superview is not a UITableView - getIndexPath")
-            return nil
-        }
-        let indexPath = superView.indexPath(for: self)
-        return indexPath
-    }
-    
-    override var isHighlighted: Bool {
-            didSet {
-                highLight.isHidden = !isHighlighted
-            }
-        }
-    
-    override var isSelected: Bool  {
-            didSet {
-                if isSelected == true {
-                    highLight.isHidden = false
-                    self.layer.borderWidth = 5
-                    self.layer.borderColor = UIColor.lightGray.cgColor
-                    self.layer.cornerRadius = 80
-                    highLight.alpha = 0.3
-                } else {
-                    highLight.isHidden = true
-                    self.layer.borderWidth = 0
-                }
-            }
-        }
-}
-
-

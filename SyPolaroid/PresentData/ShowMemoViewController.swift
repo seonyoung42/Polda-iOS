@@ -32,57 +32,59 @@ class ShowMemoViewController: UIViewController, UITextFieldDelegate, TagListView
         
         
         self.titleField.delegate = self
-//        self.memoField.delegate = self
         myTagListView.delegate = self
         
         titleField.backgroundColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
         
-        memoText.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        memoText.layer.borderWidth = 1.5
-        memoText.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+        setTagListView()
+        setMemoView()
 
-        myTagListView.marginX = 10
-        myTagListView.enableRemoveButton = true
-        myTagListView.tagBackgroundColor = #colorLiteral(red: 1, green: 0.918815136, blue: 0.9157708287, alpha: 1)
-        myTagListView.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
-        myTagListView.accessibilityScroll(.down)
-
-        
-        TagScroll.layer.borderWidth = 1.5
-        TagScroll.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
-        
-        myTagListView.tagBackgroundColor = #colorLiteral(red: 1, green: 0.9189032316, blue: 0.9114453793, alpha: 1)
-        myTagListView.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
-        myTagListView.borderWidth = 1.5
-        myTagListView.cornerRadius = 12
-        myTagListView.textColor = UIColor.darkGray
-        myTagListView.removeIconLineColor = UIColor.lightGray
-        
-        
         titleField.text = memo?.title
         memoText.text = memo?.content
 
         let defaultSize = UIFont.systemFontSize
         let defaultFont = UIFont.systemFont(ofSize: defaultSize).familyName
-        let defaultFont2 = UIFont.systemFont(ofSize: defaultSize).fontName
-        
 
         titleField.font = UIFont.init(descriptor: .init(name: memo.fontName ?? defaultFont, size: defaultSize), size: defaultSize)
         memoText.font = UIFont.init(descriptor: .init(name: memo.fontName ?? defaultFont, size: defaultSize), size: defaultSize)
         
         tagArray = memo?.hashTag ?? []
         myTagListView.addTags(tagArray)
-        print(defaultFont)
-        print(defaultFont2)
-        print(defaultSize)
         
+        print(defaultFont)
+
+    }
+    
+    func setTagListView() {
+        
+        myTagListView.marginX = 10
+        myTagListView.enableRemoveButton = true
+        myTagListView.tagBackgroundColor = #colorLiteral(red: 1, green: 0.918815136, blue: 0.9157708287, alpha: 1)
+        myTagListView.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+        myTagListView.accessibilityScroll(.down)
+        myTagListView.borderWidth = 1.5
+        myTagListView.cornerRadius = 12
+        myTagListView.textColor = UIColor.darkGray
+        myTagListView.removeIconLineColor = UIColor.lightGray
+        
+        TagScroll.layer.borderWidth = 1.5
+        TagScroll.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+        
+    }
+    
+    func setMemoView() {
+        
+        // > add shadow
         memoView.layer.shouldRasterize = true
         memoView.layer.shadowOpacity = 0.2
         memoView.layer.shadowRadius = 8
         memoView.layer.shadowOffset = CGSize(width: 10, height: 10)
         
+        memoText.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        memoText.layer.borderWidth = 1.5
+        memoText.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+        
     }
-    
     
     @IBAction func saveMemo(_ sender: Any) {
         

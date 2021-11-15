@@ -47,11 +47,9 @@ class ShowViewController: UIViewController, UIPopoverPresentationControllerDeleg
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.navigationController?.navigationBar.topItem?.title = ""
-        self.navigationController?.toolbar.isHidden = false
-        //툴바 투명하게
-        self.navigationController?.toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
-        self.navigationController?.toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
+        setNavigationBar()
+        setShadow()
+
         finalImage.isUserInteractionEnabled = true
         
         self.showBackImage.layer.cornerRadius = 40
@@ -62,20 +60,34 @@ class ShowViewController: UIViewController, UIPopoverPresentationControllerDeleg
         if let memoData = memo?.memoImage {
             memoImage = UIImage(data: memoData)!
         }
-        
-        flipView.layer.shouldRasterize = true
-        flipView.layer.shadowOpacity = 0.2
-        flipView.layer.shadowRadius = 8
-        flipView.layer.shadowOffset = CGSize(width: 10, height: 10)
-        
-        
+
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture(_:)))
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture(_:)))
         
         swipeRight.direction = .right
         swipeLeft.direction = .left
-        self.view.addGestureRecognizer(swipeRight)
-        self.view.addGestureRecognizer(swipeLeft)
+        
+        [swipeRight,swipeLeft].forEach {
+            self.view.addGestureRecognizer($0)
+        }
+       
+    }
+    
+    func setNavigationBar() {
+        
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.toolbar.isHidden = false
+        //툴바 투명하게
+        self.navigationController?.toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
+        self.navigationController?.toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
+    }
+    
+    func setShadow() {
+        
+        flipView.layer.shouldRasterize = true
+        flipView.layer.shadowOpacity = 0.2
+        flipView.layer.shadowRadius = 8
+        flipView.layer.shadowOffset = CGSize(width: 10, height: 10)
     }
     
     @objc func respondToSwipeGesture(_ gesture: UISwipeGestureRecognizer) {

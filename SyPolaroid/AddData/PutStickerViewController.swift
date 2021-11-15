@@ -28,28 +28,35 @@ class PutStickerViewController: UIViewController, UICollectionViewDataSource, UI
         collectionView.layer.cornerRadius = 10
         view.layer.cornerRadius = 10
         view.backgroundColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
-        mySegment.selectedSegmentIndex = 0
-        mySegment.selectedSegmentTintColor = #colorLiteral(red: 0.9818590283, green: 0.8747641444, blue: 0.8722032309, alpha: 1)
-        mySegment.tintColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
-        mySegment.backgroundColor = UIColor.white
         
-        let firstImage = UIImage(named: "Union")?.withRenderingMode(.alwaysOriginal)
-        let secondImage = UIImage(named: "Ellipse 13")?.withRenderingMode(.alwaysOriginal)
-        let thirdImage = UIImage(named: "Star 2")?.withRenderingMode(.alwaysOriginal)
-        let fourthImage = UIImage(named: "Polygon 1")?.withRenderingMode(.alwaysOriginal)
-        let fifthImage = UIImage(named: "stickerCategory")?.withRenderingMode(.alwaysOriginal)
-       
-        mySegment.setImage(firstImage, forSegmentAt: 0)
-        mySegment.setImage(secondImage, forSegmentAt: 1)
-        mySegment.setImage(thirdImage, forSegmentAt: 2)
-        mySegment.setImage(fourthImage, forSegmentAt: 3)
-        mySegment.setImage(fifthImage, forSegmentAt: 4)
 
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: width, height: width)
         flowLayout.minimumLineSpacing = 20
         flowLayout.minimumInteritemSpacing = 20
         self.collectionView.collectionViewLayout = flowLayout
+        
+        setSegment()
+    }
+    
+    func setSegment() {
+        
+        setSegmentImage(imageName: "Union", segmentNum: 0)
+        setSegmentImage(imageName: "Ellipse 13", segmentNum: 1)
+        setSegmentImage(imageName: "Star 2", segmentNum: 2)
+        setSegmentImage(imageName: "Polygon 1", segmentNum: 3)
+        setSegmentImage(imageName: "stickerCategory", segmentNum: 4)
+        
+        mySegment.selectedSegmentIndex = 0
+        mySegment.selectedSegmentTintColor = #colorLiteral(red: 0.9818590283, green: 0.8747641444, blue: 0.8722032309, alpha: 1)
+        mySegment.tintColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+        mySegment.backgroundColor = UIColor.white
+
+    }
+    
+    func setSegmentImage(imageName: String, segmentNum: Int) {
+        let image = UIImage(named: imageName)?.withRenderingMode(.alwaysOriginal)
+        mySegment.setImage(image, forSegmentAt: segmentNum)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -157,7 +157,7 @@
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                             <connections>
-                                                                <action selector="done:" destination="Gxk-lc-kFs" eventType="primaryActionTriggered" id="YSJ-rG-Gor"/>
+                                                                <action selector="done:" destination="Gxk-lc-kFs" eventType="editingDidEnd" id="bYd-Px-vre"/>
                                                             </connections>
                                                         </textField>
                                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JUr-p8-J1H">
@@ -192,12 +192,12 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="406" height="368"/>
                                         <connections>
-                                            <outlet property="diaryImage" destination="m6K-di-SfA" id="qSE-0e-wmV"/>
-                                            <outlet property="diaryImageButton" destination="y3m-jd-cWH" id="kOQ-TO-VQo"/>
-                                            <outlet property="diaryTitle" destination="pEP-Wi-4AX" id="rZx-zD-IB6"/>
-                                            <outlet property="diaryView" destination="gKF-dl-z2L" id="8cr-43-Ewo"/>
-                                            <outlet property="highLight" destination="JUr-p8-J1H" id="jNc-mo-vs3"/>
-                                            <outlet property="shadowView" destination="jRw-pH-Ka8" id="LAf-KW-1VK"/>
+                                            <outlet property="diaryImage" destination="m6K-di-SfA" id="usI-7S-1Xp"/>
+                                            <outlet property="diaryImageButton" destination="y3m-jd-cWH" id="b6v-w0-pX5"/>
+                                            <outlet property="diaryTitle" destination="pEP-Wi-4AX" id="SFe-JH-0Bh"/>
+                                            <outlet property="diaryView" destination="gKF-dl-z2L" id="Fhn-B6-7JN"/>
+                                            <outlet property="highLight" destination="JUr-p8-J1H" id="mQS-pt-fJg"/>
+                                            <outlet property="shadowView" destination="jRw-pH-Ka8" id="bsQ-Su-BWe"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

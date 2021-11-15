@@ -61,18 +61,12 @@ class ListViewController: UIViewController, UICollectionViewDelegate,UICollectio
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         self.collectionView.backgroundColor = .none
-//        self.collectionView.contentInset = sectionInsets
         
 
         self.ListBackImage.layer.cornerRadius = 40
         
-        //네비게이션바 투명하게
-        self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.topItem?.title = cover?.name
-        self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.9809378982, green: 0.5516198277, blue: 0.5537384748, alpha: 1)
+        //네비게이션바 세팅
+        setNavigationBar()
         
         //셀 크기 조정
         let flowLayout = UICollectionViewFlowLayout()
@@ -95,6 +89,17 @@ class ListViewController: UIViewController, UICollectionViewDelegate,UICollectio
         actionButton.translatesAutoresizingMaskIntoConstraints = false
         actionButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
         actionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+    }
+    
+    func setNavigationBar() {
+        
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.topItem?.title = cover?.name
+        self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.9809378982, green: 0.5516198277, blue: 0.5537384748, alpha: 1)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

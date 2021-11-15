@@ -29,6 +29,7 @@
 		2B7D4B792646773700A4D53E /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D4B782646773700A4D53E /* MemoViewController.swift */; };
 		2B7D4B80264ABB0200A4D53E /* ShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D4B7F264ABB0200A4D53E /* ShowViewController.swift */; };
 		2B84C7E6265A26E300171C05 /* HashTagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B84C7E5265A26E300171C05 /* HashTagListViewController.swift */; };
+		2B8B28572742573C001B6A68 /* DiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B28562742573C001B6A68 /* DiaryCell.swift */; };
 		2BB3188C2655493600893F99 /* PutStickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3188B2655493600893F99 /* PutStickerViewController.swift */; };
 		2BC2B4DF2682E6980058FE6C /* ShowMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2B4DE2682E6980058FE6C /* ShowMemoViewController.swift */; };
 		2BCE29A6268880CF00C765E7 /* SunBatang-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2BCE29A5268880CF00C765E7 /* SunBatang-Light.otf */; };
@@ -62,6 +63,7 @@
 		2B7D4B782646773700A4D53E /* MemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoViewController.swift; sourceTree = "<group>"; };
 		2B7D4B7F264ABB0200A4D53E /* ShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowViewController.swift; sourceTree = "<group>"; };
 		2B84C7E5265A26E300171C05 /* HashTagListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTagListViewController.swift; sourceTree = "<group>"; };
+		2B8B28562742573C001B6A68 /* DiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCell.swift; sourceTree = "<group>"; };
 		2BB3188B2655493600893F99 /* PutStickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutStickerViewController.swift; sourceTree = "<group>"; };
 		2BC2B4DE2682E6980058FE6C /* ShowMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMemoViewController.swift; sourceTree = "<group>"; };
 		2BCE29A5268880CF00C765E7 /* SunBatang-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SunBatang-Light.otf"; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				2B47C74C264170AA006E17A5 /* ViewController.swift */,
+				2B8B28562742573C001B6A68 /* DiaryCell.swift */,
 				2B7D4B6D2642CFAA00A4D53E /* ListViewController.swift */,
 				2B7D4B742645328A00A4D53E /* EditViewController.swift */,
 				2BB3188B2655493600893F99 /* PutStickerViewController.swift */,
@@ -321,6 +324,7 @@
 				2B47C74B264170AA006E17A5 /* SceneDelegate.swift in Sources */,
 				2B84C7E6265A26E300171C05 /* HashTagListViewController.swift in Sources */,
 				2B7D4B752645328A00A4D53E /* EditViewController.swift in Sources */,
+				2B8B28572742573C001B6A68 /* DiaryCell.swift in Sources */,
 				2BB3188C2655493600893F99 /* PutStickerViewController.swift in Sources */,
 				2B6F8F40267F8F37002C0265 /* Cover+CoreDataClass.swift in Sources */,
 				2B6F8F42267F8F37002C0265 /* Memo+CoreDataClass.swift in Sources */,

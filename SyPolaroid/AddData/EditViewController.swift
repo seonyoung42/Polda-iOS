@@ -63,10 +63,6 @@ class EditViewController: UIViewController, SendDataDelegate, UIViewControllerTr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.topItem?.title = ""
-        //툴바 투명하게
-        self.navigationController?.toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
-        self.navigationController?.toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
         
         self.EditBackImage.layer.cornerRadius = 40
         self.editImage.isUserInteractionEnabled = true
@@ -75,6 +71,20 @@ class EditViewController: UIViewController, SendDataDelegate, UIViewControllerTr
         self.buttonView.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
         self.buttonView.layer.borderWidth = 1
         
+        setNavigationBar()
+        setShadow()
+        
+    }
+    
+    //네이게이션 바 세팅
+    func setNavigationBar() {
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
+        self.navigationController?.toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
+    }
+    
+    // 이미지 배경에 그림자 넣기
+    func setShadow() {
         editView.clipsToBounds = true
         shadowView.backgroundColor = .white
         shadowView.layer.shouldRasterize = true
@@ -82,7 +92,6 @@ class EditViewController: UIViewController, SendDataDelegate, UIViewControllerTr
         shadowView.layer.shadowRadius = 8
         shadowView.layer.shadowOffset = CGSize(width: 10, height: 10)
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.toolbar.isHidden = false
@@ -118,14 +127,16 @@ class EditViewController: UIViewController, SendDataDelegate, UIViewControllerTr
 
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress))
         
-        imageSticker.addGestureRecognizer(panGesture)
-        imageSticker.addGestureRecognizer(pinchGesture)
-        imageSticker.addGestureRecognizer(rotateGesture)
-        imageSticker.addGestureRecognizer(longPress)
+        
+        [panGesture,pinchGesture,rotateGesture,longPress].forEach {
+            imageSticker.addGestureRecognizer($0)
+        }
+        
     }
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         guard let destination = segue.destination as? MemoViewController else {
             return
             }
@@ -160,8 +171,9 @@ class EditViewController: UIViewController, SendDataDelegate, UIViewControllerTr
     }
 }
 
-// > 스티커 기능
+// > 스티커 기능 설정
 extension EditViewController {
+    
     // > 스티커 삭제
     @objc func longPress(_ gesture : UILongPressGestureRecognizer){
         
@@ -172,9 +184,8 @@ extension EditViewController {
         let alert = UIAlertController(title: "해당 스티커를 삭제하시겠습니까?", message: "", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) {_ in
             gesture.view?.removeFromSuperview()}
-        let cancel = UIAlertAction(title: "cancel", style: .cancel) { (cancel) in}
-        alert.addAction(cancel)
         alert.addAction(ok)
+        alert.addAction(UIAlertAction(title: "cancel", style: .cancel) { (cancel) in})
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -253,6 +264,7 @@ extension EditViewController : UIImagePickerControllerDelegate, UINavigationCont
         } else if let originalImage: UIImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             self.editImage.image = originalImage
         }
+        
         picker.dismiss(animated: true, completion: nil)
     }
 }

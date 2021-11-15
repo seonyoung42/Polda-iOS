@@ -42,10 +42,6 @@ class MemoViewController: UIViewController, UITextFieldDelegate, TagListViewDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.topItem?.title = ""
         
         self.titleField.delegate = self
         myTagListView.delegate = self
@@ -77,6 +73,21 @@ class MemoViewController: UIViewController, UITextFieldDelegate, TagListViewDele
         self.myTagListView.textFont = UIFont.init(descriptor: .init(name:tempFontName ?? defaultFont, size: defaultSize), size: defaultSize)
         
         self.memoBackImage.layer.cornerRadius = 40
+        
+        
+        setNavigationBar()
+        setShadow()
+    }
+    
+    
+    func setNavigationBar() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.topItem?.title = ""
+    }
+    
+    func setShadow() {
         
         memoView.layer.shouldRasterize = true
         memoView.layer.shadowOpacity = 0.2
