@@ -61,8 +61,6 @@ class ListViewController: UIViewController, UICollectionViewDelegate,UICollectio
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         self.collectionView.backgroundColor = .none
-        
-
         self.ListBackImage.layer.cornerRadius = 40
         
         //네비게이션바 세팅

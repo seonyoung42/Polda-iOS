@@ -86,19 +86,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2B06D1652685B0BE00884339 /* AddData */ = {
-			isa = PBXGroup;
-			children = (
-				2B47C74C264170AA006E17A5 /* ViewController.swift */,
-				2B8B28562742573C001B6A68 /* DiaryCell.swift */,
-				2B7D4B6D2642CFAA00A4D53E /* ListViewController.swift */,
-				2B7D4B742645328A00A4D53E /* EditViewController.swift */,
-				2BB3188B2655493600893F99 /* PutStickerViewController.swift */,
-				2B7D4B782646773700A4D53E /* MemoViewController.swift */,
-			);
-			path = AddData;
-			sourceTree = "<group>";
-		};
 		2B06D1662685B0EC00884339 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,9 +134,8 @@
 		2B47C747264170AA006E17A5 /* SyPolaroid */ = {
 			isa = PBXGroup;
 			children = (
+				2B8B285827425A2D001B6A68 /* View */,
 				2B1D59F4267C676B008DB9D7 /* Data */,
-				2BC2B4E32682F5BA0058FE6C /* PresentData */,
-				2B06D1652685B0BE00884339 /* AddData */,
 				2B06D1662685B0EC00884339 /* Fonts */,
 				2B47C748264170AA006E17A5 /* AppDelegate.swift */,
 				2B47C74A264170AA006E17A5 /* SceneDelegate.swift */,
@@ -162,14 +148,60 @@
 			path = SyPolaroid;
 			sourceTree = "<group>";
 		};
-		2BC2B4E32682F5BA0058FE6C /* PresentData */ = {
+		2B8B285827425A2D001B6A68 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2B8B285927425A5B001B6A68 /* DiaryList(main) */,
+				2B8B285A27425A6C001B6A68 /* MemoList */,
+				2B8B285B27425A76001B6A68 /* Memo */,
+				2B8B285C27425AD5001B6A68 /* SavedMemo */,
+				2B8B285D27425B11001B6A68 /* SearchedMemo */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2B8B285927425A5B001B6A68 /* DiaryList(main) */ = {
+			isa = PBXGroup;
+			children = (
+				2B47C74C264170AA006E17A5 /* ViewController.swift */,
+				2B8B28562742573C001B6A68 /* DiaryCell.swift */,
+			);
+			path = "DiaryList(main)";
+			sourceTree = "<group>";
+		};
+		2B8B285A27425A6C001B6A68 /* MemoList */ = {
+			isa = PBXGroup;
+			children = (
+				2B7D4B6D2642CFAA00A4D53E /* ListViewController.swift */,
+			);
+			path = MemoList;
+			sourceTree = "<group>";
+		};
+		2B8B285B27425A76001B6A68 /* Memo */ = {
+			isa = PBXGroup;
+			children = (
+				2B7D4B782646773700A4D53E /* MemoViewController.swift */,
+				2BB3188B2655493600893F99 /* PutStickerViewController.swift */,
+				2B7D4B742645328A00A4D53E /* EditViewController.swift */,
+			);
+			path = Memo;
+			sourceTree = "<group>";
+		};
+		2B8B285C27425AD5001B6A68 /* SavedMemo */ = {
 			isa = PBXGroup;
 			children = (
 				2B7D4B7F264ABB0200A4D53E /* ShowViewController.swift */,
 				2BC2B4DE2682E6980058FE6C /* ShowMemoViewController.swift */,
+			);
+			path = SavedMemo;
+			sourceTree = "<group>";
+		};
+		2B8B285D27425B11001B6A68 /* SearchedMemo */ = {
+			isa = PBXGroup;
+			children = (
 				2B84C7E5265A26E300171C05 /* HashTagListViewController.swift */,
 			);
-			path = PresentData;
+			path = SearchedMemo;
 			sourceTree = "<group>";
 		};
 		8BC3C925DED3721C0FB7BA53 /* Pods */ = {
