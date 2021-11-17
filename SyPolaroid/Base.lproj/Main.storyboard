@@ -311,9 +311,9 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="128" height="128"/>
                                         <connections>
-                                            <outlet property="highLight" destination="yvc-Yg-qiF" id="AyK-8H-uqp"/>
-                                            <outlet property="polaroidImage" destination="FDl-Ch-gXm" id="nGX-sH-h1d"/>
-                                            <outlet property="polaroidView" destination="fcS-OP-uye" id="pVV-q4-9Q6"/>
+                                            <outlet property="highLight" destination="yvc-Yg-qiF" id="yLU-qJ-cc7"/>
+                                            <outlet property="polaroidImage" destination="FDl-Ch-gXm" id="slz-Xw-Nz7"/>
+                                            <outlet property="polaroidView" destination="fcS-OP-uye" id="aYK-Ax-ryc"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

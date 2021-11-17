@@ -8,7 +8,7 @@
 import UIKit
 import JJFloatingActionButton
 
-class ListViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
+class ListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var ListBackImage: UIImageView!
@@ -48,12 +48,15 @@ class ListViewController: UIViewController, UICollectionViewDelegate,UICollectio
 }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
         super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.isHidden = false
         self.collectionView.reloadData()
+        
         let gesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_gesture:)))
         collectionView.addGestureRecognizer(gesture)
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,42 +66,17 @@ class ListViewController: UIViewController, UICollectionViewDelegate,UICollectio
         self.collectionView.backgroundColor = .none
         self.ListBackImage.layer.cornerRadius = 40
         
-        //네비게이션바 세팅
-        setNavigationBar()
         
         //셀 크기 조정
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         self.collectionView.collectionViewLayout = flowLayout
         
-        
-        //floating Action button
-        actionButton = JJFloatingActionButton()
-        actionButton.addItem(title: "", image: UIImage(named: "thrash icon" )) { [self] item in
-            self.mMode = self.mMode == .view ? .select : .view
-        }
-        actionButton.addItem(title: "", image: UIImage(named: "add polaroid icon")) { item in
-                self.goToEdit()
-            }
+        setNavigationBar()
+        setFloatingButtons()
 
-        view.addSubview(actionButton)
-        actionButton.buttonColor = #colorLiteral(red: 0.9809378982, green: 0.5516198277, blue: 0.5537384748, alpha: 1)
-        actionButton.buttonImage = UIImage(named: "circle-plus")
-        actionButton.translatesAutoresizingMaskIntoConstraints = false
-        actionButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-        actionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
     }
-    
-    func setNavigationBar() {
-        
-        self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.topItem?.title = cover?.name
-        self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.9809378982, green: 0.5516198277, blue: 0.5537384748, alpha: 1)
-        
-    }
+
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = ""
@@ -107,24 +85,11 @@ class ListViewController: UIViewController, UICollectionViewDelegate,UICollectio
     func goToEdit() {
         performSegue(withIdentifier: "goToEdit", sender: UIButton())
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showMemo" {
-            let memo = sender
-            let vc = segue.destination as? ShowViewController
-            vc?.memo = memo as? Memo
-            vc?.cover = cover
-            vc?.memoIndex = memoIndex
-        }
-        
-        guard let destination = segue.destination as? EditViewController else {
-            return
-        }
-        destination.cover = cover
-    }
+
 }
 
-// 컬렉션 뷰
+
+// > CollectionView 설정
 extension ListViewController : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -217,7 +182,60 @@ extension ListViewController : UICollectionViewDelegateFlowLayout {
         cover?.removeFromRawMemos(item!)
         cover?.insertIntoRawMemos(item!, at: destinationIndexPath.row)
     }
+
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMemo" {
+            let memo = sender
+            let vc = segue.destination as? ShowViewController
+            vc?.memo = memo as? Memo
+            vc?.cover = cover
+            vc?.memoIndex = memoIndex
+        }
+        
+        guard let destination = segue.destination as? EditViewController else {
+            return
+        }
+        destination.cover = cover
+    }
+    
+}
+
+
+// > Functions
+extension ListViewController {
+    
+    // > 네비게이션 바 설정
+    func setNavigationBar() {
+        
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.topItem?.title = cover?.name
+        self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.9809378982, green: 0.5516198277, blue: 0.5537384748, alpha: 1)
+        
+    }
+    
+    // > 플로팅 버튼 설정
+    func setFloatingButtons() {
+        actionButton = JJFloatingActionButton()
+        actionButton.addItem(title: "", image: UIImage(named: "thrash icon" )) { [self] item in
+            self.mMode = self.mMode == .view ? .select : .view
+        }
+        actionButton.addItem(title: "", image: UIImage(named: "add polaroid icon")) { item in
+                self.goToEdit()
+            }
+
+        view.addSubview(actionButton)
+        actionButton.buttonColor = #colorLiteral(red: 0.9809378982, green: 0.5516198277, blue: 0.5537384748, alpha: 1)
+        actionButton.buttonImage = UIImage(named: "circle-plus")
+        actionButton.translatesAutoresizingMaskIntoConstraints = false
+        actionButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
+        actionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+    }
+    
+    // > 토스트 메시지
     func showToast(message : String) {
         let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 150, y: self.view.frame.size.height-100, width: 300, height: 35))
         
@@ -233,33 +251,4 @@ extension ListViewController : UICollectionViewDelegateFlowLayout {
         
         UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: { toastLabel.alpha = 0.0 }, completion: {(isCompleted) in toastLabel.removeFromSuperview() })
     }
-    
-    
-}
-
-class PolaroidCell : UICollectionViewCell {
-    
-    @IBOutlet weak var polaroidView: UIView!
-    @IBOutlet weak var polaroidImage: UIImageView!
-    @IBOutlet weak var highLight: UIView!
-    
-    override var isHighlighted: Bool {
-            didSet {
-                highLight.isHidden = !isHighlighted
-            }
-        }
-    
-    override var isSelected: Bool  {
-            didSet {
-                if isSelected == true {
-                    highLight.isHidden = false
-                    self.layer.borderWidth = 5
-                    self.layer.borderColor = UIColor.lightGray.cgColor
-                    highLight.alpha = 0.3
-                } else {
-                    highLight.isHidden = true
-                    self.layer.borderWidth = 0
-                }
-            }
-        }
 }
