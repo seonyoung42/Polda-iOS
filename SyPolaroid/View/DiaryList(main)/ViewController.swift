@@ -9,7 +9,7 @@ import UIKit
 import JJFloatingActionButton
 import CoreData
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate, UISearchBarDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var backTitle: UIImageView!
@@ -105,6 +105,152 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setNavigationBar()
+        
+        if self.buttonStatus {
+            DataManager.shared.fetchCoverbyCount()
+        } else {
+            DataManager.shared.fetchCover()
+        }
+        self.collectionView.reloadData()
+    }
+    
+
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+    }
+
+    @objc func presentImagePicker(sender: UIButton) {
+        self.present(imagePicker, animated: true, completion: nil)
+        self.diaryIndex = sender.tag
+    }
+    
+}
+
+
+// > CollectionView
+extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return DataManager.shared.coverList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+       guard let cell : DiaryCell = collectionView.dequeueReusableCell(withReuseIdentifier: "diaryCell", for: indexPath) as? DiaryCell else {
+            print("error")
+            return UICollectionViewCell()
+        }
+        
+        let cover = DataManager.shared.coverList[indexPath.row]
+        
+        cell.diaryTitle.text = cover.name
+        cell.diaryTitle.textAlignment = .center
+        cell.diaryTitle.alpha = 0.5
+        
+        cell.diaryTitle.backgroundColor = .white
+        cell.diaryImage.layer.borderWidth = 5
+        cell.diaryImage.layer.borderColor = #colorLiteral(red: 0.984081924, green: 0.5641410947, blue: 0.5658608675, alpha: 1)
+        cell.diaryImage.layer.cornerRadius = 80
+        cell.diaryView.layer.cornerRadius = 80
+        cell.shadowView.layer.cornerRadius = 80
+
+        
+        cell.diaryTitle.rightView = textfieldButton
+        textfieldButton.tag = indexPath.row
+        cell.diaryTitle.rightViewMode = .always
+        
+        
+        if let image = cover.image {
+            cell.diaryImage.image = UIImage(data: image)
+        }
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        switch mMode {
+        case .view:
+            self.collectionView.deselectItem(at: indexPath, animated: true)
+            let item = DataManager.shared.coverList[indexPath.row]
+            performSegue(withIdentifier: "showList", sender: item)
+        case .select:
+            let deleteCover = DataManager.shared.coverList[indexPath.row]
+            let alert = UIAlertController(title: "", message: "해당 다이어리를 삭제하시겠습니까?", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
+                DataManager.shared.deleteCover(deleteCover)
+                self.showToast(message: "다이어리가 삭제되었어요 ･ᴗ･̥̥̥")
+                DataManager.shared.fetchCover()
+                self.collectionView.reloadData()
+            }
+            let cancelAction = UIAlertAction(title: "취소", style: .cancel) {_ in
+                collectionView.deselectItem(at: indexPath, animated: true)
+            }
+            alert.addAction(okAction)
+            alert.addAction(cancelAction)
+            present(alert, animated: true, completion: nil)
+            
+        }
+    }
+    
+    // > segue 데이터 전달
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == "showList" {
+            let cover = sender
+            let vc = segue.destination as? ListViewController
+            vc?.cover = cover as? Cover
+        }
+        
+        if segue.identifier == "showTag" {
+            let searchDestination = segue.destination as? HashTagListViewController
+            searchDestination?.taglist = DataManager.shared.searchTagList
+            searchDestination?.tagTitle = searchText
+        }
+    }
+}
+
+
+
+// > imagepicker 메서드
+extension ViewController : UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let coverImage : UIImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            let cover = DataManager.shared.coverList[diaryIndex]
+            cover.image = coverImage.pngData()
+            DataManager.shared.saveContext()
+        } else if let originalImage : UIImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            let cover = DataManager.shared.coverList[diaryIndex]
+            cover.image = originalImage.pngData()
+            DataManager.shared.saveContext()
+        }
+        
+        self.collectionView.reloadData()
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+
+
+// > Functions
+extension ViewController {
+    
+    // > 서치바 텍스트필드 설정
+    func setSearchBar() {
+        let textFieldInsideSearchBar = self.searchBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideSearchBar?.backgroundColor = #colorLiteral(red: 1, green: 0.918815136, blue: 0.9157708287, alpha: 1)
+        textFieldInsideSearchBar?.layer.borderWidth = 2
+        textFieldInsideSearchBar?.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+        textFieldInsideSearchBar?.layer.cornerRadius = 10
+    }
+    
+    // > 플로팅버튼 설정
     func setFloatingBtn() {
         
         actionButton = JJFloatingActionButton()
@@ -146,48 +292,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
-    // > 서치바 텍스트필드 설정
-    func setSearchBar() {
-        
-        let textFieldInsideSearchBar = self.searchBar.value(forKey: "searchField") as? UITextField
-        textFieldInsideSearchBar?.backgroundColor = #colorLiteral(red: 1, green: 0.918815136, blue: 0.9157708287, alpha: 1)
-        textFieldInsideSearchBar?.layer.borderWidth = 2
-        textFieldInsideSearchBar?.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
-        textFieldInsideSearchBar?.layer.cornerRadius = 10
-    }
-    
-// > 서치바
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        let keyword = searchBar.text
-        searchText = searchBar.text ?? ""
-        if keyword?.isEmpty == true {
-            searchBar.resignFirstResponder()
-        } else {
-            DataManager.shared.searchTag(keyword: keyword)
-            if DataManager.shared.searchTagList.count > 0 {
-                performSegue(withIdentifier: "showTag", sender: searchBar)
-            } else {
-                let alert = UIAlertController(title: "", message: "해당 태그는 없습니다.", preferredStyle: .alert)
-                let defalutAction = UIAlertAction(title: "ok", style: .default) {_ in
-                    searchBar.resignFirstResponder()
-                }
-                alert.addAction(defalutAction)
-                present(alert, animated: true, completion: nil)
-            }
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        setNavigationBar()
-        
-        if self.buttonStatus {
-            DataManager.shared.fetchCoverbyCount()
-        } else {
-            DataManager.shared.fetchCover()
-        }
-        self.collectionView.reloadData()
-    }
-    
+    // > 네비게이션 바 설정
     func setNavigationBar() {
         self.navigationController?.navigationBar.isHidden = true
         self.navigationController?.toolbar.isHidden = true
@@ -195,95 +300,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         
-    }
-    
-    
-
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return DataManager.shared.coverList.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-       guard let cell : DiaryCell = collectionView.dequeueReusableCell(withReuseIdentifier: "diaryCell", for: indexPath) as? DiaryCell else {
-            print("error")
-            return UICollectionViewCell()
-        }
-        
-        let cover = DataManager.shared.coverList[indexPath.row]
-        
-        cell.diaryTitle.text = cover.name
-        cell.diaryTitle.textAlignment = .center
-        cell.diaryTitle.alpha = 0.5
-        
-        cell.diaryTitle.backgroundColor = .white
-        cell.diaryImage.layer.borderWidth = 5
-        cell.diaryImage.layer.borderColor = #colorLiteral(red: 0.984081924, green: 0.5641410947, blue: 0.5658608675, alpha: 1)
-        cell.diaryImage.layer.cornerRadius = 80
-        cell.diaryView.layer.cornerRadius = 80
-        cell.shadowView.layer.cornerRadius = 80
-
-        
-        cell.diaryTitle.rightView = textfieldButton
-        textfieldButton.tag = indexPath.row
-        cell.diaryTitle.rightViewMode = .always
-        
-        
-        if let image = cover.image {
-            cell.diaryImage.image = UIImage(data: image)
-        }
-        return cell
-    }
-
-    
-    @objc func presentImagePicker(sender: UIButton) {
-        self.present(imagePicker, animated: true, completion: nil)
-        self.diaryIndex = sender.tag
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-        switch mMode {
-        case .view:
-            self.collectionView.deselectItem(at: indexPath, animated: true)
-            let item = DataManager.shared.coverList[indexPath.row]
-            performSegue(withIdentifier: "showList", sender: item)
-        case .select:
-            let deleteCover = DataManager.shared.coverList[indexPath.row]
-            let alert = UIAlertController(title: "", message: "해당 다이어리를 삭제하시겠습니까?", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
-                DataManager.shared.deleteCover(deleteCover)
-                self.showToast(message: "다이어리가 삭제되었어요 ･ᴗ･̥̥̥")
-                DataManager.shared.fetchCover()
-                self.collectionView.reloadData()
-            }
-            let cancelAction = UIAlertAction(title: "취소", style: .cancel) {_ in
-                collectionView.deselectItem(at: indexPath, animated: true)
-            }
-            alert.addAction(okAction)
-            alert.addAction(cancelAction)
-            present(alert, animated: true, completion: nil)
-            
-        }}
-    
-    // > segue 데이터 전달
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        if segue.identifier == "showList" {
-            let cover = sender
-            let vc = segue.destination as? ListViewController
-            vc?.cover = cover as? Cover
-        }
-        
-        if segue.identifier == "showTag" {
-            let searchDestination = segue.destination as? HashTagListViewController
-            searchDestination?.taglist = DataManager.shared.searchTagList
-            searchDestination?.tagTitle = searchText
-        }
     }
     
     // > toast 알림 메시지 띄우기
@@ -302,29 +318,26 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: { toastLabel.alpha = 0.0 }, completion: {(isCompleted) in toastLabel.removeFromSuperview() })
     }
-}
-
-
-// > imagepicker 메서드
-extension ViewController {
     
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        if let coverImage : UIImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            let cover = DataManager.shared.coverList[diaryIndex]
-            cover.image = coverImage.pngData()
-            DataManager.shared.saveContext()
-        } else if let originalImage : UIImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            let cover = DataManager.shared.coverList[diaryIndex]
-            cover.image = originalImage.pngData()
-            DataManager.shared.saveContext()
+    // > 서치바 action
+        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+            let keyword = searchBar.text
+            searchText = searchBar.text ?? ""
+            
+            if keyword?.isEmpty == true {
+                searchBar.resignFirstResponder()
+            } else {
+                DataManager.shared.searchTag(keyword: keyword)
+                if DataManager.shared.searchTagList.count > 0 {
+                    performSegue(withIdentifier: "showTag", sender: searchBar)
+                } else {
+                    let alert = UIAlertController(title: "", message: "해당 태그는 없습니다.", preferredStyle: .alert)
+                    let defalutAction = UIAlertAction(title: "ok", style: .default) {_ in
+                        searchBar.resignFirstResponder()
+                }
+                alert.addAction(defalutAction)
+                present(alert, animated: true, completion: nil)
+            }
         }
-        
-        self.collectionView.reloadData()
-        picker.dismiss(animated: true, completion: nil)
     }
 }
