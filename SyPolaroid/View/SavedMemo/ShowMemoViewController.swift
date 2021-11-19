@@ -16,6 +16,7 @@ class ShowMemoViewController: UIViewController, UITextFieldDelegate, TagListView
     @IBOutlet weak var memoText: UITextView!
     @IBOutlet weak var TagScroll: UIScrollView!
     @IBOutlet weak var myTagListView: TagListView!
+    
     var memo : Memo!
     var cover : Cover!
     var finalImage = UIImage()
@@ -26,65 +27,18 @@ class ShowMemoViewController: UIViewController, UITextFieldDelegate, TagListView
         super.viewDidLoad()
         
         self.showBackImage.layer.cornerRadius = 40
-        memoText.isUserInteractionEnabled = true
-        titleField.isUserInteractionEnabled = true
-        myTagListView.isUserInteractionEnabled = true
-        
-        
         self.titleField.delegate = self
         myTagListView.delegate = self
-        
-        titleField.backgroundColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
-        
+    
         setTagListView()
         setMemoView()
-
-        titleField.text = memo?.title
-        memoText.text = memo?.content
-
-        let defaultSize = UIFont.systemFontSize
-        let defaultFont = UIFont.systemFont(ofSize: defaultSize).familyName
-
-        titleField.font = UIFont.init(descriptor: .init(name: memo.fontName ?? defaultFont, size: defaultSize), size: defaultSize)
-        memoText.font = UIFont.init(descriptor: .init(name: memo.fontName ?? defaultFont, size: defaultSize), size: defaultSize)
+        setFont()
         
         tagArray = memo?.hashTag ?? []
         myTagListView.addTags(tagArray)
-        
-        print(defaultFont)
-
     }
     
-    func setTagListView() {
-        
-        myTagListView.marginX = 10
-        myTagListView.enableRemoveButton = true
-        myTagListView.tagBackgroundColor = #colorLiteral(red: 1, green: 0.918815136, blue: 0.9157708287, alpha: 1)
-        myTagListView.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
-        myTagListView.accessibilityScroll(.down)
-        myTagListView.borderWidth = 1.5
-        myTagListView.cornerRadius = 12
-        myTagListView.textColor = UIColor.darkGray
-        myTagListView.removeIconLineColor = UIColor.lightGray
-        
-        TagScroll.layer.borderWidth = 1.5
-        TagScroll.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
-        
-    }
     
-    func setMemoView() {
-        
-        // > add shadow
-        memoView.layer.shouldRasterize = true
-        memoView.layer.shadowOpacity = 0.2
-        memoView.layer.shadowRadius = 8
-        memoView.layer.shadowOffset = CGSize(width: 10, height: 10)
-        
-        memoText.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        memoText.layer.borderWidth = 1.5
-        memoText.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
-        
-    }
     
     @IBAction func saveMemo(_ sender: Any) {
         
@@ -111,13 +65,11 @@ class ShowMemoViewController: UIViewController, UITextFieldDelegate, TagListView
     
 
     @IBAction func goBack(_ sender: Any) {
-        guard  let pvc = presentingViewController else {
-            return
-        }
+        guard  let pvc = presentingViewController else { return }
     
         self.dismiss(animated: true) {
             pvc.dismiss(animated: true, completion: nil)
-    }
+        }
     }
     
     
@@ -142,14 +94,15 @@ class ShowMemoViewController: UIViewController, UITextFieldDelegate, TagListView
     }
     
     
-    
     func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
         sender.removeTagView(tagView)
 
         for i in 0..<tagArray.count {
             if tagArray[i] == title {
                 tagArray.remove(at: i)
-                break}}
+                break
+            }
+        }
         print(tagArray)
     }
     
@@ -161,5 +114,54 @@ class ShowMemoViewController: UIViewController, UITextFieldDelegate, TagListView
     //터치 시 키보드 내려감
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
+    }
+}
+
+// > Custom Functions
+extension ShowMemoViewController {
+    
+    func setTagListView() {
+        myTagListView.isUserInteractionEnabled = true
+
+        myTagListView.marginX = 10
+        myTagListView.enableRemoveButton = true
+        myTagListView.tagBackgroundColor = #colorLiteral(red: 1, green: 0.918815136, blue: 0.9157708287, alpha: 1)
+        myTagListView.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+        myTagListView.accessibilityScroll(.down)
+        myTagListView.borderWidth = 1.5
+        myTagListView.cornerRadius = 12
+        myTagListView.textColor = UIColor.darkGray
+        myTagListView.removeIconLineColor = UIColor.lightGray
+        
+        TagScroll.layer.borderWidth = 1.5
+        TagScroll.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+    }
+    
+    func setMemoView() {
+        memoText.text = memo?.content
+        memoText.isUserInteractionEnabled = true
+        
+        titleField.text = memo?.title
+        titleField.isUserInteractionEnabled = true
+        titleField.backgroundColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+        
+        // > add shadow
+        memoView.layer.shouldRasterize = true
+        memoView.layer.shadowOpacity = 0.2
+        memoView.layer.shadowRadius = 8
+        memoView.layer.shadowOffset = CGSize(width: 10, height: 10)
+        
+        memoText.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        memoText.layer.borderWidth = 1.5
+        memoText.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+        
+    }
+    
+    func setFont() {
+        let defaultSize = UIFont.systemFontSize
+        let defaultFont = UIFont.systemFont(ofSize: defaultSize).familyName
+
+        titleField.font = UIFont.init(descriptor: .init(name: memo.fontName ?? defaultFont, size: defaultSize), size: defaultSize)
+        memoText.font = UIFont.init(descriptor: .init(name: memo.fontName ?? defaultFont, size: defaultSize), size: defaultSize)
     }
 }

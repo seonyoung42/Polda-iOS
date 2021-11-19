@@ -26,8 +26,8 @@ class PutStickerViewController: UIViewController {
     }
 
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
@@ -35,14 +35,11 @@ class PutStickerViewController: UIViewController {
         view.layer.cornerRadius = 10
         view.backgroundColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
         
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: width, height: width)
-        flowLayout.minimumLineSpacing = 20
-        flowLayout.minimumInteritemSpacing = 20
-        self.collectionView.collectionViewLayout = flowLayout
-        
         setSegment()
+        setCollectionViewLayout()
     }
+    
+   
     
     
     @IBAction func onCollectionViewTypeChanged(_ sender: UISegmentedControl) {
@@ -67,8 +64,6 @@ class PutStickerViewController: UIViewController {
            break
         }
     }
-    
-
 }
 
 
@@ -119,6 +114,17 @@ extension PutStickerViewController {
     func setSegmentImage(imageName: String, segmentNum: Int) {
         let image = UIImage(named: imageName)?.withRenderingMode(.alwaysOriginal)
         mySegment.setImage(image, forSegmentAt: segmentNum)
+    }
+    
+    // > CollectionView 레이아웃 설정
+    func setCollectionViewLayout() {
+        
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.itemSize = CGSize(width: width, height: width)
+        flowLayout.minimumLineSpacing = 20
+        flowLayout.minimumInteritemSpacing = 20
+        self.collectionView.collectionViewLayout = flowLayout
+        
     }
     
     

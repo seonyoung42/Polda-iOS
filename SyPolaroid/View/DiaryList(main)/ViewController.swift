@@ -75,8 +75,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate
                 self.actionButton.items[0].buttonImage = UIImage(named: "thrash bin 'x'")
                 self.actionButton.removeItem(at: 2)
                 self.actionButton.removeItem(at: 1)
+                
+            }
         }
-    }
     }
     
     
@@ -85,23 +86,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate
         
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-        
-        self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 0)
-        self.collectionView.backgroundColor = .none
         self.searchBar.delegate = self
-        searchBar.backgroundImage = UIImage()
-        
-
-        // > 셀 크키, 간격 조정
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: width, height: width*1.3)
-        flowLayout.scrollDirection = .horizontal
-        flowLayout.minimumLineSpacing = 20
-        self.collectionView.collectionViewLayout = flowLayout
-        
 
         setFloatingBtn()
         setSearchBar()
+        setCollectionViewLayout()
         
     }
     
@@ -143,27 +132,16 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
         }
         
         let cover = DataManager.shared.coverList[indexPath.row]
+        cell.setCellDesign()
         
         cell.diaryTitle.text = cover.name
-        cell.diaryTitle.textAlignment = .center
-        cell.diaryTitle.alpha = 0.5
-        
-        cell.diaryTitle.backgroundColor = .white
-        cell.diaryImage.layer.borderWidth = 5
-        cell.diaryImage.layer.borderColor = #colorLiteral(red: 0.984081924, green: 0.5641410947, blue: 0.5658608675, alpha: 1)
-        cell.diaryImage.layer.cornerRadius = 80
-        cell.diaryView.layer.cornerRadius = 80
-        cell.shadowView.layer.cornerRadius = 80
-
-        
         cell.diaryTitle.rightView = textfieldButton
         textfieldButton.tag = indexPath.row
-        cell.diaryTitle.rightViewMode = .always
-        
         
         if let image = cover.image {
             cell.diaryImage.image = UIImage(data: image)
         }
+        
         return cell
     }
 
@@ -174,6 +152,7 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
             self.collectionView.deselectItem(at: indexPath, animated: true)
             let item = DataManager.shared.coverList[indexPath.row]
             performSegue(withIdentifier: "showList", sender: item)
+            
         case .select:
             let deleteCover = DataManager.shared.coverList[indexPath.row]
             let alert = UIAlertController(title: "", message: "해당 다이어리를 삭제하시겠습니까?", preferredStyle: .alert)
@@ -243,6 +222,8 @@ extension ViewController {
     
     // > 서치바 텍스트필드 설정
     func setSearchBar() {
+        searchBar.backgroundImage = UIImage()
+        
         let textFieldInsideSearchBar = self.searchBar.value(forKey: "searchField") as? UITextField
         textFieldInsideSearchBar?.backgroundColor = #colorLiteral(red: 1, green: 0.918815136, blue: 0.9157708287, alpha: 1)
         textFieldInsideSearchBar?.layer.borderWidth = 2
@@ -300,6 +281,18 @@ extension ViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         
+    }
+    // > CollectionView 셀 크키, 간격 조정
+    func setCollectionViewLayout() {
+        
+        self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 0)
+        self.collectionView.backgroundColor = .none
+        
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.itemSize = CGSize(width: width, height: width*1.3)
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumLineSpacing = 20
+        self.collectionView.collectionViewLayout = flowLayout
     }
     
     // > toast 알림 메시지 띄우기

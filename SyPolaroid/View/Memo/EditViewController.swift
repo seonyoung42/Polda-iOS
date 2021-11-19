@@ -9,22 +9,6 @@ import UIKit
 import MaterialComponents.MaterialBottomSheet
 
 class EditViewController: UIViewController, SendDataDelegate, UIViewControllerTransitioningDelegate, UIGestureRecognizerDelegate, UIPopoverPresentationControllerDelegate, SendMemoDelegate {
-        
-    var cover : Cover?
-    var memoTitle : String?
-    var memoContent : String?
-    var tagArray = [String]()
-    var tempFontName : String?
-    var memoImage = UIImage(named: "text box")
-    
-    func sendMemo(title: String?, content: String?, tag: [String], font: String?, image: UIImage) {
-        self.memoTitle = title ?? ""
-        self.memoContent = content ?? ""
-        self.tagArray = tag
-        self.tempFontName = font
-        self.memoImage = image
-        
-    }
     
     @IBOutlet var wholeView: UIView!
     @IBOutlet weak var EditBackImage: UIImageView!
@@ -34,6 +18,13 @@ class EditViewController: UIViewController, SendDataDelegate, UIViewControllerTr
     @IBOutlet weak var buttonView: UIView!
     @IBOutlet weak var colorButton: UIButton!
     
+    var cover : Cover?
+    var memoTitle : String?
+    var memoContent : String?
+    var tagArray = [String]()
+    var tempFontName : String?
+    var memoImage = UIImage(named: "text box")
+    
     lazy var imagePicker: UIImagePickerController = {
         let picker: UIImagePickerController = UIImagePickerController()
         picker.sourceType = .photoLibrary
@@ -41,25 +32,6 @@ class EditViewController: UIViewController, SendDataDelegate, UIViewControllerTr
         picker.allowsEditing = true
         return picker
     }()
-    
-    // > 사진 선택 버튼
-    @IBAction func photoButton(_ sender: Any) {
-        self.present(self.imagePicker, animated: true, completion: nil)
-    }
-   
-    // > Coredata 에 이미지와 메모 저장하기
-    @IBAction func saveData(_ sender: Any) {
-        
-        let rendererFormat = UIGraphicsImageRendererFormat.default()
-        rendererFormat.opaque = false
-        
-        let renderer = UIGraphicsImageRenderer(size: editView.bounds.size,format: rendererFormat)
-        let editedImage = renderer.image { ctx in editView.drawHierarchy(in: editView.bounds, afterScreenUpdates:true) }
-        
-        cover?.insertIntoRawMemos(DataManager.shared.saveMemo(title: memoTitle, content: memoContent, hashTag: tagArray, image: editedImage,fontName: tempFontName, memoImage: self.memoImage!), at: 0)
-        
-        self.navigationController?.popViewController(animated: true)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,23 +48,6 @@ class EditViewController: UIViewController, SendDataDelegate, UIViewControllerTr
         
     }
     
-    //네이게이션 바 세팅
-    func setNavigationBar() {
-        self.navigationController?.navigationBar.topItem?.title = ""
-        self.navigationController?.toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
-        self.navigationController?.toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
-    }
-    
-    // 이미지 배경에 그림자 넣기
-    func setShadow() {
-        editView.clipsToBounds = true
-        shadowView.backgroundColor = .white
-        shadowView.layer.shouldRasterize = true
-        shadowView.layer.shadowOpacity = 0.2
-        shadowView.layer.shadowRadius = 8
-        shadowView.layer.shadowOffset = CGSize(width: 10, height: 10)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.toolbar.isHidden = false
     }
@@ -101,60 +56,28 @@ class EditViewController: UIViewController, SendDataDelegate, UIViewControllerTr
         self.navigationController?.toolbar.isHidden = true
     }
     
-    // 선택한 스티커 데이터 받기
-    func sendData(image: UIImage) {
-        
-        let imageSticker = UIImageView(image: image)
-        imageSticker.frame = CGRect(origin: CGPoint(x: 120, y: 150), size: CGSize(width: 50, height: 50))
-        imageSticker.image = image
-        imageSticker.isUserInteractionEnabled = true
-        imageSticker.contentMode = .scaleAspectFit
-        
-        //스티커 편집뷰 위에 붙이기
-        self.editView.addSubview(imageSticker)
-        // 스티커 편집뷰 밖으로 튀어나오지 않게
-        self.editView.clipsToBounds = true
-        
-        //스티커 조절 기능 추가
-        let panGesture = UIPanGestureRecognizer.init(target: self, action: #selector(handlePanGesture(_:)))
-            panGesture.delegate = self
-
-        let pinchGesture = UIPinchGestureRecognizer.init(target: self, action: #selector(handlePinchGesture(_:)))
-            pinchGesture.delegate = self
-
-        let rotateGesture = UIRotationGestureRecognizer.init(target: self, action: #selector(handleRotateGesture(_:)))
-            rotateGesture.delegate = self
-
-        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress))
-        
-        
-        [panGesture,pinchGesture,rotateGesture,longPress].forEach {
-            imageSticker.addGestureRecognizer($0)
-        }
-        
-    }
-
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        guard let destination = segue.destination as? MemoViewController else {
-            return
-            }
-        let renderer = UIGraphicsImageRenderer(size: editView.bounds.size)
-        let editedImage = renderer.image { ctx in editView.drawHierarchy(in: editView.bounds, afterScreenUpdates: true) }
-        
-        destination.delegate = self
-        destination.modalTransitionStyle = .flipHorizontal
-        destination.modalPresentationStyle = .fullScreen
-        destination.editedImage = editedImage
-        destination.cover = cover
-        
-        destination.memoTitle = self.memoTitle
-        destination.memoContent = self.memoContent
-        destination.tagArray = self.tagArray
-        destination.tempFontName = self.tempFontName
+    // > 사진 선택 버튼
+    @IBAction func photoButton(_ sender: Any) {
+        self.present(self.imagePicker, animated: true, completion: nil)
     }
-  
+    
+   
+    // > Coredata 에 이미지와 메모 저장하기
+    @IBAction func saveData(_ sender: Any) {
+        
+        let rendererFormat = UIGraphicsImageRendererFormat.default()
+        rendererFormat.opaque = false
+        
+        let renderer = UIGraphicsImageRenderer(size: editView.bounds.size,format: rendererFormat)
+        let editedImage = renderer.image { ctx in editView.drawHierarchy(in: editView.bounds, afterScreenUpdates:true) }
+        
+        cover?.insertIntoRawMemos(DataManager.shared.saveMemo(title: memoTitle, content: memoContent, hashTag: tagArray, image: editedImage,fontName: tempFontName, memoImage: self.memoImage!), at: 0)
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+
     // > 바텀 시트 올라오기
     @IBAction func stickerBtnClicked(_ sender: UIBarButtonItem) {
 
@@ -169,7 +92,41 @@ class EditViewController: UIViewController, SendDataDelegate, UIViewControllerTr
     @objc func singleTap(_ gesture : UIGestureRecognizer) {
         gesture.view?.superview?.removeFromSuperview()
     }
+    
+    
+    // > Segue 데이터 전달
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let destination = segue.destination as? MemoViewController else {
+            return
+            }
+        let renderer = UIGraphicsImageRenderer(size: editView.bounds.size)
+        let editedImage = renderer.image { ctx in editView.drawHierarchy(in: editView.bounds, afterScreenUpdates: true) }
+        
+        destination.delegate = self
+        destination.modalTransitionStyle = .flipHorizontal
+        destination.modalPresentationStyle = .fullScreen
+        
+        destination.editedImage = editedImage
+        destination.cover = cover
+        
+        destination.memoTitle = self.memoTitle
+        destination.memoContent = self.memoContent
+        destination.tagArray = self.tagArray
+        destination.tempFontName = self.tempFontName
+    }
+    
+    // > SendMemo Delegate protocol
+    func sendMemo(title: String?, content: String?, tag: [String], font: String?, image: UIImage) {
+        self.memoTitle = title ?? ""
+        self.memoContent = content ?? ""
+        self.tagArray = tag
+        self.tempFontName = font
+        self.memoImage = image
+    }
 }
+
+
 
 // > 스티커 기능 설정
 extension EditViewController {
@@ -269,3 +226,57 @@ extension EditViewController : UIImagePickerControllerDelegate, UINavigationCont
     }
 }
 
+// > Custom Funcions
+extension EditViewController {
+    
+    //네이게이션 바 세팅
+    func setNavigationBar() {
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
+        self.navigationController?.toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
+    }
+    
+    // 이미지 배경에 그림자 넣기
+    func setShadow() {
+        editView.clipsToBounds = true
+        shadowView.backgroundColor = .white
+        shadowView.layer.shouldRasterize = true
+        shadowView.layer.shadowOpacity = 0.2
+        shadowView.layer.shadowRadius = 8
+        shadowView.layer.shadowOffset = CGSize(width: 10, height: 10)
+    }
+    
+    // 선택한 스티커 데이터 받기
+    func sendData(image: UIImage) {
+        
+        let imageSticker = UIImageView(image: image)
+        imageSticker.frame = CGRect(origin: CGPoint(x: 120, y: 150), size: CGSize(width: 50, height: 50))
+        imageSticker.image = image
+        imageSticker.isUserInteractionEnabled = true
+        imageSticker.contentMode = .scaleAspectFit
+        
+        //스티커 편집뷰 위에 붙이기
+        self.editView.addSubview(imageSticker)
+        // 스티커 편집뷰 밖으로 튀어나오지 않게
+        self.editView.clipsToBounds = true
+        
+        //스티커 조절 기능 추가
+        let panGesture = UIPanGestureRecognizer.init(target: self, action: #selector(handlePanGesture(_:)))
+            panGesture.delegate = self
+
+        let pinchGesture = UIPinchGestureRecognizer.init(target: self, action: #selector(handlePinchGesture(_:)))
+            pinchGesture.delegate = self
+
+        let rotateGesture = UIRotationGestureRecognizer.init(target: self, action: #selector(handleRotateGesture(_:)))
+            rotateGesture.delegate = self
+
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress))
+        
+        
+        [panGesture,pinchGesture,rotateGesture,longPress].forEach {
+            imageSticker.addGestureRecognizer($0)
+        }
+        
+    }
+
+}

@@ -44,6 +44,8 @@ class HashTagListViewController: UIViewController {
         tagName.layer.cornerRadius = 10
         
     }
+    
+    
 
 }
 
@@ -60,10 +62,13 @@ extension HashTagListViewController : UICollectionViewDelegate, UICollectionView
         }
         
         let memo = DataManager.shared.searchTagList[indexPath.row]
-        let image = memo.editedImage
-        cell.hashTagImage.image = UIImage(data: image!)
-        cell.hashTagImage.layer.borderWidth = 3
-        cell.hashTagImage.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+                
+        if let image = memo.editedImage {
+            cell.hashTagImage.image = UIImage(data: image)
+            cell.hashTagImage.layer.borderWidth = 3
+            cell.hashTagImage.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+        }
+
         return cell
     }
     

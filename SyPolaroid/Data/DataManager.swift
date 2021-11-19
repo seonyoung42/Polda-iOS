@@ -71,6 +71,7 @@ class DataManager {
         memo.date = Date()
         memo.fontName = fontName
         memo.memoImage = memoImage.pngData()
+        
         saveContext()
         return memo
     }

@@ -66,13 +66,9 @@ class MemoViewController: UIViewController, TagListViewDelegate {
         pickerView.selectRow(selectedRow, inComponent: 0, animated: false)
         
         vc.view.addSubview(pickerView)
-        print(vc.view.bounds.width)
         
         pickerView.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
         pickerView.centerYAnchor.constraint(equalTo: vc.view.centerYAnchor).isActive = true
-        
-        print(vc.view.bounds.width)
-        print(pickerView.bounds.width)
         
         let alert = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
         
@@ -169,7 +165,7 @@ extension MemoViewController: UIFontPickerViewControllerDelegate, UIPickerViewDa
 
 
 
-// > Functions
+// > Custom Functions
 extension MemoViewController: UITextFieldDelegate {
     
     // > 네비게이션 바 설정

@@ -178,13 +178,15 @@ extension ListViewController : UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let item = cover?.memos?[sourceIndexPath.row]
-        cover?.removeFromRawMemos(item!)
-        cover?.insertIntoRawMemos(item!, at: destinationIndexPath.row)
+        
+        guard let item = cover?.memos?[sourceIndexPath.row] else { return }
+        cover?.removeFromRawMemos(item)
+        cover?.insertIntoRawMemos(item, at: destinationIndexPath.row)
     }
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "showMemo" {
             let memo = sender
             let vc = segue.destination as? ShowViewController
@@ -198,7 +200,6 @@ extension ListViewController : UICollectionViewDelegateFlowLayout {
         }
         destination.cover = cover
     }
-    
 }
 
 
