@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DiaryCell: UICollectionViewCell {
+class DiaryCell: UICollectionViewCell, UITextFieldDelegate {
     
     @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var diaryView: UIView!
@@ -16,18 +16,22 @@ class DiaryCell: UICollectionViewCell {
     @IBOutlet weak var diaryImageButton: UIButton!
     @IBOutlet weak var highLight: UIView!
     
-    
-    @IBAction func done(_ sender: UITextField) {
-        sender.resignFirstResponder()
-        guard let name = sender.text else {
-            print("invalid title")
-            return
-        }
-        let cover = DataManager.shared.coverList[getIndexPath()?.row ?? 0]
-        cover.name = name
-        DataManager.shared.saveContext()
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        diaryTitle.delegate = self
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let title = textField.text, !title.isEmpty else {
+            return false
+        }
+    
+        let cover = DataManager.shared.coverList[getIndexPath()?.row ?? 0]
+        cover.name = title
+        DataManager.shared.saveContext()
+        diaryTitle.resignFirstResponder()
+        return true
+    }
     
     func getIndexPath() -> IndexPath? {
         guard let superView = self.superview as? UICollectionView else {
@@ -38,7 +42,6 @@ class DiaryCell: UICollectionViewCell {
         return indexPath
     }
     
-    
     override var isHighlighted: Bool {
             didSet {
                 highLight.isHidden = !isHighlighted
@@ -46,23 +49,21 @@ class DiaryCell: UICollectionViewCell {
         }
     
     override var isSelected: Bool  {
-            didSet {
-                if isSelected == true {
-                    highLight.isHidden = false
-                    self.layer.borderWidth = 5
-                    self.layer.borderColor = UIColor.lightGray.cgColor
-                    self.layer.cornerRadius = 80
-                    highLight.alpha = 0.3
-                } else {
-                    highLight.isHidden = true
-                    self.layer.borderWidth = 0
-                }
+        didSet {
+            if isSelected == true {
+                highLight.isHidden = false
+                self.layer.borderWidth = 5
+                self.layer.borderColor = UIColor.lightGray.cgColor
+                self.layer.cornerRadius = 80
+                highLight.alpha = 0.3
+            } else {
+                highLight.isHidden = true
+                self.layer.borderWidth = 0
             }
         }
-    
+    }
     
     func setCellDesign() {
-        
         diaryTitle.textAlignment = .center
         diaryTitle.alpha = 0.5
         diaryTitle.backgroundColor = .white
@@ -74,6 +75,5 @@ class DiaryCell: UICollectionViewCell {
         
         diaryView.layer.cornerRadius = 80
         shadowView.layer.cornerRadius = 80
-        
     }
 }

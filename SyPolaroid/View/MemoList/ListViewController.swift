@@ -12,6 +12,7 @@ class ListViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var ListBackImage: UIImageView!
+    
     let realHeight : Double = Double(UIScreen.main.bounds.height)
 
     var sectionInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
@@ -42,10 +43,9 @@ class ListViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 self.actionButton.items[0].buttonImage = UIImage(named:"thrash bin 'x'")
                 self.actionButton.removeItem(at: 1)
                 self.navigationItem.hidesBackButton = true
+            }
         }
     }
-        
-}
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -66,7 +66,6 @@ class ListViewController: UIViewController, UICollectionViewDelegate, UICollecti
         self.collectionView.backgroundColor = .none
         self.ListBackImage.layer.cornerRadius = 40
         
-        
         //셀 크기 조정
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
@@ -74,7 +73,6 @@ class ListViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         setNavigationBar()
         setFloatingButtons()
-
     }
 
     
@@ -85,7 +83,6 @@ class ListViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func goToEdit() {
         performSegue(withIdentifier: "goToEdit", sender: UIButton())
     }
-
 }
 
 
@@ -111,19 +108,17 @@ extension ListViewController : UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
         if realHeight < 700 {
             cellHeight = 170
             sectionInsets = UIEdgeInsets(top: 0, left: 20, bottom: 60, right: 0)
-            self.collectionView.contentInset = sectionInsets
         } else {
             cellHeight = 200
             sectionInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)
-            self.collectionView.contentInset = sectionInsets
         }
+        
+        self.collectionView.contentInset = sectionInsets
         return CGSize(width: cellHeight/4.5*4, height: cellHeight)
     }
-    
 
     // > 폴라로이드 삭제
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -132,13 +127,13 @@ extension ListViewController : UICollectionViewDelegateFlowLayout {
         case .view:
             self.collectionView.deselectItem(at: indexPath, animated: true)
             memoIndex = indexPath.row
-            let item = cover?.memos?[memoIndex]
+            guard let item = cover?.memos?[memoIndex] else { return }
             performSegue(withIdentifier: "showMemo", sender: item)
         case .select:
-            let deleteMemo = cover?.memos?[indexPath.row]
+            guard let deleteMemo = cover?.memos?[indexPath.row] else { return }
             let alert = UIAlertController(title: "", message: "해당 폴라로이드를 삭제하시겠습니까?", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
-                self.cover?.removeFromRawMemos(deleteMemo!)
+                self.cover?.removeFromRawMemos(deleteMemo)
                 self.showToast(message: "폴라로이드가 삭제되었어요 ･ᴗ･̥̥̥")
                 self.collectionView.reloadData()
             }
@@ -186,36 +181,29 @@ extension ListViewController : UICollectionViewDelegateFlowLayout {
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "showMemo" {
-            let memo = sender
-            let vc = segue.destination as? ShowViewController
-            vc?.memo = memo as? Memo
-            vc?.cover = cover
-            vc?.memoIndex = memoIndex
+            guard let destination = segue.destination as? ShowViewController else { return }
+            destination.memo = sender as? Memo
+            destination.cover = cover
+            destination.memoIndex = memoIndex
+        } else if segue.identifier == "goToEdit" {
+            guard let destination = segue.destination as? EditViewController else { return }
+            destination.cover = cover
         }
-        
-        guard let destination = segue.destination as? EditViewController else {
-            return
-        }
-        destination.cover = cover
     }
 }
 
 
-// > Functions
+// > Custom Functions
 extension ListViewController {
-    
     // > 네비게이션 바 설정
     func setNavigationBar() {
-        
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.topItem?.title = cover?.name
         self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.9809378982, green: 0.5516198277, blue: 0.5537384748, alpha: 1)
-        
     }
     
     // > 플로팅 버튼 설정

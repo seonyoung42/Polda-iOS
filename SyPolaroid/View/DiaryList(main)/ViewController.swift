@@ -10,7 +10,6 @@ import JJFloatingActionButton
 import CoreData
 
 class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate {
-
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var backTitle: UIImageView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -22,7 +21,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate
     var searchText : String = ""
     var buttonStatus = false
     var diaryIndex : Int!
-    
     
     var textfieldButton : UIButton {
         let button = UIButton(type: .custom)
@@ -80,7 +78,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -91,7 +88,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate
         setFloatingBtn()
         setSearchBar()
         setCollectionViewLayout()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,7 +101,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate
         self.collectionView.reloadData()
     }
     
-
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
     }
@@ -114,7 +109,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate
         self.present(imagePicker, animated: true, completion: nil)
         self.diaryIndex = sender.tag
     }
-    
 }
 
 
@@ -184,7 +178,7 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
         if segue.identifier == "showTag" {
             let searchDestination = segue.destination as? HashTagListViewController
             searchDestination?.taglist = DataManager.shared.searchTagList
-            searchDestination?.tagTitle = searchText
+            searchDestination?.tagTitle = sender as! String
         }
     }
 }
@@ -235,11 +229,9 @@ extension ViewController {
     func setFloatingBtn() {
         
         actionButton = JJFloatingActionButton()
-        
         actionButton.addItem(title: "", image: UIImage(named: "thrash icon" )) { item in
             self.mMode = self.mMode == .view ? .select : .view
         }
-
         actionButton.addItem(title: "개수 순", image: UIImage(named:"list icon")) { item in
             self.buttonStatus = !self.buttonStatus
             
@@ -280,11 +272,10 @@ extension ViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
-        
     }
+    
     // > CollectionView 셀 크키, 간격 조정
     func setCollectionViewLayout() {
-        
         self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 0)
         self.collectionView.backgroundColor = .none
         
@@ -313,24 +304,24 @@ extension ViewController {
     }
     
     // > 서치바 action
-        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-            let keyword = searchBar.text
-            searchText = searchBar.text ?? ""
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let keyword = searchBar.text, !keyword.isEmpty else {
+            searchBar.resignFirstResponder()
+            return
+        }
             
-            if keyword?.isEmpty == true {
+        DataManager.shared.searchTag(keyword: keyword)
+            
+        if DataManager.shared.searchTagList.isEmpty {
+            let alert = UIAlertController(title: "", message: "해당 태그는 없습니다.", preferredStyle: .alert)
+            let defalutAction = UIAlertAction(title: "ok", style: .default) {_ in
                 searchBar.resignFirstResponder()
-            } else {
-                DataManager.shared.searchTag(keyword: keyword)
-                if DataManager.shared.searchTagList.count > 0 {
-                    performSegue(withIdentifier: "showTag", sender: searchBar)
-                } else {
-                    let alert = UIAlertController(title: "", message: "해당 태그는 없습니다.", preferredStyle: .alert)
-                    let defalutAction = UIAlertAction(title: "ok", style: .default) {_ in
-                        searchBar.resignFirstResponder()
-                }
-                alert.addAction(defalutAction)
-                present(alert, animated: true, completion: nil)
             }
+            alert.addAction(defalutAction)
+            present(alert, animated: true, completion: nil)
+        } else {
+            performSegue(withIdentifier: "showTag", sender: keyword)
         }
     }
 }
+

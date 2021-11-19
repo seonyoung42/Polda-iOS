@@ -21,7 +21,7 @@ class PolaroidCell: UICollectionViewCell {
     
     override var isSelected: Bool  {
             didSet {
-                if isSelected == true {
+                if isSelected {
                     highLight.isHidden = false
                     self.layer.borderWidth = 5
                     self.layer.borderColor = UIColor.lightGray.cgColor

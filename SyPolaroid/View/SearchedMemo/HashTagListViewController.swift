@@ -29,7 +29,6 @@ class HashTagListViewController: UIViewController {
         
         self.navigationController?.navigationBar.topItem?.title = ""
         
-        
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: width, height: width/4*4.5)
         flowLayout.minimumLineSpacing = 20
@@ -44,10 +43,8 @@ class HashTagListViewController: UIViewController {
         tagName.layer.cornerRadius = 10
         
     }
-    
-    
-
 }
+
 
 extension HashTagListViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -62,7 +59,6 @@ extension HashTagListViewController : UICollectionViewDelegate, UICollectionView
         }
         
         let memo = DataManager.shared.searchTagList[indexPath.row]
-                
         if let image = memo.editedImage {
             cell.hashTagImage.image = UIImage(data: image)
             cell.hashTagImage.layer.borderWidth = 3

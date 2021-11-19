@@ -76,16 +76,14 @@ class ShowMemoViewController: UIViewController, UITextFieldDelegate, TagListView
     @IBAction func TapTagList(_ sender: Any) {
         let alert = UIAlertController(title: "태그를 추가하세요", message: "", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
-            let userInput = alert.textFields?[0].text ?? ""
-                if userInput.count >= 1 {
-                    self.myTagListView.addTag(userInput)
-                    self.tagArray.append(userInput)
-                } else {
-                    ok.isEnabled = false
-                }
+            guard let userInput = alert.textFields?[0].text, !userInput.isEmpty else {
+                ok.isEnabled = false
+                return
+            }
+            self.myTagListView.addTag(userInput)
+            self.tagArray.append(userInput)
         }
-        
-        let cancel = UIAlertAction(title: "cancel", style: .cancel) { (cancel) in }
+        let cancel = UIAlertAction(title: "cancel", style: .cancel)
 
         alert.addAction(cancel)
         alert.addAction(ok)

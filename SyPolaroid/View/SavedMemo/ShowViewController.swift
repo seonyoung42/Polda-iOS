@@ -19,6 +19,7 @@ class ShowViewController: UIViewController, UIPopoverPresentationControllerDeleg
     var memo : Memo?
     var cover : Cover?
     var memoImage = UIImage()
+    var editImage = UIImage()
     var sendImage = UIImage()
     var memoIndex : Int!
 
@@ -30,44 +31,25 @@ class ShowViewController: UIViewController, UIPopoverPresentationControllerDeleg
         setSwipeAction()
 
         finalImage.isUserInteractionEnabled = true
-        
         self.showBackImage.layer.cornerRadius = 40
         
         if let image = memo?.editedImage {
-            finalImage.image = UIImage(data: image)
+            editImage = UIImage(data: image)!
+            finalImage.image = editImage
         }
         
         if let memoData = memo?.memoImage {
             memoImage = UIImage(data: memoData)!
         }
-       
-    }
-    
-    @IBAction func saveToAlbum(_ sender: Any) {
-        if let image = memo?.editedImage {
-            sendImage = UIImage(data: image)!
-        }
-            UIImageWriteToSavedPhotosAlbum(sendImage, nil, nil, nil)
-        self.showToast(message: "앨범에 저장되었어요 ٩(•̤̀ᵕ•̤́๑)ᵒᵏᵎᵎᵎᵎ")
-        }
-    
-    @IBAction func shareImage(_ sender: Any) {
         
-        if let image = memo?.editedImage {
-            
-            let editedImage = UIImage(data: image)
-            let activityViewController = UIActivityViewController(activityItems: [editedImage!], applicationActivities: nil)
-            activityViewController.popoverPresentationController?.sourceView = self.shareButton
-            activityViewController.popoverPresentationController?.delegate = self
-            present(activityViewController, animated: true, completion: nil)
-        }
+        savebutton.addTarget(self, action: #selector(saveImageToAlbum), for: .touchUpInside)
+        shareButton.addTarget(self, action: #selector(shareImageToOthers), for: .touchUpInside)
     }
+
     
     // > Segue 데이터 전달
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destination = segue.destination as? ShowMemoViewController else {
-            return
-            }
+        guard let destination = segue.destination as? ShowMemoViewController else { return }
         
         destination.modalTransitionStyle = .flipHorizontal
         destination.modalPresentationStyle = .fullScreen
@@ -83,7 +65,6 @@ extension ShowViewController {
     
     // > 네비게이션 바 설정
     func setNavigationBar() {
-        
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.toolbar.isHidden = false
         //툴바 투명하게
@@ -99,6 +80,32 @@ extension ShowViewController {
         flipView.layer.shadowOffset = CGSize(width: 10, height: 10)
     }
     
+    // > 이미지 앨범에 저장
+    @objc func saveImageToAlbum() {
+        if isDayImage {
+            UIImageWriteToSavedPhotosAlbum(editImage, nil, nil, nil)
+        } else {
+            UIImageWriteToSavedPhotosAlbum(memoImage, nil, nil, nil)
+        }
+        self.showToast(message: "앨범에 저장되었어요 ٩(•̤̀ᵕ•̤́๑)ᵒᵏᵎᵎᵎᵎ")
+    }
+    
+    // > image 외부로 공유하기
+    @objc func shareImageToOthers() {
+        if isDayImage {
+            let activityViewController = UIActivityViewController(activityItems: [editImage], applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.shareButton
+            activityViewController.popoverPresentationController?.delegate = self
+            present(activityViewController, animated: true, completion: nil)
+            
+        } else {
+            let activityViewController = UIActivityViewController(activityItems: [memoImage], applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.shareButton
+            activityViewController.popoverPresentationController?.delegate = self
+            present(activityViewController, animated: true, completion: nil)
+        }
+    }
+
     // > 토스트 메시지 띄우기
     func showToast(message : String) {
         let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 150, y: self.view.frame.size.height-100, width: 300, height: 35))
@@ -134,28 +141,26 @@ extension ShowViewController {
         if gesture.direction == .right {
             
             if isDayImage {
-                isDayImage = false
-                finalImage.image = memoImage
-                UIView.transition(with: finalImage, duration: 0.9, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+                setTransition(isDayImage: false, image: memoImage, transition: .transitionFlipFromLeft)
             } else {
-                isDayImage = true
-                if let image = memo?.editedImage {
-                    finalImage.image = UIImage(data: image)
-                }
-                UIView.transition(with: finalImage, duration: 0.9, options: .transitionFlipFromLeft, animations: nil, completion: nil) }
+                setTransition(isDayImage: true, image: editImage, transition: .transitionFlipFromLeft)
+            }
         
         } else if gesture.direction == .left {
             
             if isDayImage {
-                isDayImage = false
-                finalImage.image = memoImage
-                UIView.transition(with: finalImage, duration: 0.9, options: .transitionFlipFromRight, animations: nil, completion: nil)
+                setTransition(isDayImage: false, image: memoImage, transition: .transitionFlipFromRight)
             } else {
-                isDayImage = true
-                if let image = memo?.editedImage {
-                finalImage.image = UIImage(data: image)
-                }
-                UIView.transition(with: finalImage, duration: 0.9, options: .transitionFlipFromRight, animations: nil, completion: nil) }
+                setTransition(isDayImage: true, image: editImage, transition: .transitionFlipFromRight)
+                
+            }
         }
+    }
+    
+    func setTransition(isDayImage dayImage: Bool, image: UIImage, transition options: UIView.AnimationOptions) {
+        isDayImage = dayImage
+        finalImage.image = image
+        UIView.transition(with: finalImage, duration: 0.9, options: options, animations: nil, completion: nil)
+        
     }
 }

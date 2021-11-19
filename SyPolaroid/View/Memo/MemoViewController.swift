@@ -50,81 +50,26 @@ class MemoViewController: UIViewController, TagListViewDelegate {
         setMemoView()
         setButtonView()
         setFont()
+        
+        fontButton.addTarget(self, action: #selector(showFontSheet), for: .touchUpInside)
+        dismissButton.addTarget(self, action: #selector(dismissAndSendData), for: .touchUpInside)
+        
     }
-    
-    
-    // > 글꼴 선택 sheet action
-    @IBAction func selectFont(_ sender: UIButton) {
-        
-        let vc = UIViewController()
-        vc.preferredContentSize = CGSize(width: self.screenWidth, height: self.screenheight)
-        
-        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: self.screenWidth, height: self.screenheight))
-        
-        pickerView.dataSource = self
-        pickerView.delegate = self
-        pickerView.selectRow(selectedRow, inComponent: 0, animated: false)
-        
-        vc.view.addSubview(pickerView)
-        
-        pickerView.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
-        pickerView.centerYAnchor.constraint(equalTo: vc.view.centerYAnchor).isActive = true
-        
-        let alert = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
-        
-//        alert.popoverPresentationController?.sourceView = titleField
-//        alert.popoverPresentationController?.sourceRect = titleField.bounds
-        
-        alert.setValue(vc, forKey: "contentViewController")
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (UIAlertAction) in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-
-        alert.addAction(UIAlertAction(title: "Select", style: .default, handler: { (UIAlertAction) in
-            self.selectedRow = pickerView.selectedRow(inComponent: 0)
-            let selected = Array(self.fontArray)[self.selectedRow]
-            let defaultSize = UIFont.systemFontSize
-
-            self.titleField.font = UIFont.init(descriptor: .init(name: selected, size: defaultSize), size: defaultSize)
-            self.memoText.font = UIFont.init(descriptor: .init(name: selected, size: defaultSize), size: defaultSize)
-            self.myTagListView.textFont = UIFont.init(descriptor: .init(name: selected, size: defaultSize), size: defaultSize)
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
-        
     
     @IBAction func tagListTapped(_ sender: UITapGestureRecognizer) {
-        
         let alert = UIAlertController(title: "태그를 추가하세요", message: "", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
-            let userInput = alert.textFields?[0].text ?? ""
-                if userInput.count >= 1 {
-                    self.myTagListView.addTag(userInput)
-                    self.tagArray.append(userInput)
-                } else {
-                    ok.isEnabled = false
-                }
+        let ok = UIAlertAction(title: "OK", style: .default) { _ in
+            guard let userInput = alert.textFields?[0].text, !userInput.isEmpty else { return }
+            self.myTagListView.addTag(userInput)
+            self.tagArray.append(userInput)
+
         }
+        let cancel = UIAlertAction(title: "cancel", style: .cancel)
         
-        let cancel = UIAlertAction(title: "cancel", style: .cancel) { (cancel) in }
         alert.addAction(cancel)
         alert.addAction(ok)
         alert.addTextField()
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    
-    // > dismiss 할 때 editView로 데이터 보내기
-    @IBAction func dismiss(_ sender: Any) {
-        
-        if let delegate = self.delegate {
-            
-            let renderer = UIGraphicsImageRenderer(size: memoView.bounds.size)
-            let memoImage = renderer.image { ctx in memoView.drawHierarchy(in: memoView.bounds, afterScreenUpdates: true) }
-            
-            delegate.sendMemo(title: titleField.text, content: memoText.text, tag: tagArray, font : titleField.font?.familyName, image: memoImage)
-        }
-        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -153,7 +98,6 @@ extension MemoViewController: UIFontPickerViewControllerDelegate, UIPickerViewDa
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 20))
         label.textAlignment = .center
         label.sizeToFit()
@@ -234,6 +178,53 @@ extension MemoViewController: UITextFieldDelegate {
         self.buttonView.layer.cornerRadius = 10
         self.buttonView.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
         self.buttonView.layer.borderWidth = 1
+    }
+    
+    // > 폰트 선택 pickerView
+    @objc func showFontSheet() {
+        
+        let vc = UIViewController()
+        vc.preferredContentSize = CGSize(width: self.screenWidth, height: self.screenheight)
+        
+        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: self.screenWidth, height: self.screenheight))
+        
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        pickerView.selectRow(selectedRow, inComponent: 0, animated: false)
+        
+        vc.view.addSubview(pickerView)
+        
+        pickerView.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
+        pickerView.centerYAnchor.constraint(equalTo: vc.view.centerYAnchor).isActive = true
+        
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
+        
+        alert.setValue(vc, forKey: "contentViewController")
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (UIAlertAction) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+
+        alert.addAction(UIAlertAction(title: "Select", style: .default, handler: { (UIAlertAction) in
+            self.selectedRow = pickerView.selectedRow(inComponent: 0)
+            let selected = Array(self.fontArray)[self.selectedRow]
+            let defaultSize = UIFont.systemFontSize
+
+            self.titleField.font = UIFont.init(descriptor: .init(name: selected, size: defaultSize), size: defaultSize)
+            self.memoText.font = UIFont.init(descriptor: .init(name: selected, size: defaultSize), size: defaultSize)
+            self.myTagListView.textFont = UIFont.init(descriptor: .init(name: selected, size: defaultSize), size: defaultSize)
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    // > dismiss 할 때 editView로 데이터 보내기
+    @objc func dismissAndSendData() {
+        if let delegate = self.delegate {
+            let renderer = UIGraphicsImageRenderer(size: memoView.bounds.size)
+            let memoImage = renderer.image { ctx in memoView.drawHierarchy(in: memoView.bounds, afterScreenUpdates: true) }
+            
+            delegate.sendMemo(title: titleField.text, content: memoText.text, tag: tagArray, font : titleField.font?.familyName, image: memoImage)
+        }
+        dismiss(animated: true, completion: nil)
     }
     
     // 리턴 누르면 키보드 내려감

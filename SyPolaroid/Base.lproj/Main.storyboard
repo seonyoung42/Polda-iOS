@@ -156,9 +156,6 @@
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                                            <connections>
-                                                                <action selector="done:" destination="Gxk-lc-kFs" eventType="editingDidEnd" id="bYd-Px-vre"/>
-                                                            </connections>
                                                         </textField>
                                                         <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JUr-p8-J1H">
                                                             <rect key="frame" x="0.0" y="0.0" width="406" height="368"/>
@@ -377,9 +374,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ne-ZK-rtg">
                                         <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
                                         <state key="normal" image="save"/>
-                                        <connections>
-                                            <action selector="saveToAlbum:" destination="URU-wa-nal" eventType="touchUpInside" id="34Z-sF-Dgv"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZwD-x5-bFd">
                                         <rect key="frame" x="47" y="0.0" width="32" height="32"/>
@@ -388,9 +382,6 @@
                                             <constraint firstAttribute="width" secondItem="ZwD-x5-bFd" secondAttribute="height" multiplier="1:1" id="QPH-FJ-hdP"/>
                                         </constraints>
                                         <state key="normal" title="공유하기" image="export - ios"/>
-                                        <connections>
-                                            <action selector="shareImage:" destination="URU-wa-nal" eventType="touchUpInside" id="BzH-A8-VEj"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -684,16 +675,10 @@
                                                     <constraint firstAttribute="width" constant="32" id="uKQ-Ns-3ls"/>
                                                 </constraints>
                                                 <state key="normal" title="글꼴" image="text edit"/>
-                                                <connections>
-                                                    <action selector="selectFont:" destination="sVV-Vr-BOd" eventType="touchUpInside" id="JkT-Z2-auO"/>
-                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxw-ta-MaK">
                                                 <rect key="frame" x="47" y="0.0" width="32" height="32"/>
                                                 <state key="normal" image="right icon"/>
-                                                <connections>
-                                                    <action selector="dismiss:" destination="sVV-Vr-BOd" eventType="touchUpInside" id="wZk-YP-PJU"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -726,6 +711,7 @@
                     <connections>
                         <outlet property="TagScroll" destination="Lz7-KV-TSh" id="MY5-fg-m1v"/>
                         <outlet property="buttonView" destination="RmD-QO-61A" id="xkU-wX-1KN"/>
+                        <outlet property="dismissButton" destination="sxw-ta-MaK" id="74o-O4-G7b"/>
                         <outlet property="fontButton" destination="bdp-wK-6H7" id="lkE-Tv-6Yf"/>
                         <outlet property="memoBackImage" destination="Lv9-6c-PV3" id="APd-q9-DBd"/>
                         <outlet property="memoText" destination="FVD-Mx-c6S" id="E5d-90-oWT"/>

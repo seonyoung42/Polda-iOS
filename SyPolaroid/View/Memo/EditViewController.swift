@@ -65,7 +65,6 @@ class EditViewController: UIViewController, SendDataDelegate, UIViewControllerTr
    
     // > Coredata 에 이미지와 메모 저장하기
     @IBAction func saveData(_ sender: Any) {
-        
         let rendererFormat = UIGraphicsImageRendererFormat.default()
         rendererFormat.opaque = false
         
@@ -80,7 +79,6 @@ class EditViewController: UIViewController, SendDataDelegate, UIViewControllerTr
 
     // > 바텀 시트 올라오기
     @IBAction func stickerBtnClicked(_ sender: UIBarButtonItem) {
-
         let vc = storyboard?.instantiateViewController(withIdentifier: "PutStickerViewController") as! PutStickerViewController
         vc.delegate = self
         // MDC 바텀 시트로 설정
@@ -96,10 +94,7 @@ class EditViewController: UIViewController, SendDataDelegate, UIViewControllerTr
     
     // > Segue 데이터 전달
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        guard let destination = segue.destination as? MemoViewController else {
-            return
-            }
+        guard let destination = segue.destination as? MemoViewController else { return }
         let renderer = UIGraphicsImageRenderer(size: editView.bounds.size)
         let editedImage = renderer.image { ctx in editView.drawHierarchy(in: editView.bounds, afterScreenUpdates: true) }
         
@@ -133,10 +128,7 @@ extension EditViewController {
     
     // > 스티커 삭제
     @objc func longPress(_ gesture : UILongPressGestureRecognizer){
-        
-        if gesture.state != .ended {
-            return
-        }
+        if gesture.state != .ended { return }
         
         let alert = UIAlertController(title: "해당 스티커를 삭제하시겠습니까?", message: "", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) {_ in
@@ -168,9 +160,7 @@ extension EditViewController {
     
     // > 스티커 회전
     @objc func handleRotateGesture(_ gesture: UIRotationGestureRecognizer) {
-        guard let gestureView = gesture.view else {
-          return
-        }
+        guard let gestureView = gesture.view else { return }
         gestureView.transform = gestureView.transform.rotated(by: gesture.rotation)
         gesture.rotation = 0
     }

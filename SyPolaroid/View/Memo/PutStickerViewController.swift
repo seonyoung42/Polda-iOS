@@ -39,9 +39,6 @@ class PutStickerViewController: UIViewController {
         setCollectionViewLayout()
     }
     
-   
-    
-    
     @IBAction func onCollectionViewTypeChanged(_ sender: UISegmentedControl) {
     
         switch sender.selectedSegmentIndex {
@@ -96,7 +93,6 @@ extension PutStickerViewController {
     
     // > 세그먼트 컨트롤 설정
     func setSegment() {
-        
         setSegmentImage(imageName: "Union", segmentNum: 0)
         setSegmentImage(imageName: "Ellipse 13", segmentNum: 1)
         setSegmentImage(imageName: "Star 2", segmentNum: 2)
@@ -107,7 +103,6 @@ extension PutStickerViewController {
         mySegment.selectedSegmentTintColor = #colorLiteral(red: 0.9818590283, green: 0.8747641444, blue: 0.8722032309, alpha: 1)
         mySegment.tintColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
         mySegment.backgroundColor = UIColor.white
-
     }
     
     // > 세그먼트에 이미지 설정
@@ -118,16 +113,12 @@ extension PutStickerViewController {
     
     // > CollectionView 레이아웃 설정
     func setCollectionViewLayout() {
-        
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: width, height: width)
         flowLayout.minimumLineSpacing = 20
         flowLayout.minimumInteritemSpacing = 20
         self.collectionView.collectionViewLayout = flowLayout
-        
     }
-    
-    
 }
 
 class PutStickerCell : UICollectionViewCell  {
