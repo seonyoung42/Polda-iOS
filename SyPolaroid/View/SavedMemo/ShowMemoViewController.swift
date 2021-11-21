@@ -72,7 +72,6 @@ class ShowMemoViewController: UIViewController, UITextFieldDelegate, TagListView
         }
     }
     
-    
     @IBAction func TapTagList(_ sender: Any) {
         let alert = UIAlertController(title: "태그를 추가하세요", message: "", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { (ok) in
@@ -90,7 +89,6 @@ class ShowMemoViewController: UIViewController, UITextFieldDelegate, TagListView
         alert.addTextField()
         self.present(alert, animated: true, completion: nil)
     }
-    
     
     func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
         sender.removeTagView(tagView)

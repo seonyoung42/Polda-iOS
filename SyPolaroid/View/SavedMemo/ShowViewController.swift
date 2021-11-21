@@ -139,20 +139,16 @@ extension ShowViewController {
     // > SwipeGesture 상세 설정
     @objc func respondToSwipeGesture(_ gesture: UISwipeGestureRecognizer) {
         if gesture.direction == .right {
-            
             if isDayImage {
                 setTransition(isDayImage: false, image: memoImage, transition: .transitionFlipFromLeft)
             } else {
                 setTransition(isDayImage: true, image: editImage, transition: .transitionFlipFromLeft)
             }
-        
         } else if gesture.direction == .left {
-            
             if isDayImage {
                 setTransition(isDayImage: false, image: memoImage, transition: .transitionFlipFromRight)
             } else {
                 setTransition(isDayImage: true, image: editImage, transition: .transitionFlipFromRight)
-                
             }
         }
     }

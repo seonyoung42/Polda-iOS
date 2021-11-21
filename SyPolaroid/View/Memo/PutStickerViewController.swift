@@ -12,7 +12,6 @@ protocol SendDataDelegate {
 }
 
 class PutStickerViewController: UIViewController {
-    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var mySegment: UISegmentedControl!
     
@@ -66,7 +65,6 @@ class PutStickerViewController: UIViewController {
 
 // > CollectionView
 extension PutStickerViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         cellData.count
     }
@@ -90,7 +88,6 @@ extension PutStickerViewController: UICollectionViewDataSource, UICollectionView
 
 // > Custom Functions
 extension PutStickerViewController {
-    
     // > 세그먼트 컨트롤 설정
     func setSegment() {
         setSegmentImage(imageName: "Union", segmentNum: 0)

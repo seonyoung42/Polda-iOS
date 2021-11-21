@@ -114,7 +114,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate
 
 // > CollectionView
 extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return DataManager.shared.coverList.count
     }
@@ -140,7 +139,6 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
         switch mMode {
         case .view:
             self.collectionView.deselectItem(at: indexPath, animated: true)
@@ -168,7 +166,6 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
     
     // > segue 데이터 전달
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
         if segue.identifier == "showList" {
             let cover = sender
             let vc = segue.destination as? ListViewController
@@ -187,7 +184,6 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
 
 // > imagepicker 메서드
 extension ViewController : UIImagePickerControllerDelegate & UINavigationControllerDelegate {
-    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
@@ -211,9 +207,8 @@ extension ViewController : UIImagePickerControllerDelegate & UINavigationControl
 
 
 
-// > Functions
+// > Cutom Functions
 extension ViewController {
-    
     // > 서치바 텍스트필드 설정
     func setSearchBar() {
         searchBar.backgroundImage = UIImage()
@@ -227,7 +222,6 @@ extension ViewController {
     
     // > 플로팅버튼 설정
     func setFloatingBtn() {
-        
         actionButton = JJFloatingActionButton()
         actionButton.addItem(title: "", image: UIImage(named: "thrash icon" )) { item in
             self.mMode = self.mMode == .view ? .select : .view
@@ -242,7 +236,6 @@ extension ViewController {
                 DataManager.shared.fetchCover()
                 self.actionButton.items[1].titleLabel.text = "개수 순"
             }
-            
             self.collectionView.reloadData()
         }
         

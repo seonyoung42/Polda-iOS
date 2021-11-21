@@ -91,7 +91,6 @@ class EditViewController: UIViewController, SendDataDelegate, UIViewControllerTr
         gesture.view?.superview?.removeFromSuperview()
     }
     
-    
     // > Segue 데이터 전달
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destination = segue.destination as? MemoViewController else { return }
@@ -125,8 +124,7 @@ class EditViewController: UIViewController, SendDataDelegate, UIViewControllerTr
 
 // > 스티커 기능 설정
 extension EditViewController {
-    
-    // > 스티커 삭제
+    // > 스티커 삭제 (꾹 눌러서 삭제)
     @objc func longPress(_ gesture : UILongPressGestureRecognizer){
         if gesture.state != .ended { return }
         
@@ -174,7 +172,6 @@ extension EditViewController {
 
 // >> 프레임 색상 설정
 extension EditViewController : UIColorPickerViewControllerDelegate {
-    
     @IBAction func showColorPicker(_ sender: Any) {
         let picker = UIColorPickerViewController()
         picker.supportsAlpha = true
@@ -199,7 +196,6 @@ extension EditViewController : UIColorPickerViewControllerDelegate {
 
 // > imagePicker 메서드
 extension EditViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
@@ -218,7 +214,6 @@ extension EditViewController : UIImagePickerControllerDelegate, UINavigationCont
 
 // > Custom Funcions
 extension EditViewController {
-    
     //네이게이션 바 세팅
     func setNavigationBar() {
         self.navigationController?.navigationBar.topItem?.title = ""
@@ -238,7 +233,6 @@ extension EditViewController {
     
     // 선택한 스티커 데이터 받기
     func sendData(image: UIImage) {
-        
         let imageSticker = UIImageView(image: image)
         imageSticker.frame = CGRect(origin: CGPoint(x: 120, y: 150), size: CGSize(width: 50, height: 50))
         imageSticker.image = image
@@ -252,21 +246,13 @@ extension EditViewController {
         
         //스티커 조절 기능 추가
         let panGesture = UIPanGestureRecognizer.init(target: self, action: #selector(handlePanGesture(_:)))
-            panGesture.delegate = self
-
         let pinchGesture = UIPinchGestureRecognizer.init(target: self, action: #selector(handlePinchGesture(_:)))
-            pinchGesture.delegate = self
-
         let rotateGesture = UIRotationGestureRecognizer.init(target: self, action: #selector(handleRotateGesture(_:)))
-            rotateGesture.delegate = self
-
-        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress))
+        let removeGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress))
         
-        
-        [panGesture,pinchGesture,rotateGesture,longPress].forEach {
+        [panGesture,pinchGesture,rotateGesture,removeGesture].forEach {
+            $0.delegate = self
             imageSticker.addGestureRecognizer($0)
         }
-        
     }
-
 }
