@@ -19,7 +19,18 @@ class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate
     var covers = DataManager.shared.coverList
     var actionButton: JJFloatingActionButton!
     var searchText : String = ""
-    var buttonStatus = false
+    
+    var buttonStatus = false {
+        didSet {
+            if buttonStatus {
+                DataManager.shared.fetchCoverbyCount()
+            } else {
+                DataManager.shared.fetchCover()
+            }
+            self.collectionView.reloadData()
+        }
+    }
+    
     var diaryIndex : Int!
     
     var textfieldButton : UIButton {
@@ -54,14 +65,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate
                     self.buttonStatus = !self.buttonStatus
                     
                     if self.buttonStatus {
-                        DataManager.shared.fetchCoverbyCount()
                         self.actionButton.items[1].titleLabel.text = "최신순"
                     } else {
-                        DataManager.shared.fetchCover()
                         self.actionButton.items[1].titleLabel.text = "개수 순"
                     }
-                    self.collectionView.reloadData()
                 }
+                
                 self.actionButton.addItem(title: "", image: UIImage(named:"add")) { item in
                     DataManager.shared.saveCover(name: "")
                     self.showToast(message: "다이어리가 추가되었어요 ٩(•̤̀ᵕ•̤́๑)ᵒᵏᵎᵎᵎᵎ")
@@ -98,6 +107,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate
         } else {
             DataManager.shared.fetchCover()
         }
+        
         self.collectionView.reloadData()
     }
     
@@ -151,9 +161,14 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
             let okAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
                 DataManager.shared.deleteCover(deleteCover)
                 self.showToast(message: "다이어리가 삭제되었어요 ･ᴗ･̥̥̥")
-                DataManager.shared.fetchCover()
+                if self.buttonStatus {
+                    DataManager.shared.fetchCoverbyCount()
+                } else {
+                    DataManager.shared.fetchCover()
+                }
                 self.collectionView.reloadData()
             }
+            
             let cancelAction = UIAlertAction(title: "취소", style: .cancel) {_ in
                 collectionView.deselectItem(at: indexPath, animated: true)
             }
@@ -230,13 +245,10 @@ extension ViewController {
             self.buttonStatus = !self.buttonStatus
             
             if self.buttonStatus {
-                DataManager.shared.fetchCoverbyCount()
                 self.actionButton.items[1].titleLabel.text = "최신순"
             } else {
-                DataManager.shared.fetchCover()
                 self.actionButton.items[1].titleLabel.text = "개수 순"
             }
-            self.collectionView.reloadData()
         }
         
         actionButton.addItem(title:"", image: UIImage(named:"add")) { item in
@@ -303,7 +315,7 @@ extension ViewController {
             return
         }
             
-        DataManager.shared.searchTag(keyword: keyword)
+        DataManager.shared.searchTag(keyword: keyword.lowercased())
             
         if DataManager.shared.searchTagList.isEmpty {
             let alert = UIAlertController(title: "", message: "해당 태그는 없습니다.", preferredStyle: .alert)

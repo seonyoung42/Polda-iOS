@@ -61,7 +61,7 @@ class MemoViewController: UIViewController, TagListViewDelegate {
         let ok = UIAlertAction(title: "OK", style: .default) { _ in
             guard let userInput = alert.textFields?[0].text, !userInput.isEmpty else { return }
             self.myTagListView.addTag(userInput)
-            self.tagArray.append(userInput)
+            self.tagArray.append(userInput.lowercased())
 
         }
         let cancel = UIAlertAction(title: "cancel", style: .cancel)
@@ -237,4 +237,5 @@ extension MemoViewController: UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
+    
 }

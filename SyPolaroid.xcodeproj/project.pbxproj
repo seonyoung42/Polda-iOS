@@ -183,9 +183,9 @@
 		2B8B285B27425A76001B6A68 /* Memo */ = {
 			isa = PBXGroup;
 			children = (
-				2B7D4B782646773700A4D53E /* MemoViewController.swift */,
-				2BB3188B2655493600893F99 /* PutStickerViewController.swift */,
 				2B7D4B742645328A00A4D53E /* EditViewController.swift */,
+				2BB3188B2655493600893F99 /* PutStickerViewController.swift */,
+				2B7D4B782646773700A4D53E /* MemoViewController.swift */,
 			);
 			path = Memo;
 			sourceTree = "<group>";

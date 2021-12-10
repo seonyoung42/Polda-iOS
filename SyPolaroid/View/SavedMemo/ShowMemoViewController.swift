@@ -80,7 +80,7 @@ class ShowMemoViewController: UIViewController, UITextFieldDelegate, TagListView
                 return
             }
             self.myTagListView.addTag(userInput)
-            self.tagArray.append(userInput)
+            self.tagArray.append(userInput.lowercased())
         }
         let cancel = UIAlertAction(title: "cancel", style: .cancel)
 
