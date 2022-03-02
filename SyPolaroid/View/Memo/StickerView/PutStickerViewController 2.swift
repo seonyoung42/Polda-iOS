@@ -6,32 +6,14 @@
 //
 
 import UIKit
-import SnapKit
 
 protocol SendDataDelegate {
     func sendData(image:UIImage)
 }
 
 class PutStickerViewController: UIViewController {
-    
-    private lazy var collectionView : UICollectionView = {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: width, height: width)
-        flowLayout.minimumLineSpacing = 20
-        flowLayout.minimumInteritemSpacing = 20
-
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
-        collectionView.layer.cornerRadius = 10
-        collectionView.backgroundColor = .white
-        collectionView.register(StickerCollectionViewCell.self, forCellWithReuseIdentifier: "StickerCollectionViewCell")
-        
-        return collectionView
-    }()
-    
-    let mySegment = UISegmentedControl()
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var mySegment: UISegmentedControl!
     
     let width : Double = Double((UIScreen.main.bounds.width)/5.5)
     var delegate : SendDataDelegate?
@@ -43,11 +25,22 @@ class PutStickerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        attribute()
-        layout()
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
+        collectionView.layer.cornerRadius = 10
+        collectionView.register(StickerCollectionViewCell.self, forCellWithReuseIdentifier: "StickerCollectionViewCell")
+        
+        view.layer.cornerRadius = 10
+        view.backgroundColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+        
+        setSegment()
+        setCollectionViewLayout()
     }
     
-    @objc func onCollectionViewTypeChanged(_ sender: UISegmentedControl) {
+    @IBAction func onCollectionViewTypeChanged(_ sender: UISegmentedControl) {
+    
         switch sender.selectedSegmentIndex {
         case 0:
             self.cellData = ["heart1#red","heart1#yellow","heart1#green","heart1#blue","heart1#pink","heart1#red","heart1#brown","heart2#red","heart2#yellow","heart2#green","heart2#blue","heart2#pink","heart2#red","heart2#brown","ellipse#red","ellipse#yellow","ellipse#green","ellipse#blue","ellipse#pink","ellipse#red","ellipse#brown","ribbon#red","ribbon#yellow","ribbon#green","ribbon#blue","ribbon#pink","ribbon#brown"]
@@ -93,44 +86,34 @@ extension PutStickerViewController: UICollectionViewDataSource, UICollectionView
 }
 
 
-// > Setup UI
-private extension PutStickerViewController {
-    func attribute() {
-        view.layer.cornerRadius = 10
-        view.backgroundColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
-        setSegment()
-    }
-    
-    func layout() {
-        [collectionView,mySegment].forEach {
-            view.addSubview($0)
-        }
-        
-        let safeArea = view.safeAreaLayoutGuide
-        mySegment.snp.makeConstraints {
-            $0.leading.trailing.equalTo(safeArea).inset(5)
-            $0.top.equalToSuperview().inset(5)
-            $0.height.equalTo(80)
-        }
-        
-        collectionView.snp.makeConstraints {
-            $0.top.equalTo(mySegment.snp.bottom).offset(5)
-            $0.leading.trailing.equalTo(mySegment)
-            $0.bottom.equalToSuperview()
-        }
-    }
-    
-    
+// > Custom Functions
+extension PutStickerViewController {
     // > 세그먼트 컨트롤 설정
     func setSegment() {
-        [("Union",0),("Ellipse 13",1),("Star 2",2),("Polygon 1",3),("stickerCategory",4)].forEach {
-            let image = UIImage(named: $0.0)?.withRenderingMode(.alwaysOriginal)
-            mySegment.insertSegment(with: image, at: $0.1, animated: true)
-        }
-        mySegment.addTarget(self, action: #selector(onCollectionViewTypeChanged(_:)), for: .valueChanged)
+        setSegmentImage(imageName: "Union", segmentNum: 0)
+        setSegmentImage(imageName: "Ellipse 13", segmentNum: 1)
+        setSegmentImage(imageName: "Star 2", segmentNum: 2)
+        setSegmentImage(imageName: "Polygon 1", segmentNum: 3)
+        setSegmentImage(imageName: "stickerCategory", segmentNum: 4)
+        
         mySegment.selectedSegmentIndex = 0
         mySegment.selectedSegmentTintColor = #colorLiteral(red: 0.9818590283, green: 0.8747641444, blue: 0.8722032309, alpha: 1)
         mySegment.tintColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
         mySegment.backgroundColor = UIColor.white
+    }
+    
+    // > 세그먼트에 이미지 설정
+    func setSegmentImage(imageName: String, segmentNum: Int) {
+        let image = UIImage(named: imageName)?.withRenderingMode(.alwaysOriginal)
+        mySegment.setImage(image, forSegmentAt: segmentNum)
+    }
+    
+    // > CollectionView 레이아웃 설정
+    func setCollectionViewLayout() {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.itemSize = CGSize(width: width, height: width)
+        flowLayout.minimumLineSpacing = 20
+        flowLayout.minimumInteritemSpacing = 20
+        self.collectionView.collectionViewLayout = flowLayout
     }
 }

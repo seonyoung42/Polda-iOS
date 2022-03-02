@@ -62,9 +62,9 @@ class MemoViewController: UIViewController, TagListViewDelegate {
             guard let userInput = alert.textFields?[0].text, !userInput.isEmpty else { return }
             self.myTagListView.addTag(userInput)
             self.tagArray.append(userInput.lowercased())
-
         }
-        let cancel = UIAlertAction(title: "cancel", style: .cancel)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .destructive)
         
         alert.addAction(cancel)
         alert.addAction(ok)

@@ -82,10 +82,10 @@ class EditViewController: UIViewController, SendDataDelegate, UIViewControllerTr
 
     // > 바텀 시트 올라오기
     @IBAction func stickerBtnClicked(_ sender: UIBarButtonItem) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "PutStickerViewController") as! PutStickerViewController
-        vc.delegate = self
+        let stickerVC = PutStickerViewController()
+        stickerVC.delegate = self
         // MDC 바텀 시트로 설정
-        let bottomSheet: MDCBottomSheetController = MDCBottomSheetController(contentViewController: vc)
+        let bottomSheet: MDCBottomSheetController = MDCBottomSheetController(contentViewController: stickerVC)
         bottomSheet.mdc_bottomSheetPresentationController?.preferredSheetHeight = 300
         present(bottomSheet, animated: true, completion: nil)
     }

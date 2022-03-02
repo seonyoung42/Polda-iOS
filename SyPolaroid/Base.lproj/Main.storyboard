@@ -729,66 +729,6 @@
             </objects>
             <point key="canvasLocation" x="3679.7101449275365" y="547.76785714285711"/>
         </scene>
-        <!--Put Sticker View Controller-->
-        <scene sceneID="n08-c2-BCm">
-            <objects>
-                <viewController storyboardIdentifier="PutStickerViewController" id="eHL-1O-bKc" customClass="PutStickerViewController" customModule="SyPolaroid" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="IBQ-68-TXb">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nlh-Kr-tub">
-                                <rect key="frame" x="5" y="95" width="404" height="801"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jYh-jI-1ND">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" translatesAutoresizingMaskIntoConstraints="NO" id="A0H-AD-XGT">
-                                <rect key="frame" x="5" y="5" width="404" height="81"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="gJm-mr-25V"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="" image="Union"/>
-                                    <segment title="" image="Ellipse 13"/>
-                                    <segment title="" image="Star 2"/>
-                                    <segment title="" image="Polygon 1"/>
-                                    <segment title=""/>
-                                </segments>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="selectedSegmentTintColor" red="0.94705318829999996" green="0.88263059290000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <connections>
-                                    <action selector="onCollectionViewTypeChanged:" destination="eHL-1O-bKc" eventType="valueChanged" id="U8o-j3-lKT"/>
-                                </connections>
-                            </segmentedControl>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="6eq-hZ-wGT"/>
-                        <color key="backgroundColor" red="0.98643079970000003" green="0.80395554830000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstItem="nlh-Kr-tub" firstAttribute="leading" secondItem="6eq-hZ-wGT" secondAttribute="leading" constant="5" id="Bdg-N8-WZS"/>
-                            <constraint firstItem="6eq-hZ-wGT" firstAttribute="trailing" secondItem="A0H-AD-XGT" secondAttribute="trailing" constant="5" id="MBO-8M-6zj"/>
-                            <constraint firstItem="A0H-AD-XGT" firstAttribute="leading" secondItem="6eq-hZ-wGT" secondAttribute="leading" constant="5" id="Q7S-vq-mL1"/>
-                            <constraint firstItem="A0H-AD-XGT" firstAttribute="top" secondItem="IBQ-68-TXb" secondAttribute="top" constant="5" id="RtG-bH-T9r"/>
-                            <constraint firstAttribute="bottom" secondItem="nlh-Kr-tub" secondAttribute="bottom" id="cQF-03-Dsm"/>
-                            <constraint firstItem="nlh-Kr-tub" firstAttribute="top" secondItem="A0H-AD-XGT" secondAttribute="bottom" constant="10" id="cf9-nq-U16"/>
-                            <constraint firstItem="6eq-hZ-wGT" firstAttribute="trailing" secondItem="nlh-Kr-tub" secondAttribute="trailing" constant="5" id="sGH-LM-pXG"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="collectionView" destination="nlh-Kr-tub" id="Yun-FE-sKz"/>
-                        <outlet property="mySegment" destination="A0H-AD-XGT" id="UGX-mV-Exc"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8Vi-M9-maY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2519" y="1264"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="5ar-9h-WsE">
             <objects>
@@ -966,14 +906,6 @@
             <point key="canvasLocation" x="3679.7101449275365" y="-338.16964285714283"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="Qkt-V1-gRi">
-            <size key="intrinsicContentSize" width="304" height="22"/>
-        </designable>
-        <designable name="oZK-3Z-W4V">
-            <size key="intrinsicContentSize" width="304" height="22"/>
-        </designable>
-    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="8w5-Ne-sER"/>
     </inferredMetricsTieBreakers>
@@ -981,15 +913,11 @@
         <image name="#2 save icon" width="33" height="32"/>
         <image name="#3 add stickers icon" width="32" height="32"/>
         <image name="#4 turn icon" width="32" height="32"/>
-        <image name="Ellipse 13" width="35" height="32"/>
         <image name="Group 22" width="32" height="32"/>
         <image name="Group 36" width="375" height="775"/>
         <image name="Group 37" width="300" height="300"/>
         <image name="Main View background" width="1500" height="3248"/>
-        <image name="Polygon 1" width="27" height="24"/>
         <image name="Rectangle 16" width="332" height="500"/>
-        <image name="Star 2" width="39" height="39"/>
-        <image name="Union" width="35" height="35"/>
         <image name="Vector 3" width="213" height="2"/>
         <image name="color wheel png" width="120" height="120"/>
         <image name="export - ios" width="32" height="32"/>
