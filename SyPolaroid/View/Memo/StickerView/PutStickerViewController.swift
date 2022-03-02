@@ -16,7 +16,6 @@ class PutStickerViewController: UIViewController {
     @IBOutlet weak var mySegment: UISegmentedControl!
     
     let width : Double = Double((UIScreen.main.bounds.width)/5.5)
-
     var delegate : SendDataDelegate?
     var cellData = ["heart1#red","heart1#yellow","heart1#green","heart1#blue","heart1#pink","heart1#red","heart1#brown","heart2#red","heart2#yellow","heart2#green","heart2#blue","heart2#pink","heart2#red","heart2#brown","ellipse#red","ellipse#yellow","ellipse#green","ellipse#blue","ellipse#pink","ellipse#red","ellipse#brown","ribbon#red","ribbon#yellow","ribbon#green","ribbon#blue","ribbon#pink","ribbon#brown"] {
         didSet {
@@ -31,6 +30,8 @@ class PutStickerViewController: UIViewController {
         collectionView.delegate = self
         collectionView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 0, right: 0)
         collectionView.layer.cornerRadius = 10
+        collectionView.register(StickerCollectionViewCell.self, forCellWithReuseIdentifier: "StickerCollectionViewCell")
+        
         view.layer.cornerRadius = 10
         view.backgroundColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
         
@@ -70,12 +71,11 @@ extension PutStickerViewController: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell : PutStickerCell = collectionView.dequeueReusableCell(withReuseIdentifier: "putStickerCell", for: indexPath) as? PutStickerCell  else {
-            print("error")
-            return UICollectionViewCell()
-        }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StickerCollectionViewCell", for: indexPath) as? StickerCollectionViewCell else { return UICollectionViewCell()}
         
-        cell.stickerImage.image = UIImage(named: cellData[indexPath.row])
+        let sticker = UIImage(named: cellData[indexPath.row])!
+        cell.setupCell(sticker: sticker)
+        
         return cell
     }
     
@@ -116,8 +116,4 @@ extension PutStickerViewController {
         flowLayout.minimumInteritemSpacing = 20
         self.collectionView.collectionViewLayout = flowLayout
     }
-}
-
-class PutStickerCell : UICollectionViewCell  {
-    @IBOutlet weak var stickerImage: UIImageView!
 }

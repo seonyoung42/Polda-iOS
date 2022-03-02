@@ -11,6 +11,7 @@ import CoreData
 class DataManager {
 
     static let shared = DataManager()
+    
     private init() {
     }
 
@@ -52,7 +53,6 @@ class DataManager {
     //커버 저장하기
     func saveCover(name: String?) {
         let cover = NSEntityDescription.insertNewObject(forEntityName: "Cover", into: mainContext) as! Cover
-
         cover.name = name
         cover.image = UIImage(named:"Rectangle 16")?.pngData()
         cover.date = Date()
@@ -102,9 +102,9 @@ class DataManager {
             }
     }
 
-//
+
 //    // MARK: - Core Data stack
-//
+
     lazy var persistentContainer: NSPersistentContainer = {
 
         let container = NSPersistentContainer(name: "SyPolaroid")
@@ -115,9 +115,9 @@ class DataManager {
         })
         return container
     }()
-//
+
 //    // MARK: - Core Data Saving support
-//
+
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {

@@ -33,6 +33,9 @@ class ShowViewController: UIViewController, UIPopoverPresentationControllerDeleg
         finalImage.isUserInteractionEnabled = true
         self.showBackImage.layer.cornerRadius = 40
         
+        self.finalImage.layer.cornerRadius = 5
+        self.flipView.layer.cornerRadius = 5
+        
         if let image = memo?.editedImage {
             editImage = UIImage(data: image)!
             finalImage.image = editImage
@@ -82,12 +85,27 @@ extension ShowViewController {
     
     // > 이미지 앨범에 저장
     @objc func saveImageToAlbum() {
+        var savedImage : UIImage?
         if isDayImage {
-            UIImageWriteToSavedPhotosAlbum(editImage, nil, nil, nil)
+            savedImage = editImage
+//            UIImageWriteToSavedPhotosAlbum(editImage, nil, nil, nil)
         } else {
-            UIImageWriteToSavedPhotosAlbum(memoImage, nil, nil, nil)
+            savedImage = memoImage
+//            UIImageWriteToSavedPhotosAlbum(memoImage, nil, nil, nil)
         }
-        self.showToast(message: "앨범에 저장되었어요 ٩(•̤̀ᵕ•̤́๑)ᵒᵏᵎᵎᵎᵎ")
+        
+        guard let savedImage = savedImage else { return }
+        
+        CustomAlbum.sharedInstance.saveImageToAlbum(image: savedImage) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(_):
+                    self.showToast(message: "앨범에 저장되었어요 ٩(•̤̀ᵕ•̤́๑)ᵒᵏᵎᵎᵎᵎ")
+                case .failure(_):
+                    self.showToast(message: "에러가 발생했어요")
+                }
+            }
+        }
     }
     
     // > image 외부로 공유하기

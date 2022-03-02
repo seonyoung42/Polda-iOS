@@ -138,11 +138,13 @@ extension MemoViewController: UITextFieldDelegate {
     // > 해시태그 삭제 버튼 action
     func tagRemoveButtonPressed(_ title: String, tagView: TagView, sender: TagListView) {
         sender.removeTagView(tagView)
-
+        
         for i in 0..<tagArray.count {
             if tagArray[i] == title {
                 tagArray.remove(at: i)
-                break}}
+                break
+            }
+        }
         print(tagArray)
     }
     
@@ -158,6 +160,7 @@ extension MemoViewController: UITextFieldDelegate {
         memoText.layer.borderWidth = 1.5
         memoText.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
         memoText.text = memoContent
+        memoText.spellCheckingType = .no
         
         self.memoBackImage.layer.cornerRadius = 40
     }
@@ -174,7 +177,6 @@ extension MemoViewController: UITextFieldDelegate {
     
     // > 버튼 뷰 설정
     func setButtonView() {
-        
         self.buttonView.layer.cornerRadius = 10
         self.buttonView.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
         self.buttonView.layer.borderWidth = 1
@@ -222,7 +224,11 @@ extension MemoViewController: UITextFieldDelegate {
             let renderer = UIGraphicsImageRenderer(size: memoView.bounds.size)
             let memoImage = renderer.image { ctx in memoView.drawHierarchy(in: memoView.bounds, afterScreenUpdates: true) }
             
-            delegate.sendMemo(title: titleField.text, content: memoText.text, tag: tagArray, font : titleField.font?.familyName, image: memoImage)
+            delegate.sendMemo(title: titleField.text,
+                              content: memoText.text,
+                              tag: tagArray,
+                              font : titleField.font?.familyName,
+                              image: memoImage)
         }
         dismiss(animated: true, completion: nil)
     }

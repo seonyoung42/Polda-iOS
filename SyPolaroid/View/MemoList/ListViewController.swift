@@ -135,7 +135,10 @@ extension ListViewController : UICollectionViewDelegateFlowLayout {
             let okAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
                 self.cover?.removeFromRawMemos(deleteMemo)
                 self.showToast(message: "폴라로이드가 삭제되었어요 ･ᴗ･̥̥̥")
-                self.collectionView.reloadData()
+                
+                // 다이어리 리스트 삭제 변경 reloadData -> deleteItem
+                self.collectionView.deleteItems(at: [indexPath])
+//                self.collectionView.reloadData()
             }
             let cancelAction = UIAlertAction(title: "취소", style: .cancel) {_ in
                 collectionView.deselectItem(at: indexPath, animated: true)

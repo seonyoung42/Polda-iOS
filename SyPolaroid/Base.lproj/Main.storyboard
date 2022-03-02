@@ -746,30 +746,7 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="putStickerCell" id="82t-Kg-rR3" customClass="PutStickerCell" customModule="SyPolaroid" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="eLB-8j-KVh">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4FI-AW-gpa">
-                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="4FI-AW-gpa" secondAttribute="trailing" id="NwP-ur-ssJ"/>
-                                                <constraint firstAttribute="bottom" secondItem="4FI-AW-gpa" secondAttribute="bottom" id="Ptf-YI-BZC"/>
-                                                <constraint firstItem="4FI-AW-gpa" firstAttribute="top" secondItem="eLB-8j-KVh" secondAttribute="top" id="Zi6-on-XGo"/>
-                                                <constraint firstItem="4FI-AW-gpa" firstAttribute="leading" secondItem="eLB-8j-KVh" secondAttribute="leading" id="ZwZ-0d-4Ho"/>
-                                            </constraints>
-                                        </collectionViewCellContentView>
-                                        <connections>
-                                            <outlet property="stickerImage" destination="4FI-AW-gpa" id="Rsx-AQ-z5y"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" translatesAutoresizingMaskIntoConstraints="NO" id="A0H-AD-XGT">
                                 <rect key="frame" x="5" y="5" width="404" height="81"/>

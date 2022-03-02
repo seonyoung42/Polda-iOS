@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -33,6 +33,9 @@
 		2B8B28572742573C001B6A68 /* DiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B28562742573C001B6A68 /* DiaryCell.swift */; };
 		2BB3188C2655493600893F99 /* PutStickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3188B2655493600893F99 /* PutStickerViewController.swift */; };
 		2BC2B4DF2682E6980058FE6C /* ShowMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2B4DE2682E6980058FE6C /* ShowMemoViewController.swift */; };
+		2BCDED5F27CF5604008854DC /* StickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCDED5E27CF5604008854DC /* StickerCollectionViewCell.swift */; };
+		2BCDED6227CF569F008854DC /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2BCDED6127CF569F008854DC /* SnapKit */; };
+		2BCDED6427CF59A8008854DC /* CustomAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCDED6327CF59A8008854DC /* CustomAlbum.swift */; };
 		2BCE29A6268880CF00C765E7 /* SunBatang-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2BCE29A5268880CF00C765E7 /* SunBatang-Light.otf */; };
 		2BCE29A9268880D800C765E7 /* SSShinb7Regular_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2BCE29A8268880D800C765E7 /* SSShinb7Regular_otf.otf */; };
 		2BCE29AD2688813900C765E7 /* MaruBuri-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2BCE29AC2688813900C765E7 /* MaruBuri-Regular.otf */; };
@@ -68,6 +71,8 @@
 		2B8B28562742573C001B6A68 /* DiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCell.swift; sourceTree = "<group>"; };
 		2BB3188B2655493600893F99 /* PutStickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutStickerViewController.swift; sourceTree = "<group>"; };
 		2BC2B4DE2682E6980058FE6C /* ShowMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMemoViewController.swift; sourceTree = "<group>"; };
+		2BCDED5E27CF5604008854DC /* StickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerCollectionViewCell.swift; sourceTree = "<group>"; };
+		2BCDED6327CF59A8008854DC /* CustomAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlbum.swift; sourceTree = "<group>"; };
 		2BCE29A5268880CF00C765E7 /* SunBatang-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SunBatang-Light.otf"; sourceTree = "<group>"; };
 		2BCE29A8268880D800C765E7 /* SSShinb7Regular_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SSShinb7Regular_otf.otf; sourceTree = "<group>"; };
 		2BCE29AC2688813900C765E7 /* MaruBuri-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-Regular.otf"; sourceTree = "<group>"; };
@@ -82,6 +87,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE75E3BB28CB35F488BB8D9E /* Pods_SyPolaroid.framework in Frameworks */,
+				2BCDED6227CF569F008854DC /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,8 +189,8 @@
 		2B8B285B27425A76001B6A68 /* Memo */ = {
 			isa = PBXGroup;
 			children = (
+				2BCDED5D27CF5560008854DC /* StickerView */,
 				2B7D4B742645328A00A4D53E /* EditViewController.swift */,
-				2BB3188B2655493600893F99 /* PutStickerViewController.swift */,
 				2B7D4B782646773700A4D53E /* MemoViewController.swift */,
 			);
 			path = Memo;
@@ -195,6 +201,7 @@
 			children = (
 				2B7D4B7F264ABB0200A4D53E /* ShowViewController.swift */,
 				2BC2B4DE2682E6980058FE6C /* ShowMemoViewController.swift */,
+				2BCDED6327CF59A8008854DC /* CustomAlbum.swift */,
 			);
 			path = SavedMemo;
 			sourceTree = "<group>";
@@ -205,6 +212,15 @@
 				2B84C7E5265A26E300171C05 /* HashTagListViewController.swift */,
 			);
 			path = SearchedMemo;
+			sourceTree = "<group>";
+		};
+		2BCDED5D27CF5560008854DC /* StickerView */ = {
+			isa = PBXGroup;
+			children = (
+				2BB3188B2655493600893F99 /* PutStickerViewController.swift */,
+				2BCDED5E27CF5604008854DC /* StickerCollectionViewCell.swift */,
+			);
+			path = StickerView;
 			sourceTree = "<group>";
 		};
 		8BC3C925DED3721C0FB7BA53 /* Pods */ = {
@@ -242,6 +258,9 @@
 			dependencies = (
 			);
 			name = SyPolaroid;
+			packageProductDependencies = (
+				2BCDED6127CF569F008854DC /* SnapKit */,
+			);
 			productName = SyPolaroid;
 			productReference = 2B47C745264170AA006E17A5 /* SyPolaroid.app */;
 			productType = "com.apple.product-type.application";
@@ -269,6 +288,9 @@
 				Base,
 			);
 			mainGroup = 2B47C73C264170AA006E17A5;
+			packageReferences = (
+				2BCDED6027CF569F008854DC /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 2B47C746264170AA006E17A5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -357,6 +379,8 @@
 				2B6F8F43267F8F37002C0265 /* Memo+CoreDataProperties.swift in Sources */,
 				2B7D4B80264ABB0200A4D53E /* ShowViewController.swift in Sources */,
 				2B47C749264170AA006E17A5 /* AppDelegate.swift in Sources */,
+				2BCDED5F27CF5604008854DC /* StickerCollectionViewCell.swift in Sources */,
+				2BCDED6427CF59A8008854DC /* CustomAlbum.swift in Sources */,
 				2B47C74B264170AA006E17A5 /* SceneDelegate.swift in Sources */,
 				2B84C7E6265A26E300171C05 /* HashTagListViewController.swift in Sources */,
 				2B7D4B752645328A00A4D53E /* EditViewController.swift in Sources */,
@@ -521,7 +545,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jsy.SyPolaroid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -543,7 +567,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jsy.SyPolaroid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -573,6 +597,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2BCDED6027CF569F008854DC /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2BCDED6127CF569F008854DC /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BCDED6027CF569F008854DC /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		2B47C751264170AA006E17A5 /* SyPolaroid.xcdatamodeld */ = {

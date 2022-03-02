@@ -38,8 +38,6 @@ class ShowMemoViewController: UIViewController, UITextFieldDelegate, TagListView
         myTagListView.addTags(tagArray)
     }
     
-    
-    
     @IBAction func saveMemo(_ sender: Any) {
         
         let renderer = UIGraphicsImageRenderer(size: memoView.bounds.size)
@@ -114,7 +112,7 @@ class ShowMemoViewController: UIViewController, UITextFieldDelegate, TagListView
 }
 
 // > Custom Functions
-extension ShowMemoViewController {
+private extension ShowMemoViewController {
     
     func setTagListView() {
         myTagListView.isUserInteractionEnabled = true
@@ -135,6 +133,7 @@ extension ShowMemoViewController {
     
     func setMemoView() {
         memoText.text = memo?.content
+        memoText.spellCheckingType = .no
         memoText.isUserInteractionEnabled = true
         
         titleField.text = memo?.title

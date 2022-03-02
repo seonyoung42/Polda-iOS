@@ -25,7 +25,7 @@ class EditViewController: UIViewController, SendDataDelegate, UIViewControllerTr
     var tempFontName : String?
     var memoImage = UIImage(named: "text box")
     
-    lazy var imagePicker: UIImagePickerController = {
+    private lazy var imagePicker: UIImagePickerController = {
         let picker: UIImagePickerController = UIImagePickerController()
         picker.sourceType = .photoLibrary
         picker.delegate = self
@@ -39,13 +39,16 @@ class EditViewController: UIViewController, SendDataDelegate, UIViewControllerTr
         self.EditBackImage.layer.cornerRadius = 40
         self.editImage.isUserInteractionEnabled = true
         
+        self.editView.layer.cornerRadius = 5
+//        self.editImage.layer.cornerRadius = 5
+        self.shadowView.layer.cornerRadius = 5
+        
         self.buttonView.layer.cornerRadius = 10
         self.buttonView.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
         self.buttonView.layer.borderWidth = 1
         
         setNavigationBar()
         setShadow()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

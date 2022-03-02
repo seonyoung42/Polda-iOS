@@ -17,6 +17,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate
     let width = 310.0
 
     var covers = DataManager.shared.coverList
+//    var covers = [Cover]()
     var actionButton: JJFloatingActionButton!
     var searchText : String = ""
     
@@ -93,6 +94,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         self.searchBar.delegate = self
+        
+        self.covers = DataManager.shared.coverList
 
         setFloatingBtn()
         setSearchBar()
@@ -125,6 +128,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate
 // > CollectionView
 extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return DataManager.shared.coverList.count
     }
     
@@ -157,26 +161,30 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
             
         case .select:
             let deleteCover = DataManager.shared.coverList[indexPath.row]
-            let alert = UIAlertController(title: "", message: "해당 다이어리를 삭제하시겠습니까?", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
-                DataManager.shared.deleteCover(deleteCover)
-                self.showToast(message: "다이어리가 삭제되었어요 ･ᴗ･̥̥̥")
-                if self.buttonStatus {
-                    DataManager.shared.fetchCoverbyCount()
-                } else {
-                    DataManager.shared.fetchCover()
-                }
-                self.collectionView.reloadData()
-            }
-            
-            let cancelAction = UIAlertAction(title: "취소", style: .cancel) {_ in
-                collectionView.deselectItem(at: indexPath, animated: true)
-            }
-            alert.addAction(okAction)
-            alert.addAction(cancelAction)
-            present(alert, animated: true, completion: nil)
-            
+            showDeleteAlert(deleteCover: deleteCover, indexPath: indexPath)
         }
+    }
+    
+    func showDeleteAlert(deleteCover: Cover, indexPath: IndexPath) {
+        let alert = UIAlertController(title: "", message: "해당 다이어리를 삭제하시겠습니까?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
+            DataManager.shared.deleteCover(deleteCover)
+            self.showToast(message: "다이어리가 삭제되었어요 ･ᴗ･̥̥̥")
+            
+            if self.buttonStatus {
+                DataManager.shared.fetchCoverbyCount()
+            } else {
+                DataManager.shared.fetchCover()
+            }
+            self.collectionView.deleteItems(at: [indexPath])
+        }
+        
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel) { _ in
+            self.collectionView.deselectItem(at: indexPath, animated: true)
+        }
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
     }
     
     // > segue 데이터 전달
@@ -196,7 +204,6 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
 }
 
 
-
 // > imagepicker 메서드
 extension ViewController : UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -205,15 +212,16 @@ extension ViewController : UIImagePickerControllerDelegate & UINavigationControl
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
+        var imageCover = UIImage()
         if let coverImage : UIImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            let cover = DataManager.shared.coverList[diaryIndex]
-            cover.image = coverImage.pngData()
-            DataManager.shared.saveContext()
+            imageCover = coverImage
         } else if let originalImage : UIImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            let cover = DataManager.shared.coverList[diaryIndex]
-            cover.image = originalImage.pngData()
-            DataManager.shared.saveContext()
+            imageCover = originalImage
         }
+        
+        let cover = DataManager.shared.coverList[diaryIndex]
+        cover.image = imageCover.pngData()
+        DataManager.shared.saveContext()
         
         self.collectionView.reloadData()
         picker.dismiss(animated: true, completion: nil)
