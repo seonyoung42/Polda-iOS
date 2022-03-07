@@ -10,8 +10,8 @@ import UIKit
 import SnapKit
 
 class DiaryCell: UICollectionViewCell {
-    private let diaryImageView = UIImageView()
-    private let diaryTitleTextField = UITextField()
+    let diaryImageView = UIImageView()
+    let diaryTitleTextField = UITextField()
     private let highLightView = UIView()
   
     override func awakeFromNib() {

@@ -211,45 +211,8 @@
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xAZ-QU-ZOj">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcS-OP-uye">
-                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FDl-Ch-gXm">
-                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                            <color key="backgroundColor" red="0.95447835820000004" green="1" blue="0.74632394049999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        </imageView>
-                                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yvc-Yg-qiF">
-                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        </view>
-                                                    </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                    <constraints>
-                                                        <constraint firstItem="FDl-Ch-gXm" firstAttribute="leading" secondItem="fcS-OP-uye" secondAttribute="leading" id="RGq-tw-xt6"/>
-                                                        <constraint firstItem="FDl-Ch-gXm" firstAttribute="top" secondItem="fcS-OP-uye" secondAttribute="top" id="eQM-aG-iaR"/>
-                                                        <constraint firstItem="yvc-Yg-qiF" firstAttribute="leading" secondItem="fcS-OP-uye" secondAttribute="leading" id="huB-Ze-ZmD"/>
-                                                        <constraint firstAttribute="bottom" secondItem="yvc-Yg-qiF" secondAttribute="bottom" id="iIo-Xc-3jg"/>
-                                                        <constraint firstAttribute="bottom" secondItem="FDl-Ch-gXm" secondAttribute="bottom" id="nQh-a3-OJt"/>
-                                                        <constraint firstItem="yvc-Yg-qiF" firstAttribute="top" secondItem="fcS-OP-uye" secondAttribute="top" id="pZe-VM-kCa"/>
-                                                        <constraint firstAttribute="trailing" secondItem="yvc-Yg-qiF" secondAttribute="trailing" id="sg0-FB-O3v"/>
-                                                        <constraint firstAttribute="trailing" secondItem="FDl-Ch-gXm" secondAttribute="trailing" id="uI3-Eb-nOH"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="fcS-OP-uye" firstAttribute="leading" secondItem="xAZ-QU-ZOj" secondAttribute="leading" id="0eo-PU-6GU"/>
-                                                <constraint firstItem="fcS-OP-uye" firstAttribute="top" secondItem="xAZ-QU-ZOj" secondAttribute="top" id="ceF-3o-sz5"/>
-                                                <constraint firstAttribute="trailing" secondItem="fcS-OP-uye" secondAttribute="trailing" id="d5B-AX-UKO"/>
-                                                <constraint firstAttribute="bottom" secondItem="fcS-OP-uye" secondAttribute="bottom" id="l6l-A5-g1F"/>
-                                            </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="128" height="128"/>
-                                        <connections>
-                                            <outlet property="highLight" destination="yvc-Yg-qiF" id="yLU-qJ-cc7"/>
-                                            <outlet property="polaroidImage" destination="FDl-Ch-gXm" id="slz-Xw-Nz7"/>
-                                            <outlet property="polaroidView" destination="fcS-OP-uye" id="aYK-Ax-ryc"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>

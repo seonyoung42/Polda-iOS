@@ -100,10 +100,9 @@ extension ListViewController : UICollectionViewDelegateFlowLayout {
         }
         
         if let memo = cover?.memos?[indexPath.row], let image = memo.editedImage {
-            cell.polaroidImage.image = UIImage(data: image)
-            cell.polaroidImage.layer.borderWidth = 3
-            cell.polaroidImage.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+            cell.setupCell(data: image)
         }
+        
         return cell
     }
     

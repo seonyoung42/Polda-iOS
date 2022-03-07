@@ -6,30 +6,59 @@
 //
 
 import UIKit
+import SnapKit
 
 class PolaroidCell: UICollectionViewCell {
-    
-    @IBOutlet weak var polaroidView: UIView!
-    @IBOutlet weak var polaroidImage: UIImageView!
-    @IBOutlet weak var highLight: UIView!
+    let polaroidImage = UIImageView()
+    let highLightView = UIView()
     
     override var isHighlighted: Bool {
             didSet {
-                highLight.isHidden = !isHighlighted
+                highLightView.isHidden = !isHighlighted
             }
         }
     
     override var isSelected: Bool  {
             didSet {
                 if isSelected {
-                    highLight.isHidden = false
+                    highLightView.isHidden = false
                     self.layer.borderWidth = 5
                     self.layer.borderColor = UIColor.lightGray.cgColor
-                    highLight.alpha = 0.3
+                    highLightView.alpha = 0.3
                 } else {
-                    highLight.isHidden = true
+                    highLightView.isHidden = true
                     self.layer.borderWidth = 0
                 }
             }
         }
+    
+    func setupCell(data: Data) {
+        layout()
+        attribute()
+        
+        polaroidImage.image = UIImage(data: data)
+    }
+}
+
+// MARK - PolaroidCell UI(attribute, layout)
+private extension PolaroidCell {
+    func layout() {
+        [polaroidImage,highLightView].forEach {
+            contentView.addSubview($0)
+        }
+        
+        polaroidImage.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        highLightView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+    
+    func attribute() {
+        polaroidImage.layer.borderWidth = 3
+        polaroidImage.layer.borderColor = UIColor(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1).cgColor
+        
+    }
 }
