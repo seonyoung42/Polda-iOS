@@ -8,19 +8,33 @@
 import UIKit
 import JJFloatingActionButton
 import CoreData
+import SnapKit
 
-class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate {
+class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var backTitle: UIImageView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    let width = 310.0
+    var textfieldButton : UIButton {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: "imgae change"), for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 8)
+        button.addTarget(self, action: #selector(presentImagePicker), for: .touchUpInside)
+        return button
+    }
 
-    var covers = DataManager.shared.coverList
-//    var covers = [Cover]()
+    private lazy var imagePicker: UIImagePickerController = {
+        let picker: UIImagePickerController = UIImagePickerController()
+        picker.sourceType = .photoLibrary
+        picker.delegate = self
+        picker.allowsEditing = true
+        return picker
+    }()
+    
+    let width = 310.0
     var actionButton: JJFloatingActionButton!
     var searchText : String = ""
-    
+    var diaryIndex : Int?
     var buttonStatus = false {
         didSet {
             if buttonStatus {
@@ -31,24 +45,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate
             self.collectionView.reloadData()
         }
     }
-    
-    var diaryIndex : Int!
-    
-    var textfieldButton : UIButton {
-        let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "imgae change"), for: .normal)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -8, bottom: 0, right: 8)
-        button.addTarget(self, action: #selector(presentImagePicker), for: .touchUpInside)
-        return button
-    }
-
-    lazy var imagePicker: UIImagePickerController = {
-        let picker: UIImagePickerController = UIImagePickerController()
-        picker.sourceType = .photoLibrary
-        picker.delegate = self
-        picker.allowsEditing = true
-        return picker
-    }()
     
     enum Mode {
         case view
@@ -95,11 +91,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate
         self.collectionView.delegate = self
         self.searchBar.delegate = self
         
-        self.covers = DataManager.shared.coverList
-
-        setFloatingBtn()
-        setSearchBar()
-        setCollectionViewLayout()
+        attribute()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -113,10 +105,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate
         
         self.collectionView.reloadData()
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
-    }
 
     @objc func presentImagePicker(sender: UIButton) {
         self.present(imagePicker, animated: true, completion: nil)
@@ -125,7 +113,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UISearchBarDelegate
 }
 
 
-// > CollectionView
+// MARK - CollectionView datasource, delegate
 extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -196,11 +184,29 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
             searchDestination?.tagTitle = sender as! String
         }
     }
+    
+    // > toast 알림 메시지 띄우기
+    func showToast(message : String) {
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 150, y: self.view.frame.size.height-100, width: 300, height: 35))
+        
+        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        toastLabel.textColor = UIColor.white
+        toastLabel.textAlignment = .center;
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 10;
+        toastLabel.clipsToBounds = true
+        
+        self.view.addSubview(toastLabel)
+        
+        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: { toastLabel.alpha = 0.0 }, completion: {(isCompleted) in toastLabel.removeFromSuperview() })
+    }
 }
 
 
-// > imagepicker 메서드
+// MARK - ImagePickerController
 extension ViewController : UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
@@ -214,6 +220,7 @@ extension ViewController : UIImagePickerControllerDelegate & UINavigationControl
             imageCover = originalImage
         }
         
+        guard let diaryIndex = diaryIndex else { return }
         let cover = DataManager.shared.coverList[diaryIndex]
         cover.image = imageCover.pngData()
         DataManager.shared.saveContext()
@@ -223,10 +230,40 @@ extension ViewController : UIImagePickerControllerDelegate & UINavigationControl
     }
 }
 
+// MARK - SearchBar delegate
+extension ViewController : UISearchBarDelegate {
+    // > 서치바 action
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let keyword = searchBar.text, !keyword.isEmpty else {
+            searchBar.resignFirstResponder()
+            return
+        }
+            
+        DataManager.shared.searchTag(keyword: keyword.lowercased())
+            
+        if DataManager.shared.searchTagList.isEmpty {
+            let alert = UIAlertController(title: "", message: "해당 태그는 없습니다.", preferredStyle: .alert)
+            let defalutAction = UIAlertAction(title: "ok", style: .default) {_ in
+                searchBar.resignFirstResponder()
+            }
+            alert.addAction(defalutAction)
+            present(alert, animated: true, completion: nil)
+        } else {
+            performSegue(withIdentifier: "showTag", sender: keyword)
+        }
+    }
+}
 
 
-// > Cutom Functions
-extension ViewController {
+// MARK - UI
+private extension ViewController {
+    
+    func attribute() {
+        setSearchBar()
+        setFloatingBtn()
+        setCollectionViewFlowLayout()
+    }
+    
     // > 서치바 텍스트필드 설정
     func setSearchBar() {
         searchBar.backgroundImage = UIImage()
@@ -254,18 +291,19 @@ extension ViewController {
             }
         }
         
-        actionButton.addItem(title:"", image: UIImage(named:"add")) { item in
+        actionButton.addItem(title:"", image: UIImage(named: "add")) { item in
             DataManager.shared.saveCover(name:"")
             self.showToast(message: "다이어리가 추가되었어요 ٩(•̤̀ᵕ•̤́๑)ᵒᵏᵎᵎᵎᵎ")
             self.collectionView.reloadData()
         }
         
         view.addSubview(actionButton)
+        let safeArea = view.safeAreaLayoutGuide
+        actionButton.snp.makeConstraints {
+            $0.bottom.equalTo(safeArea)
+            $0.trailing.equalTo(safeArea).inset(16)
+        }
         
-        actionButton.translatesAutoresizingMaskIntoConstraints = false
-        actionButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
-        actionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
-
         actionButton.buttonColor = #colorLiteral(red: 0.9809378982, green: 0.5516198277, blue: 0.5537384748, alpha: 1)
         actionButton.buttonImage = UIImage(named: "circle-plus")
         actionButton.configureDefaultItem { item in
@@ -283,7 +321,7 @@ extension ViewController {
     }
     
     // > CollectionView 셀 크키, 간격 조정
-    func setCollectionViewLayout() {
+    func setCollectionViewFlowLayout() {
         self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 0)
         self.collectionView.backgroundColor = .none
         
@@ -294,42 +332,5 @@ extension ViewController {
         self.collectionView.collectionViewLayout = flowLayout
     }
     
-    // > toast 알림 메시지 띄우기
-    func showToast(message : String) {
-        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 150, y: self.view.frame.size.height-100, width: 300, height: 35))
-        
-        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        toastLabel.textColor = UIColor.white
-        toastLabel.textAlignment = .center;
-        toastLabel.text = message
-        toastLabel.alpha = 1.0
-        toastLabel.layer.cornerRadius = 10;
-        toastLabel.clipsToBounds = true
-        
-        self.view.addSubview(toastLabel)
-        
-        UIView.animate(withDuration: 4.0, delay: 0.1, options: .curveEaseOut, animations: { toastLabel.alpha = 0.0 }, completion: {(isCompleted) in toastLabel.removeFromSuperview() })
-    }
-    
-    // > 서치바 action
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let keyword = searchBar.text, !keyword.isEmpty else {
-            searchBar.resignFirstResponder()
-            return
-        }
-            
-        DataManager.shared.searchTag(keyword: keyword.lowercased())
-            
-        if DataManager.shared.searchTagList.isEmpty {
-            let alert = UIAlertController(title: "", message: "해당 태그는 없습니다.", preferredStyle: .alert)
-            let defalutAction = UIAlertAction(title: "ok", style: .default) {_ in
-                searchBar.resignFirstResponder()
-            }
-            alert.addAction(defalutAction)
-            present(alert, animated: true, completion: nil)
-        } else {
-            performSegue(withIdentifier: "showTag", sender: keyword)
-        }
-    }
 }
 

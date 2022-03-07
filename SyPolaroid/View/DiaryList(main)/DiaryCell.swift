@@ -106,6 +106,7 @@ private extension DiaryCell {
         diaryTitleTextField.borderStyle = .roundedRect
         diaryTitleTextField.placeholder = "Title.."
         diaryTitleTextField.font = .systemFont(ofSize: 17, weight: .semibold)
+        diaryTitleTextField.autocorrectionType = .no
 
         diaryImageView.layer.borderWidth = 5
         diaryImageView.layer.borderColor = UIColor(red: 0.984081924, green: 0.5641410947, blue: 0.5658608675, alpha: 1).cgColor
