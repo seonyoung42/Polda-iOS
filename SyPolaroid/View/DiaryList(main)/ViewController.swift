@@ -141,7 +141,7 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
         let cover = DataManager.shared.coverList[indexPath.row]
         cell.setupCell(cover: cover)
         
-        cell.diaryTitle.rightView = textfieldButton
+        cell.diaryTitleTextField.rightView = textfieldButton
         textfieldButton.tag = indexPath.row
  
         return cell

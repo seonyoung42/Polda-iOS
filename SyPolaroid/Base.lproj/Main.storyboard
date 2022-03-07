@@ -132,60 +132,6 @@
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="jRw-pH-Ka8">
                                             <rect key="frame" x="0.0" y="0.0" width="406" height="368"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gKF-dl-z2L">
-                                                    <rect key="frame" x="0.0" y="0.0" width="406" height="368"/>
-                                                    <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle 16" translatesAutoresizingMaskIntoConstraints="NO" id="m6K-di-SfA">
-                                                            <rect key="frame" x="0.0" y="0.0" width="406" height="368"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <color key="tintColor" red="0.30491578149999998" green="0.59476234260000005" blue="0.77754544739999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        </imageView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y3m-jd-cWH">
-                                                            <rect key="frame" x="324" y="74" width="32" height="32"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="32" id="6wn-GA-NcH"/>
-                                                                <constraint firstAttribute="width" constant="32" id="LfI-7F-Sqj"/>
-                                                            </constraints>
-                                                        </button>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title..." textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pEP-Wi-4AX">
-                                                            <rect key="frame" x="40" y="65" width="326" height="50"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="50" id="pGr-vS-t6i"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                                                        </textField>
-                                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JUr-p8-J1H">
-                                                            <rect key="frame" x="0.0" y="0.0" width="406" height="368"/>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        </view>
-                                                    </subviews>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                    <constraints>
-                                                        <constraint firstItem="pEP-Wi-4AX" firstAttribute="top" secondItem="gKF-dl-z2L" secondAttribute="top" constant="65" id="24s-U8-xpO"/>
-                                                        <constraint firstItem="pEP-Wi-4AX" firstAttribute="centerX" secondItem="gKF-dl-z2L" secondAttribute="centerX" id="4Q2-DY-2hg"/>
-                                                        <constraint firstAttribute="trailing" secondItem="m6K-di-SfA" secondAttribute="trailing" id="50K-90-49A"/>
-                                                        <constraint firstAttribute="bottom" secondItem="JUr-p8-J1H" secondAttribute="bottom" id="7Nh-VK-VLP"/>
-                                                        <constraint firstItem="y3m-jd-cWH" firstAttribute="top" secondItem="gKF-dl-z2L" secondAttribute="top" constant="74" id="7V8-5a-xMl"/>
-                                                        <constraint firstAttribute="bottom" secondItem="m6K-di-SfA" secondAttribute="bottom" id="HU1-mG-5kS"/>
-                                                        <constraint firstAttribute="trailing" secondItem="y3m-jd-cWH" secondAttribute="trailing" constant="50" id="Qwd-sk-4ya"/>
-                                                        <constraint firstItem="JUr-p8-J1H" firstAttribute="leading" secondItem="gKF-dl-z2L" secondAttribute="leading" id="TaD-qv-eMV"/>
-                                                        <constraint firstItem="JUr-p8-J1H" firstAttribute="top" secondItem="gKF-dl-z2L" secondAttribute="top" id="VWf-jY-1bi"/>
-                                                        <constraint firstItem="m6K-di-SfA" firstAttribute="leading" secondItem="gKF-dl-z2L" secondAttribute="leading" id="jhj-UX-EhJ"/>
-                                                        <constraint firstAttribute="trailing" secondItem="JUr-p8-J1H" secondAttribute="trailing" id="n7N-w4-bUQ"/>
-                                                        <constraint firstItem="m6K-di-SfA" firstAttribute="top" secondItem="gKF-dl-z2L" secondAttribute="top" id="p8N-BC-gfD"/>
-                                                        <constraint firstItem="pEP-Wi-4AX" firstAttribute="leading" secondItem="gKF-dl-z2L" secondAttribute="leading" constant="40" id="z4w-Tr-f5g"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="gKF-dl-z2L" secondAttribute="trailing" id="3pP-ky-smN"/>
-                                                <constraint firstItem="gKF-dl-z2L" firstAttribute="top" secondItem="jRw-pH-Ka8" secondAttribute="top" id="6ae-5n-HeM"/>
-                                                <constraint firstItem="gKF-dl-z2L" firstAttribute="leading" secondItem="jRw-pH-Ka8" secondAttribute="leading" id="HHy-X6-3yb"/>
-                                                <constraint firstAttribute="bottom" secondItem="gKF-dl-z2L" secondAttribute="bottom" id="gHF-JG-UVc"/>
-                                            </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="406" height="368"/>
                                     </collectionViewCell>
@@ -909,7 +855,6 @@
         <image name="Group 36" width="375" height="775"/>
         <image name="Group 37" width="300" height="300"/>
         <image name="Main View background" width="1500" height="3248"/>
-        <image name="Rectangle 16" width="332" height="500"/>
         <image name="Vector 3" width="213" height="2"/>
         <image name="color wheel png" width="120" height="120"/>
         <image name="export - ios" width="32" height="32"/>

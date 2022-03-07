@@ -10,32 +10,31 @@ import UIKit
 import SnapKit
 
 class DiaryCell: UICollectionViewCell {
-    
-    let diaryImage = UIImageView()
-    let diaryTitle = UITextField()
-    let highLight = UIView()
+    private let diaryImageView = UIImageView()
+    private let diaryTitleTextField = UITextField()
+    private let highLightView = UIView()
   
     override func awakeFromNib() {
         super.awakeFromNib()
-        diaryTitle.delegate = self
+        diaryTitleTextField.delegate = self
     }
     
     override var isHighlighted: Bool {
             didSet {
-                highLight.isHidden = !isHighlighted
+                highLightView.isHidden = !isHighlighted
             }
         }
     
     override var isSelected: Bool  {
         didSet {
             if isSelected == true {
-                highLight.isHidden = false
+                highLightView.isHidden = false
                 self.layer.borderWidth = 5
                 self.layer.borderColor = UIColor.lightGray.cgColor
                 self.layer.cornerRadius = 80
-                highLight.alpha = 0.3
+                highLightView.alpha = 0.3
             } else {
-                highLight.isHidden = true
+                highLightView.isHidden = true
                 self.layer.borderWidth = 0
             }
         }
@@ -44,12 +43,13 @@ class DiaryCell: UICollectionViewCell {
     func setupCell(cover: Cover) {
         layout()
         attribute()
-        diaryTitle.text = cover.name
+        diaryTitleTextField.text = cover.name
         guard let data = cover.image else { return }
-        diaryImage.image = UIImage(data: data)
+        diaryImageView.image = UIImage(data: data)
     }
 }
 
+// MARK - DiaryCell diary title textfield
 extension DiaryCell : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let title = textField.text, !title.isEmpty else {
@@ -59,7 +59,7 @@ extension DiaryCell : UITextFieldDelegate {
         let cover = DataManager.shared.coverList[getIndexPath()?.row ?? 0]
         cover.name = title
         DataManager.shared.saveContext()
-        diaryTitle.resignFirstResponder()
+        diaryTitleTextField.resignFirstResponder()
         return true
     }
     
@@ -73,24 +73,25 @@ extension DiaryCell : UITextFieldDelegate {
     }
 }
 
+// MARK - DiaryCell UI (attribute, layout)
 private extension DiaryCell {
     func layout() {
-        [diaryImage,diaryTitle,highLight].forEach {
+        [diaryImageView,diaryTitleTextField,highLightView].forEach {
             contentView.addSubview($0)
         }
         
-        diaryImage.snp.makeConstraints {
+        diaryImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
-        diaryTitle.snp.makeConstraints {
+        diaryTitleTextField.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.leading.equalToSuperview().inset(40)
             $0.top.equalToSuperview().inset(65)
             $0.height.equalTo(50)
         }
         
-        highLight.snp.makeConstraints {
+        highLightView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
@@ -98,17 +99,17 @@ private extension DiaryCell {
     func attribute() {
         contentView.layer.cornerRadius = 80
         
-        diaryTitle.textAlignment = .center
-        diaryTitle.alpha = 0.5
-        diaryTitle.backgroundColor = .white
-        diaryTitle.rightViewMode = .always
-        diaryTitle.borderStyle = .roundedRect
-        diaryTitle.placeholder = "Title.."
-        diaryTitle.font = .systemFont(ofSize: 17, weight: .semibold)
+        diaryTitleTextField.textAlignment = .center
+        diaryTitleTextField.alpha = 0.5
+        diaryTitleTextField.backgroundColor = .white
+        diaryTitleTextField.rightViewMode = .always
+        diaryTitleTextField.borderStyle = .roundedRect
+        diaryTitleTextField.placeholder = "Title.."
+        diaryTitleTextField.font = .systemFont(ofSize: 17, weight: .semibold)
 
-        diaryImage.layer.borderWidth = 5
-        diaryImage.layer.borderColor = UIColor(red: 0.984081924, green: 0.5641410947, blue: 0.5658608675, alpha: 1).cgColor
-        diaryImage.layer.cornerRadius = 80
+        diaryImageView.layer.borderWidth = 5
+        diaryImageView.layer.borderColor = UIColor(red: 0.984081924, green: 0.5641410947, blue: 0.5658608675, alpha: 1).cgColor
+        diaryImageView.layer.cornerRadius = 80
     }
 }
 
