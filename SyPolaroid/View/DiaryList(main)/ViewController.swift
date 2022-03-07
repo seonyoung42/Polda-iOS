@@ -139,16 +139,11 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
         }
         
         let cover = DataManager.shared.coverList[indexPath.row]
-        cell.setCellDesign()
+        cell.setupCell(cover: cover)
         
-        cell.diaryTitle.text = cover.name
         cell.diaryTitle.rightView = textfieldButton
         textfieldButton.tag = indexPath.row
-        
-        if let image = cover.image {
-            cell.diaryImage.image = UIImage(data: image)
-        }
-        
+ 
         return cell
     }
 

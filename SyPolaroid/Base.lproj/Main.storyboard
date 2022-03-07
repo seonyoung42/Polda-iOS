@@ -188,14 +188,6 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="406" height="368"/>
-                                        <connections>
-                                            <outlet property="diaryImage" destination="m6K-di-SfA" id="usI-7S-1Xp"/>
-                                            <outlet property="diaryImageButton" destination="y3m-jd-cWH" id="b6v-w0-pX5"/>
-                                            <outlet property="diaryTitle" destination="pEP-Wi-4AX" id="SFe-JH-0Bh"/>
-                                            <outlet property="diaryView" destination="gKF-dl-z2L" id="Fhn-B6-7JN"/>
-                                            <outlet property="highLight" destination="JUr-p8-J1H" id="mQS-pt-fJg"/>
-                                            <outlet property="shadowView" destination="jRw-pH-Ka8" id="bsQ-Su-BWe"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>

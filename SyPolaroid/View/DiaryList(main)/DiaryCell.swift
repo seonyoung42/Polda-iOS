@@ -5,41 +5,19 @@
 //  Created by 장선영 on 2021/11/15.
 //
 
-import UIKit
 
-class DiaryCell: UICollectionViewCell, UITextFieldDelegate {
+import UIKit
+import SnapKit
+
+class DiaryCell: UICollectionViewCell {
     
-    @IBOutlet weak var shadowView: UIView!
-    @IBOutlet weak var diaryView: UIView!
-    @IBOutlet weak var diaryImage: UIImageView!
-    @IBOutlet weak var diaryTitle: UITextField!
-    @IBOutlet weak var diaryImageButton: UIButton!
-    @IBOutlet weak var highLight: UIView!
-    
+    let diaryImage = UIImageView()
+    let diaryTitle = UITextField()
+    let highLight = UIView()
+  
     override func awakeFromNib() {
         super.awakeFromNib()
         diaryTitle.delegate = self
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard let title = textField.text, !title.isEmpty else {
-            return false
-        }
-    
-        let cover = DataManager.shared.coverList[getIndexPath()?.row ?? 0]
-        cover.name = title
-        DataManager.shared.saveContext()
-        diaryTitle.resignFirstResponder()
-        return true
-    }
-    
-    func getIndexPath() -> IndexPath? {
-        guard let superView = self.superview as? UICollectionView else {
-            print("superview is not a UITableView - getIndexPath")
-            return nil
-        }
-        let indexPath = superView.indexPath(for: self)
-        return indexPath
     }
     
     override var isHighlighted: Bool {
@@ -63,17 +41,75 @@ class DiaryCell: UICollectionViewCell, UITextFieldDelegate {
         }
     }
     
-    func setCellDesign() {
+    func setupCell(cover: Cover) {
+        layout()
+        attribute()
+        diaryTitle.text = cover.name
+        guard let data = cover.image else { return }
+        diaryImage.image = UIImage(data: data)
+    }
+}
+
+extension DiaryCell : UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let title = textField.text, !title.isEmpty else {
+            return false
+        }
+    
+        let cover = DataManager.shared.coverList[getIndexPath()?.row ?? 0]
+        cover.name = title
+        DataManager.shared.saveContext()
+        diaryTitle.resignFirstResponder()
+        return true
+    }
+    
+    func getIndexPath() -> IndexPath? {
+        guard let superView = self.superview as? UICollectionView else {
+            print("superview is not a UITableView - getIndexPath")
+            return nil
+        }
+        let indexPath = superView.indexPath(for: self)
+        return indexPath
+    }
+}
+
+private extension DiaryCell {
+    func layout() {
+        [diaryImage,diaryTitle,highLight].forEach {
+            contentView.addSubview($0)
+        }
+        
+        diaryImage.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        diaryTitle.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.leading.equalToSuperview().inset(40)
+            $0.top.equalToSuperview().inset(65)
+            $0.height.equalTo(50)
+        }
+        
+        highLight.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+    }
+    
+    func attribute() {
+        contentView.layer.cornerRadius = 80
+        
         diaryTitle.textAlignment = .center
         diaryTitle.alpha = 0.5
         diaryTitle.backgroundColor = .white
         diaryTitle.rightViewMode = .always
+        diaryTitle.borderStyle = .roundedRect
+        diaryTitle.placeholder = "Title.."
+        diaryTitle.font = .systemFont(ofSize: 17, weight: .semibold)
 
         diaryImage.layer.borderWidth = 5
-        diaryImage.layer.borderColor = #colorLiteral(red: 0.984081924, green: 0.5641410947, blue: 0.5658608675, alpha: 1)
+        diaryImage.layer.borderColor = UIColor(red: 0.984081924, green: 0.5641410947, blue: 0.5658608675, alpha: 1).cgColor
         diaryImage.layer.cornerRadius = 80
-        
-        diaryView.layer.cornerRadius = 80
-        shadowView.layer.cornerRadius = 80
     }
 }
+
+
