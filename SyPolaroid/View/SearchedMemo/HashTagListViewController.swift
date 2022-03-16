@@ -36,6 +36,8 @@ class HashTagListViewController: UIViewController {
         flowLayout.scrollDirection = .vertical
         self.collectionView.collectionViewLayout = flowLayout
         
+        collectionView.register(HashTagCollectionViewCell.self, forCellWithReuseIdentifier: "HashTagCollectionViewCell")
+        
         tagName.text = "  # \(tagTitle)"
 //        tagName.textAlignment = .center
         tagName.layer.borderColor = #colorLiteral(red: 0.9853486419, green: 0.5513027906, blue: 0.5535886288, alpha: 1)
@@ -45,7 +47,7 @@ class HashTagListViewController: UIViewController {
     }
 }
 
-
+// MARK - CollectionView Datasource, Delegate
 extension HashTagListViewController : UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -53,33 +55,23 @@ extension HashTagListViewController : UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell : hashTagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "hashTagCell", for: indexPath) as? hashTagCell else {
-            print("error")
-            return UICollectionViewCell()
-        }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HashTagCollectionViewCell", for: indexPath) as? HashTagCollectionViewCell else { return UICollectionViewCell() }
         
         let memo = DataManager.shared.searchTagList[indexPath.row]
-        if let image = memo.editedImage {
-            cell.hashTagImage.image = UIImage(data: image)
-            cell.hashTagImage.layer.borderWidth = 3
-            cell.hashTagImage.layer.borderColor = #colorLiteral(red: 1, green: 0.7921494842, blue: 0.7917907834, alpha: 1)
+        if let imageData = memo.editedImage {
+            cell.setupCell(data: imageData)
         }
-
+        
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let cell = sender as? UICollectionViewCell, let indexPath = collectionView.indexPath(for: cell) {
-            if let vc = segue.destination as? ShowViewController {
-                vc.memo = DataManager.shared.searchTagList[indexPath.row]
-            }
-        }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+      
+        guard let storyboard = self.storyboard else { return }
+        let destinationVC = storyboard.instantiateViewController(withIdentifier: "ShowViewController") as! ShowViewController
+        destinationVC.memo = DataManager.shared.searchTagList[indexPath.row]
+        self.navigationController?.pushViewController(destinationVC, animated: true)
     }
-}
 
-class hashTagCell : UICollectionViewCell {
-    
-    @IBOutlet weak var hashTagView: UIView!
-    @IBOutlet weak var hashTagImage: UIImageView!
 }
 

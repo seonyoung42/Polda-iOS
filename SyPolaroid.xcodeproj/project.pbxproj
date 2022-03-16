@@ -31,6 +31,7 @@
 		2B7D4B80264ABB0200A4D53E /* ShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7D4B7F264ABB0200A4D53E /* ShowViewController.swift */; };
 		2B84C7E6265A26E300171C05 /* HashTagListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B84C7E5265A26E300171C05 /* HashTagListViewController.swift */; };
 		2B8B28572742573C001B6A68 /* DiaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B8B28562742573C001B6A68 /* DiaryCell.swift */; };
+		2B92C20A27E1E4FD002E8BA9 /* HashTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B92C20927E1E4FD002E8BA9 /* HashTagCollectionViewCell.swift */; };
 		2BB3188C2655493600893F99 /* PutStickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3188B2655493600893F99 /* PutStickerViewController.swift */; };
 		2BC2B4DF2682E6980058FE6C /* ShowMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC2B4DE2682E6980058FE6C /* ShowMemoViewController.swift */; };
 		2BCDED5F27CF5604008854DC /* StickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCDED5E27CF5604008854DC /* StickerCollectionViewCell.swift */; };
@@ -69,6 +70,7 @@
 		2B7D4B7F264ABB0200A4D53E /* ShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowViewController.swift; sourceTree = "<group>"; };
 		2B84C7E5265A26E300171C05 /* HashTagListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTagListViewController.swift; sourceTree = "<group>"; };
 		2B8B28562742573C001B6A68 /* DiaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCell.swift; sourceTree = "<group>"; };
+		2B92C20927E1E4FD002E8BA9 /* HashTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		2BB3188B2655493600893F99 /* PutStickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutStickerViewController.swift; sourceTree = "<group>"; };
 		2BC2B4DE2682E6980058FE6C /* ShowMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMemoViewController.swift; sourceTree = "<group>"; };
 		2BCDED5E27CF5604008854DC /* StickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				2B84C7E5265A26E300171C05 /* HashTagListViewController.swift */,
+				2B92C20927E1E4FD002E8BA9 /* HashTagCollectionViewCell.swift */,
 			);
 			path = SearchedMemo;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				2B7D4B752645328A00A4D53E /* EditViewController.swift in Sources */,
 				2B8B28572742573C001B6A68 /* DiaryCell.swift in Sources */,
 				2BB3188C2655493600893F99 /* PutStickerViewController.swift in Sources */,
+				2B92C20A27E1E4FD002E8BA9 /* HashTagCollectionViewCell.swift in Sources */,
 				2B6F8F40267F8F37002C0265 /* Cover+CoreDataClass.swift in Sources */,
 				2B6F8F42267F8F37002C0265 /* Memo+CoreDataClass.swift in Sources */,
 			);
