@@ -57,20 +57,20 @@ class ViewController: UIViewController {
             case .view:
           
                 self.actionButton.items[0].buttonImage = UIImage(named: "thrash icon")
-                self.actionButton.addItem(title: "개수 순", image: UIImage(named:"list icon")) { item in
+                self.actionButton.addItem(title: "개수 순".localized(), image: UIImage(named:"list icon")) { item in
                     
                     self.buttonStatus = !self.buttonStatus
                     
                     if self.buttonStatus {
-                        self.actionButton.items[1].titleLabel.text = "최신순"
+                        self.actionButton.items[1].titleLabel.text = "최신순".localized()
                     } else {
-                        self.actionButton.items[1].titleLabel.text = "개수 순"
+                        self.actionButton.items[1].titleLabel.text = "개수 순".localized()
                     }
                 }
                 
                 self.actionButton.addItem(title: "", image: UIImage(named:"add")) { item in
                     DataManager.shared.saveCover(name: "")
-                    self.showToast(message: "다이어리가 추가되었어요 ٩(•̤̀ᵕ•̤́๑)ᵒᵏᵎᵎᵎᵎ")
+                    self.showToast(message: "다이어리가 추가되었어요 ٩(•̤̀ᵕ•̤́๑)ᵒᵏᵎᵎᵎᵎ".localized())
                     self.collectionView.reloadData()
                 }
                 
@@ -149,10 +149,10 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
     }
     
     func showDeleteAlert(deleteCover: Cover, indexPath: IndexPath) {
-        let alert = UIAlertController(title: "", message: "해당 다이어리를 삭제하시겠습니까?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "", message: "해당 다이어리를 삭제하시겠습니까?".localized(), preferredStyle: .alert)
         let okAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
             DataManager.shared.deleteCover(deleteCover)
-            self.showToast(message: "다이어리가 삭제되었어요 ･ᴗ･̥̥̥")
+            self.showToast(message: "다이어리가 삭제되었어요 ･ᴗ･̥̥̥".localized())
             
             if self.buttonStatus {
                 DataManager.shared.fetchCoverbyCount()
@@ -162,7 +162,7 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
             self.collectionView.deleteItems(at: [indexPath])
         }
         
-        let cancelAction = UIAlertAction(title: "취소", style: .cancel) { _ in
+        let cancelAction = UIAlertAction(title: "취소".localized(), style: .cancel) { _ in
             self.collectionView.deselectItem(at: indexPath, animated: true)
         }
         alert.addAction(okAction)
@@ -242,7 +242,7 @@ extension ViewController : UISearchBarDelegate {
         DataManager.shared.searchTag(keyword: keyword.lowercased())
             
         if DataManager.shared.searchTagList.isEmpty {
-            let alert = UIAlertController(title: "", message: "해당 태그는 없습니다.", preferredStyle: .alert)
+            let alert = UIAlertController(title: "", message: "해당 태그는 없습니다.".localized(), preferredStyle: .alert)
             let defalutAction = UIAlertAction(title: "ok", style: .default) {_ in
                 searchBar.resignFirstResponder()
             }
@@ -281,19 +281,19 @@ private extension ViewController {
         actionButton.addItem(title: "", image: UIImage(named: "thrash icon" )) { item in
             self.mMode = self.mMode == .view ? .select : .view
         }
-        actionButton.addItem(title: "개수 순", image: UIImage(named:"list icon")) { item in
+        actionButton.addItem(title: "개수 순".localized(), image: UIImage(named:"list icon")) { item in
             self.buttonStatus = !self.buttonStatus
             
             if self.buttonStatus {
-                self.actionButton.items[1].titleLabel.text = "최신순"
+                self.actionButton.items[1].titleLabel.text = "최신순".localized()
             } else {
-                self.actionButton.items[1].titleLabel.text = "개수 순"
+                self.actionButton.items[1].titleLabel.text = "개수 순".localized()
             }
         }
         
         actionButton.addItem(title:"", image: UIImage(named: "add")) { item in
             DataManager.shared.saveCover(name:"")
-            self.showToast(message: "다이어리가 추가되었어요 ٩(•̤̀ᵕ•̤́๑)ᵒᵏᵎᵎᵎᵎ")
+            self.showToast(message: "다이어리가 추가되었어요 ٩(•̤̀ᵕ•̤́๑)ᵒᵏᵎᵎᵎᵎ".localized())
             self.collectionView.reloadData()
         }
         

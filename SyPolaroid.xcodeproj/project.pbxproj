@@ -40,6 +40,8 @@
 		2BCE29A6268880CF00C765E7 /* SunBatang-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2BCE29A5268880CF00C765E7 /* SunBatang-Light.otf */; };
 		2BCE29A9268880D800C765E7 /* SSShinb7Regular_otf.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2BCE29A8268880D800C765E7 /* SSShinb7Regular_otf.otf */; };
 		2BCE29AD2688813900C765E7 /* MaruBuri-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2BCE29AC2688813900C765E7 /* MaruBuri-Regular.otf */; };
+		2BD0B5E427F4788F00591F80 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2BD0B5E627F4788F00591F80 /* Localizable.strings */; };
+		2BD0B5EA27F479D500591F80 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD0B5E927F479D500591F80 /* String+Extension.swift */; };
 		FE75E3BB28CB35F488BB8D9E /* Pods_SyPolaroid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B53E9667426A7D9330361F /* Pods_SyPolaroid.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +80,9 @@
 		2BCE29A5268880CF00C765E7 /* SunBatang-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SunBatang-Light.otf"; sourceTree = "<group>"; };
 		2BCE29A8268880D800C765E7 /* SSShinb7Regular_otf.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SSShinb7Regular_otf.otf; sourceTree = "<group>"; };
 		2BCE29AC2688813900C765E7 /* MaruBuri-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MaruBuri-Regular.otf"; sourceTree = "<group>"; };
+		2BD0B5E527F4788F00591F80 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2BD0B5E727F4792D00591F80 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2BD0B5E927F479D500591F80 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		92ED18BBF49A2D884D30B391 /* Pods-SyPolaroid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SyPolaroid.debug.xcconfig"; path = "Target Support Files/Pods-SyPolaroid/Pods-SyPolaroid.debug.xcconfig"; sourceTree = "<group>"; };
 		93F5C01A2499FA3F61673691 /* Pods-SyPolaroid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SyPolaroid.release.xcconfig"; path = "Target Support Files/Pods-SyPolaroid/Pods-SyPolaroid.release.xcconfig"; sourceTree = "<group>"; };
 		D5B53E9667426A7D9330361F /* Pods_SyPolaroid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SyPolaroid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,12 +149,14 @@
 		2B47C747264170AA006E17A5 /* SyPolaroid */ = {
 			isa = PBXGroup;
 			children = (
-				2B8B285827425A2D001B6A68 /* View */,
-				2B1D59F4267C676B008DB9D7 /* Data */,
-				2B06D1662685B0EC00884339 /* Fonts */,
+				2BD0B5E827F4799600591F80 /* Extensions */,
+				2BD0B5E327F4787600591F80 /* Localization */,
 				2B47C748264170AA006E17A5 /* AppDelegate.swift */,
 				2B47C74A264170AA006E17A5 /* SceneDelegate.swift */,
 				2B47C74E264170AA006E17A5 /* Main.storyboard */,
+				2B8B285827425A2D001B6A68 /* View */,
+				2B1D59F4267C676B008DB9D7 /* Data */,
+				2B06D1662685B0EC00884339 /* Fonts */,
 				2B47C754264170B0006E17A5 /* Assets.xcassets */,
 				2B47C756264170B0006E17A5 /* LaunchScreen.storyboard */,
 				2B47C759264170B0006E17A5 /* Info.plist */,
@@ -226,6 +233,22 @@
 			path = StickerView;
 			sourceTree = "<group>";
 		};
+		2BD0B5E327F4787600591F80 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				2BD0B5E627F4788F00591F80 /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		2BD0B5E827F4799600591F80 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2BD0B5E927F479D500591F80 /* String+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		8BC3C925DED3721C0FB7BA53 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,11 +307,12 @@
 			};
 			buildConfigurationList = 2B47C740264170AA006E17A5 /* Build configuration list for PBXProject "SyPolaroid" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 2B47C73C264170AA006E17A5;
 			packageReferences = (
@@ -309,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BCE29A6268880CF00C765E7 /* SunBatang-Light.otf in Resources */,
+				2BD0B5E427F4788F00591F80 /* Localizable.strings in Resources */,
 				2B06D17A2685B4C500884339 /* SCDream6.otf in Resources */,
 				2BCE29AD2688813900C765E7 /* MaruBuri-Regular.otf in Resources */,
 				2B06D16E2685B18A00884339 /* Kyobo Handwriting 2019.otf in Resources */,
@@ -383,6 +408,7 @@
 				2B7D4B80264ABB0200A4D53E /* ShowViewController.swift in Sources */,
 				2B47C749264170AA006E17A5 /* AppDelegate.swift in Sources */,
 				2BCDED5F27CF5604008854DC /* StickerCollectionViewCell.swift in Sources */,
+				2BD0B5EA27F479D500591F80 /* String+Extension.swift in Sources */,
 				2BCDED6427CF59A8008854DC /* CustomAlbum.swift in Sources */,
 				2B47C74B264170AA006E17A5 /* SceneDelegate.swift in Sources */,
 				2B84C7E6265A26E300171C05 /* HashTagListViewController.swift in Sources */,
@@ -414,6 +440,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		2BD0B5E627F4788F00591F80 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2BD0B5E527F4788F00591F80 /* en */,
+				2BD0B5E727F4792D00591F80 /* ko */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -421,6 +456,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -483,6 +519,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
