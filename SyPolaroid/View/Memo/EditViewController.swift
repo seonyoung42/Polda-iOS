@@ -131,11 +131,11 @@ extension EditViewController {
     @objc func longPress(_ gesture : UILongPressGestureRecognizer){
         if gesture.state != .ended { return }
         
-        let alert = UIAlertController(title: "해당 스티커를 삭제하시겠습니까?", message: "", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default) {_ in
+        let alert = UIAlertController(title: "해당 스티커를 삭제하시겠습니까?".localized(), message: "", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "삭제".localized(), style: .destructive) {_ in
             gesture.view?.removeFromSuperview()}
         alert.addAction(ok)
-        alert.addAction(UIAlertAction(title: "cancel", style: .cancel) { (cancel) in})
+        alert.addAction(UIAlertAction(title: "취소".localized(), style: .cancel) { (cancel) in})
         self.present(alert, animated: true, completion: nil)
     }
     

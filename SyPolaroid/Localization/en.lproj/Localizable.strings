@@ -5,3 +5,31 @@
   Created by 장선영 on 2022/03/30.
   
 */
+// DiaryListView
+"개수 순" = "Order by counts";
+"최신 순" = "Order by recent date";
+"다이어리가 추가되었어요 ٩(•̤̀ᵕ•̤́๑)ᵒᵏᵎᵎᵎᵎ" = "New Diary has added";
+"해당 다이어리를 삭제하시겠습니까?" = "Would you like to delete this diary?";
+"다이어리가 삭제되었어요 ･ᴗ･̥̥̥" = "Diary has been deleted ･ᴗ･̥̥̥";
+"취소" = "Cancel";
+"해당 태그는 없습니다." = "This tag is not exist.";
+"태그 검색" = "Search Tag";
+"제목.." = "Title..";
+
+// MemoListView
+"해당 폴라로이드를 삭제하시겠습니까?" = "Would you like to delete this polaroid?";
+"폴라로이드가 삭제되었어요 ･ᴗ･̥̥̥" = "Diary has been deleted ･ᴗ･̥̥̥";
+"삭제" = "Delete";
+
+// MemoView
+"해당 스티커를 삭제하시겠습니까?" = "Would you like to delete this sticker?";
+
+"폰트예제입니다" = "Font example";
+"태그를 추가하세요" = "Add tag";
+"추가" = "Add";
+// - memoView - StickerView
+
+// SavedMemo
+"앨범에 저장되었어요 ٩(•̤̀ᵕ•̤́๑)ᵒᵏᵎᵎᵎᵎ" = "Picture had been saved to your album ٩(•̤̀ᵕ•̤́๑)ᵒᵏᵎᵎᵎᵎ";
+"에러가 발생했어요" = "Error";
+// SearchedMemo

@@ -100,9 +100,9 @@ extension ShowViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(_):
-                    self.showToast(message: "앨범에 저장되었어요 ٩(•̤̀ᵕ•̤́๑)ᵒᵏᵎᵎᵎᵎ")
+                    self.showToast(message: "앨범에 저장되었어요 ٩(•̤̀ᵕ•̤́๑)ᵒᵏᵎᵎᵎᵎ".localized())
                 case .failure(_):
-                    self.showToast(message: "에러가 발생했어요")
+                    self.showToast(message: "에러가 발생했어요".localized())
                 }
             }
         }

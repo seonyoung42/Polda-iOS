@@ -26,7 +26,7 @@ class MemoViewController: UIViewController, TagListViewDelegate {
     
     let screenWidth : Double = Double(UIScreen.main.bounds.width-20)
     let screenheight : Double = Double(UIScreen.main.bounds.height/5)
-    let dataArray = Array(repeating: "폰트예제입니다", count: 8)
+    let dataArray = Array(repeating: "폰트예제입니다".localized(), count: 8)
     let fontArray = ["S-CoreDream-6Bold","MARUBuriBetaot-Regular","SangSangShinb7OTF","NanumSquareR","SunBatang-Light","OTJalpullineunoneulM","KyoboHandwriting2019","BinggraeSamanco"]
     
     var selectedRow = 0
@@ -57,14 +57,14 @@ class MemoViewController: UIViewController, TagListViewDelegate {
     }
     
     @IBAction func tagListTapped(_ sender: UITapGestureRecognizer) {
-        let alert = UIAlertController(title: "태그를 추가하세요", message: "", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default) { _ in
+        let alert = UIAlertController(title: "태그를 추가하세요".localized(), message: "", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "추가".localized(), style: .default) { _ in
             guard let userInput = alert.textFields?[0].text, !userInput.isEmpty else { return }
             self.myTagListView.addTag(userInput)
             self.tagArray.append(userInput.lowercased())
         }
         
-        let cancel = UIAlertAction(title: "Cancel", style: .destructive)
+        let cancel = UIAlertAction(title: "취소".localized(), style: .destructive)
         
         alert.addAction(cancel)
         alert.addAction(ok)

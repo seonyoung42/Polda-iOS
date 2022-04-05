@@ -104,7 +104,7 @@ private extension DiaryCell {
         diaryTitleTextField.backgroundColor = .white
         diaryTitleTextField.rightViewMode = .always
         diaryTitleTextField.borderStyle = .roundedRect
-        diaryTitleTextField.placeholder = "Title.."
+        diaryTitleTextField.placeholder = "제목..".localized()
         diaryTitleTextField.font = .systemFont(ofSize: 17, weight: .semibold)
         diaryTitleTextField.autocorrectionType = .no
 

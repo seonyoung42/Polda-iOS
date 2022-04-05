@@ -62,7 +62,7 @@ class ViewController: UIViewController {
                     self.buttonStatus = !self.buttonStatus
                     
                     if self.buttonStatus {
-                        self.actionButton.items[1].titleLabel.text = "최신순".localized()
+                        self.actionButton.items[1].titleLabel.text = "최신 순".localized()
                     } else {
                         self.actionButton.items[1].titleLabel.text = "개수 순".localized()
                     }
@@ -150,7 +150,7 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource 
     
     func showDeleteAlert(deleteCover: Cover, indexPath: IndexPath) {
         let alert = UIAlertController(title: "", message: "해당 다이어리를 삭제하시겠습니까?".localized(), preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "삭제", style: .destructive) {_ in
+        let okAction = UIAlertAction(title: "삭제".localized(), style: .destructive) {_ in
             DataManager.shared.deleteCover(deleteCover)
             self.showToast(message: "다이어리가 삭제되었어요 ･ᴗ･̥̥̥".localized())
             
@@ -267,6 +267,7 @@ private extension ViewController {
     // > 서치바 텍스트필드 설정
     func setSearchBar() {
         searchBar.backgroundImage = UIImage()
+        searchBar.placeholder = "태그 검색".localized()
         
         let textFieldInsideSearchBar = self.searchBar.value(forKey: "searchField") as? UITextField
         textFieldInsideSearchBar?.backgroundColor = #colorLiteral(red: 1, green: 0.918815136, blue: 0.9157708287, alpha: 1)
