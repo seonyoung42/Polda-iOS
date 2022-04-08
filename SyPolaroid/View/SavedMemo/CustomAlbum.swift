@@ -56,6 +56,7 @@ class CustomAlbum {
 }
 
 private extension CustomAlbum {
+    
     // 사진첩접근 권한 확인
     func checkAuthorizationWithHandler(completion: @escaping (Result<Bool,Error>) -> ()) {
         if PHPhotoLibrary.authorizationStatus() == .notDetermined {

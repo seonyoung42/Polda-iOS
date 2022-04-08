@@ -14,6 +14,7 @@
 		2B06D17A2685B4C500884339 /* SCDream6.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2B06D1792685B4C500884339 /* SCDream6.otf */; };
 		2B0A21CC2744F31C009F3414 /* PolaroidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0A21CB2744F31C009F3414 /* PolaroidCell.swift */; };
 		2B1D59F6267C677E008DB9D7 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1D59F5267C677E008DB9D7 /* DataManager.swift */; };
+		2B470CE927FFD21C0082D99F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2B470CEB27FFD21C0082D99F /* InfoPlist.strings */; };
 		2B47C749264170AA006E17A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47C748264170AA006E17A5 /* AppDelegate.swift */; };
 		2B47C74B264170AA006E17A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47C74A264170AA006E17A5 /* SceneDelegate.swift */; };
 		2B47C74D264170AA006E17A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B47C74C264170AA006E17A5 /* ViewController.swift */; };
@@ -53,6 +54,8 @@
 		2B06D1792685B4C500884339 /* SCDream6.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SCDream6.otf; sourceTree = "<group>"; };
 		2B0A21CB2744F31C009F3414 /* PolaroidCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolaroidCell.swift; sourceTree = "<group>"; };
 		2B1D59F5267C677E008DB9D7 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		2B470CEA27FFD21C0082D99F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2B470CEC27FFD2210082D99F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2B47C745264170AA006E17A5 /* SyPolaroid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyPolaroid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B47C748264170AA006E17A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B47C74A264170AA006E17A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -149,17 +152,18 @@
 		2B47C747264170AA006E17A5 /* SyPolaroid */ = {
 			isa = PBXGroup;
 			children = (
-				2BD0B5E827F4799600591F80 /* Extensions */,
-				2BD0B5E327F4787600591F80 /* Localization */,
 				2B47C748264170AA006E17A5 /* AppDelegate.swift */,
 				2B47C74A264170AA006E17A5 /* SceneDelegate.swift */,
 				2B47C74E264170AA006E17A5 /* Main.storyboard */,
+				2BD0B5E827F4799600591F80 /* Extensions */,
+				2BD0B5E327F4787600591F80 /* Localization */,
 				2B8B285827425A2D001B6A68 /* View */,
 				2B1D59F4267C676B008DB9D7 /* Data */,
 				2B06D1662685B0EC00884339 /* Fonts */,
 				2B47C754264170B0006E17A5 /* Assets.xcassets */,
 				2B47C756264170B0006E17A5 /* LaunchScreen.storyboard */,
 				2B47C759264170B0006E17A5 /* Info.plist */,
+				2B470CEB27FFD21C0082D99F /* InfoPlist.strings */,
 				2B47C751264170AA006E17A5 /* SyPolaroid.xcdatamodeld */,
 			);
 			path = SyPolaroid;
@@ -335,6 +339,7 @@
 				2BCE29A6268880CF00C765E7 /* SunBatang-Light.otf in Resources */,
 				2BD0B5E427F4788F00591F80 /* Localizable.strings in Resources */,
 				2B06D17A2685B4C500884339 /* SCDream6.otf in Resources */,
+				2B470CE927FFD21C0082D99F /* InfoPlist.strings in Resources */,
 				2BCE29AD2688813900C765E7 /* MaruBuri-Regular.otf in Resources */,
 				2B06D16E2685B18A00884339 /* Kyobo Handwriting 2019.otf in Resources */,
 				2B47C758264170B0006E17A5 /* LaunchScreen.storyboard in Resources */,
@@ -424,6 +429,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		2B470CEB27FFD21C0082D99F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B470CEA27FFD21C0082D99F /* ko */,
+				2B470CEC27FFD2210082D99F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		2B47C74E264170AA006E17A5 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -504,7 +518,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -561,7 +575,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = Polda;
@@ -586,7 +600,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jsy.SyPolaroid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -608,7 +622,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jsy.SyPolaroid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

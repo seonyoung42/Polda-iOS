@@ -243,7 +243,7 @@ extension ViewController : UISearchBarDelegate {
             
         if DataManager.shared.searchTagList.isEmpty {
             let alert = UIAlertController(title: "", message: "해당 태그는 없습니다.".localized(), preferredStyle: .alert)
-            let defalutAction = UIAlertAction(title: "ok", style: .default) {_ in
+            let defalutAction = UIAlertAction(title: "확인".localized(), style: .default) {_ in
                 searchBar.resignFirstResponder()
             }
             alert.addAction(defalutAction)
@@ -286,7 +286,7 @@ private extension ViewController {
             self.buttonStatus = !self.buttonStatus
             
             if self.buttonStatus {
-                self.actionButton.items[1].titleLabel.text = "최신순".localized()
+                self.actionButton.items[1].titleLabel.text = "최신 순".localized()
             } else {
                 self.actionButton.items[1].titleLabel.text = "개수 순".localized()
             }

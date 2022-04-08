@@ -57,14 +57,14 @@ class MemoViewController: UIViewController, TagListViewDelegate {
     }
     
     @IBAction func tagListTapped(_ sender: UITapGestureRecognizer) {
-        let alert = UIAlertController(title: "태그를 추가하세요".localized(), message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "태그를 작성해주세요".localized(), message: "", preferredStyle: .alert)
         let ok = UIAlertAction(title: "추가".localized(), style: .default) { _ in
             guard let userInput = alert.textFields?[0].text, !userInput.isEmpty else { return }
             self.myTagListView.addTag(userInput)
             self.tagArray.append(userInput.lowercased())
         }
         
-        let cancel = UIAlertAction(title: "취소".localized(), style: .destructive)
+        let cancel = UIAlertAction(title: "취소".localized(), style: .default)
         
         alert.addAction(cancel)
         alert.addAction(ok)
@@ -202,11 +202,11 @@ extension MemoViewController: UITextFieldDelegate {
         let alert = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
         
         alert.setValue(vc, forKey: "contentViewController")
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (UIAlertAction) in
+        alert.addAction(UIAlertAction(title: "취소".localized(), style: .cancel, handler: { (UIAlertAction) in
             alert.dismiss(animated: true, completion: nil)
         }))
 
-        alert.addAction(UIAlertAction(title: "Select", style: .default, handler: { (UIAlertAction) in
+        alert.addAction(UIAlertAction(title: "선택".localized(), style: .default, handler: { (UIAlertAction) in
             self.selectedRow = pickerView.selectedRow(inComponent: 0)
             let selected = Array(self.fontArray)[self.selectedRow]
             let defaultSize = UIFont.systemFontSize
