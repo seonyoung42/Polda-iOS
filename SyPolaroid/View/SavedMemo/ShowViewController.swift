@@ -86,14 +86,8 @@ extension ShowViewController {
     // > 이미지 앨범에 저장
     @objc func saveImageToAlbum() {
         var savedImage : UIImage?
-        if isDayImage {
-            savedImage = editImage
-//            UIImageWriteToSavedPhotosAlbum(editImage, nil, nil, nil)
-        } else {
-            savedImage = memoImage
-//            UIImageWriteToSavedPhotosAlbum(memoImage, nil, nil, nil)
-        }
-        
+        savedImage = isDayImage ? editImage : memoImage
+
         guard let savedImage = savedImage else { return }
         
         CustomAlbum.sharedInstance.saveImageToAlbum(image: savedImage) { (result) in
@@ -110,18 +104,14 @@ extension ShowViewController {
     
     // > image 외부로 공유하기
     @objc func shareImageToOthers() {
-        if isDayImage {
-            let activityViewController = UIActivityViewController(activityItems: [editImage], applicationActivities: nil)
-            activityViewController.popoverPresentationController?.sourceView = self.shareButton
-            activityViewController.popoverPresentationController?.delegate = self
-            present(activityViewController, animated: true, completion: nil)
-            
-        } else {
-            let activityViewController = UIActivityViewController(activityItems: [memoImage], applicationActivities: nil)
-            activityViewController.popoverPresentationController?.sourceView = self.shareButton
-            activityViewController.popoverPresentationController?.delegate = self
-            present(activityViewController, animated: true, completion: nil)
-        }
+        isDayImage ? presentActivityController(item: editImage) : presentActivityController(item: memoImage)
+    }
+    
+    func presentActivityController(item: Any) {
+        let activityVC = UIActivityViewController(activityItems: [item], applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = self.shareButton
+        activityVC.popoverPresentationController?.delegate = self
+        present(activityVC, animated: true, completion: nil)
     }
 
     // > 토스트 메시지 띄우기

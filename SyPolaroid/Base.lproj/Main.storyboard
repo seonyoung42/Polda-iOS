@@ -778,6 +778,14 @@
             <point key="canvasLocation" x="3679.7101449275365" y="-338.16964285714283"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="Qkt-V1-gRi">
+            <size key="intrinsicContentSize" width="304" height="22"/>
+        </designable>
+        <designable name="oZK-3Z-W4V">
+            <size key="intrinsicContentSize" width="304" height="22"/>
+        </designable>
+    </designables>
     <resources>
         <image name="#2 save icon" width="33" height="32"/>
         <image name="#3 add stickers icon" width="32" height="32"/>

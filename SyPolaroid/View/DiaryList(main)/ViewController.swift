@@ -232,6 +232,7 @@ extension ViewController : UIImagePickerControllerDelegate & UINavigationControl
 
 // MARK - SearchBar delegate
 extension ViewController : UISearchBarDelegate {
+    
     // > 서치바 action
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let keyword = searchBar.text, !keyword.isEmpty else {
@@ -240,6 +241,7 @@ extension ViewController : UISearchBarDelegate {
         }
             
         DataManager.shared.searchTag(keyword: keyword.lowercased())
+        searchBar.resignFirstResponder()
             
         if DataManager.shared.searchTagList.isEmpty {
             let alert = UIAlertController(title: "", message: "해당 태그는 없습니다.".localized(), preferredStyle: .alert)
@@ -247,7 +249,7 @@ extension ViewController : UISearchBarDelegate {
                 searchBar.resignFirstResponder()
             }
             alert.addAction(defalutAction)
-            present(alert, animated: true, completion: nil)
+            present(alert, animated: true)
         } else {
             performSegue(withIdentifier: "showTag", sender: keyword)
         }
