@@ -10,38 +10,72 @@
 
 <img src = "https://user-images.githubusercontent.com/77603632/130615082-4271355e-512c-439c-be99-9071807aaee2.png" width="80" height="80"> 
 
-## 🗣 App Description
+## 🎞 App Video
+
+###  다이어리 앨범 추가하기
+<p float="left">
+<img src = "https://user-images.githubusercontent.com/77603632/187024448-845c66b8-e1a8-4780-b70b-a8b9a3f696fd.gif" width="250" height="500">
+</p>
+
+> + 앨범 추가
+> + 앨범 표지 이미지 추가
+> + 앨범 타이틀 추가
+
+### 다이어리 추가하기 
 
 <p float="left">
-  
-<img src = "https://user-images.githubusercontent.com/77603632/130616134-615501c0-56cb-47a8-a345-f8789a46f59b.png" width="250" height="400">
-<img src = "https://user-images.githubusercontent.com/77603632/130614040-40ba632d-76c8-4255-a438-d17a1a254b50.png" width="250" height="400">  
-<img src = "https://user-images.githubusercontent.com/77603632/130616413-0093c8b7-99fb-48b6-a0b0-25a5d423328b.png" width="250" height ="400">
-<img src = "https://user-images.githubusercontent.com/77603632/130613601-a7b2ca05-eede-4d34-8b94-7203888d922a.png" width="250" height="400">
-                                                                                                                                            
+<img src = "https://user-images.githubusercontent.com/77603632/187025158-40c637eb-1c64-4242-966e-992d0e17f4e1.gif" width="250" height="500">  
 </p>
-                                                                                                                         
-                                                                                                                                          
-                                                                                                                                                                                                                                                                 
-                                                                                                                                          
-                                                                                                                                       
-                                                                                                                                            
-## 📌 Main Features
-### 1. Coredata
-> + 다이어리 추가, 삭제
-> + 다이어리 내 폴라로이드 이미지 추가, 삭제
-> + 해시태그 검색
-> + 최신순, 개수순 정렬
-> + 드래그 앤 드랍으로 자유로운 폴라로이드 위치 변경
-### 2. Edit pictures by adding stickers on polaroid frames
-> + 스티커 추가, 삭제
-> + 스티커 확대, 위치 변경
-> + 폴라로이드 테두리 색상 변경
-### 3. Memo
-> + 애니메이션 : 편집 시엔 뒤집기, 저장한 후엔 스와이프로 카드플립
-> + 폰트 변경
-### 4. Save and share Image 
 
+> + 다이어리 추가
+> + 다이어리 위치 변경(드래그 앤 드랍)
+> + 다이어리 삭제 
+
+### 다이어리 작성하기 
+### - 폴라로이드 꾸미기
+
+<p float="left">
+<img src = "https://user-images.githubusercontent.com/77603632/187025760-da183259-03a4-4ce4-985b-90d02b60b01c.gif" width="250" height="500">  
+</p>
+
+> + 이미지 추가
+> + 폴라로이드 프레임 색상 변경
+> + 스티커 추가, 삭제
+> + 스티커 이동, 확대, 축소, 회전
+
+### - 메모 작성
+
+<p float="left">
+<img src = "https://user-images.githubusercontent.com/77603632/187025985-e83ded74-eb4c-402f-ac1e-5b22b5498e98.gif" width="250" height="500">  
+</p>
+
+> + 메모 작성
+> + 폰트 변경
+> + 태그 추가
+> + 메모와 폴라로이드간의 화면 전환 시 카드를 뒤집는 듯한 애니메이션
+
+### 다이어리 보기/편집
+
+<p float="left">
+<img src = "https://user-images.githubusercontent.com/77603632/187026945-5b111f8d-697c-465f-9db9-ef4713ccdd63.gif" width="250" height ="500">                                                                                                                                       
+</p>
+
+> + 다이어리 작성 시와 동일하게 폴라로이드와 메모를 카드 플립 애니메이션으로 보여줌
+> + 메모 편집
+> + 태그 삭제, 추가
+> + 홈에서 태그 검색시 해당 다이어리 보여줌
+
+### 다이어리 공유/저장
+
+<p float="left">
+<img src = "https://user-images.githubusercontent.com/77603632/187026684-06bcda13-8881-4836-9594-5ae6348f3f3e.gif" width="250" height ="500">                                                                                                                                            
+</p>
+
+> + 폴라로이드 이미지 공유
+> + 폴라로이드 이미지 앨범 내 저장 ('Polda' 폴더에 저장)                                                                                                                     
+                                                                                                                                          
+                                                                                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                             
 ## 💻 Development environment
                                                                                                                                            
 1. Xcode version
