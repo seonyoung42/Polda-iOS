@@ -3,7 +3,10 @@
 > Polda is an iOS diary app user can customize their own polaroid and write a memo
 > 
 > Written using the latest verion of Swift programming language and CoreData.
-> + 2021.04~2021.07
+> + Development : 2021.04 - 2021.07
+> + AppStore distribute : 2021.07 - 2022.07
+
+<br>
 
 ## 🎞 App Features
 
@@ -68,36 +71,39 @@
 > + Share Polaroid Image
 > + Save Polaroid Image at 'Polda' folder in user's photo library                                                                                                                    
                                                                                                                                           
-                                                                                                                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                             
+                                                                                                                                                                                                                                                                                                                                                                                      
+<br>
+<br>
+
+
 ## 💻 Development environment
                                                                                                                                            
-1. Xcode version
-> + 12.2
+### Xcode version - 12.2
 
-2. Swift version
-> + Swift 5
+### Swift version - Swift 5
                                                                                                                                    
-3. Open source
-> + JJFloatingActionButton 
-> + MaterialComponents
-> + TagListView
+### Open source
++ JJFloatingActionButton 
++ MaterialComponents
++ TagListView
                                                                                                              
-                                                                                                                                           
-## 🔗 App distribution (2021.07 ~ 2022.07)
-## 📝 Changelog
-### Update(1.1ver) - 2021.09 
-> + Customize Polarioid frame color
-> + Add more alphbet, number stickers
-> + Fix app name issue
-### Update(1.2ver) - 2022.01
-> + Change Diary remove animation
-> + Fix tag search issue
-> + Change Polarioid frame UI
-### Update(1.3ver) - 2022.04
-> + Save Polaroid Image at 'Polda' folder
-> + Support English version 
-> + Modified with UI code made with storyboard (partly)
+<br>
+
+## 📝 Update Log
+### v1.1 - 2021.09 
++ Customize Polarioid frame color
++ Add more alphbet, number stickers
++ Fix app name issue
+  
+### v1.2 - 2022.01
++ Change Diary remove animation
++ Fix tag search issue
++ Change Polarioid frame UI
+
+### v1.3 - 2022.04
++ Save Polaroid Image at 'Polda' folder
++ Support English version 
++ Modified with UI code made with storyboard (partly)
                                                                                                                                         
                                                                                                                    
                                                                                                                                             
