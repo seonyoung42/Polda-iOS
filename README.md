@@ -3,12 +3,12 @@
 > Polda is an iOS diary app user can customize their own polaroid and write a memo
 > 
 > Written using the latest verion of Swift programming language and CoreData.
-> + Development : 2021.04 - 2021.07
-> + AppStore distribute : 2021.07 - 2022.07
+> + Development period : 2021.04 - 2021.07
+> + Appstore distribution : 2021.07 - 2022.07
 
 <br>
 
-## 🎞 App Features
+## 🌟 Main Features
 
 ### Add New Album
 <p float="left">
@@ -76,13 +76,14 @@
 <br>
 
 
-## 💻 Development environment
+## 🛠 Skills
                                                                                                                                            
-### Xcode version - 12.2
-
-### Swift version - Swift 5
-                                                                                                                                   
-### Open source
+### Tech Stack
++ UIKit
++ Swift 5
++ Coredata
+                                                                                                                              
+### Library
 + JJFloatingActionButton 
 + MaterialComponents
 + TagListView
